@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.MockedStatic;
 
 import jp.co.ginga.application.janken.jankenplayer.HumanJankenPlayerImpl;
@@ -58,7 +57,6 @@ public class TestJankenCuiGameApplicationImpl {
 	private List<JankenPlayer> emptyPlayerList = new ArrayList<JankenPlayer>();
 	private List<JankenPlayer> nullPlayerList = null;
 
-	@InjectMocks
 	JankenCuiGameApplicationImpl jankenCuiGameApplicationImpl = new JankenCuiGameApplicationImpl();
 
 	/**
@@ -2241,16 +2239,14 @@ public class TestJankenCuiGameApplicationImpl {
 	 * playerListがNULL以外の場合で
 	 * Jankenプレーヤーオブジェクトが1種類(人間プレーヤー)
 	 * Jankenプレーヤーオブジェクトが11の場合
-	 * JankenParamの値がすべて異なる場合
-	 * DRAWを返す
 	 * --条件--
 	 * playerListがNULL以外の場合
 	 * PlayerListにhumanPlayersを11人追加
-	 * JankenParamの値がすべて異なる場合
 	 * --検証事項--
-	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 1.SystemException(実行データ不良)が発行されること
+	 * 2.メッセージ内容が正しいこと
 	 */
+	
 	@Test
 	public void testJudge20() {
 

@@ -87,8 +87,9 @@ public class HumanJankenPlayerImpl implements JankenPlayer {
 		}
 	}
 
-	public void setPlayerHand(int i) {
-		this.playerHand = i;
-	}
+	//テスト用
+		public void setPlayerHand(int playerHand) {
+			this.playerHand = playerHand;
+		}
 
 }

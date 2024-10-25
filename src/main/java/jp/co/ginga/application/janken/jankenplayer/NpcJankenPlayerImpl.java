@@ -16,12 +16,12 @@ public class NpcJankenPlayerImpl implements JankenPlayer {
 	/**
 	 * 	プレーヤ―名
 	 */
-	private String playerName;
+	String playerName;
 
 	/**
 	 * プレーヤーが選択した手
 	 */
-	private int playerHand;
+	int playerHand;
 
 	/**
 	 * コンストラクタ
@@ -74,6 +74,15 @@ public class NpcJankenPlayerImpl implements JankenPlayer {
 		default:
 			throw new SystemException(MessageProperties.getMessage("error.arg"));
 		}
+	}
+
+	
+	
+	
+	//テスト用
+	public void setPlayerHand(int hand) {
+		this.playerHand = hand;
+		
 	}
 
 }

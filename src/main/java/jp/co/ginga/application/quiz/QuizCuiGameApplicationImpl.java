@@ -1,9 +1,9 @@
 package jp.co.ginga.application.quiz;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jp.co.ginga.application.CuiGameApplication;
+import jp.co.ginga.application.quiz.factory.QuizQuestionFactory;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
 import jp.co.ginga.util.keybord.Keybord;
@@ -36,7 +36,8 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 		System.out.println(MessageProperties.getMessage("quiz.msg.start"));
 
 		// クイズリスト作成
-		this.createQuizList();
+		QuizQuestionFactory factory = new QuizQuestionFactory();
+		list = factory.createQuizQuestion();
 
 		for (QuizQuestion quiz : list) {
 
@@ -54,39 +55,22 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 		System.out.println(MessageProperties.getMessage("quiz.msg.end"));
 	}
 
-	/**
-	 * クイズリスト作成処理
-	 * 
-	 * @throws SystemException
-	 */
-	void createQuizList() throws SystemException {
-
-		try {
-			list = new ArrayList<QuizQuestion>();
-			int numberOfQuiz = Integer.parseInt(MessageProperties.getMessage("quiz.number.questions"));
-
-			for (int i = 0; i < numberOfQuiz; i++) {
-				list.add(new QuizQuestion(MessageProperties.getMessage("quiz.question.titile" + (i + 1)),
-						MessageProperties.getMessage("quiz.question.body" + (i + 1)),
-						MessageProperties.getMessage("quiz.question.choice" + (i + 1)),
-						Integer.parseInt(MessageProperties.getMessage("quiz.question.correct" + (i + 1)))));
-			}
-		} catch (NumberFormatException e) {
-			throw new SystemException(MessageProperties.getMessage("error.properties.error"));
-		}
-
-	}
 
 	/**
 	 * クイズ問題表示処理
 	 * 
 	 * @param quis
+	 * @throws SystemException 
 	 */
-	void viewProblem(QuizQuestion quiz) {
-
+	void viewProblem(final QuizQuestion quiz) throws SystemException {
+		//quizがnullか
+		if (quiz == null) {
+			throw new SystemException(MessageProperties.getMessage("error.stop"));
+		}
 		System.out.println(quiz.getProblemTitle());
 		System.out.println(quiz.getProblemBody());
 		System.out.println(quiz.getProblemChoice());
+		
 
 	}
 
@@ -97,8 +81,11 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 	 * @throws SystemException
 	 * 
 	 */
-	void judge(QuizQuestion quiz) throws SystemException {
-
+	void judge(final QuizQuestion quiz) throws SystemException {
+		//quizがnullか
+		if (quiz == null) {
+			throw new SystemException(MessageProperties.getMessage("error.stop"));
+		}
 		while (true) {
 
 			try {

@@ -5,6 +5,11 @@ import jp.co.ginga.application.janken.jankenplayer.JankenPlayer;
 import jp.co.ginga.application.janken.jankenplayer.NpcJankenPlayerImpl;
 import jp.co.ginga.util.exception.SystemException;
 
+/**
+ * じゃんけんプレーヤー製造クラス
+ * @author Isogai
+ *
+ */
 public class JankenPlayerFactory {
 	public final static int HUMAN = 1;
 	public final static int NPC = 2;
@@ -19,7 +24,7 @@ public class JankenPlayerFactory {
 	public static JankenPlayer createJankenPlayer(final int type, final String name) throws SystemException {
 
 		if(name.isEmpty()) {
-			throw new SystemException(null);			
+			throw new SystemException("プレーヤーの名前が設定されていません。");			
 		}
 		
 		JankenPlayer player = null;
@@ -31,7 +36,7 @@ public class JankenPlayerFactory {
 			player = new NpcJankenPlayerImpl(name);
 			break;
 		default:
-			throw new SystemException(null);
+			throw new SystemException("プレーヤータイプが正しく設定されていません。");
 		}
 		return player;
 	}

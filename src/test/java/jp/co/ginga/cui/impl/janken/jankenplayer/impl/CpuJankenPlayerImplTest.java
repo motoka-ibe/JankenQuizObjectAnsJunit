@@ -13,7 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockedConstruction;
 
-import jp.co.ginga.cui.impl.janken.JankenParam;
+import jp.co.ginga.application.janken.JankenParam;
+import jp.co.ginga.application.janken.jankenplayer.NpcJankenPlayerImpl;
 import jp.co.ginga.util.exception.SystemException;
 
 /**
@@ -37,11 +38,11 @@ public class CpuJankenPlayerImplTest {
 	private String errorMessage = "パラメーターの値が不正です。";
 
 	@InjectMocks
-	private CpuJankenPlayerImpl player = new CpuJankenPlayerImpl(this.playerName);
+	private NpcJankenPlayerImpl player = new NpcJankenPlayerImpl(this.playerName);
 
 	/**
 	 * testConstructor001 正常系
-	 * public CpuJankenPlayerImpl(String playerName)
+	 * public NpcJankenPlayerImpl(String playerName)
 	 * --確認事項--
 	 * インスタンス生成時に渡された引数がフィールドに代入されているか
 	 * --条件--
@@ -53,11 +54,11 @@ public class CpuJankenPlayerImplTest {
 	public void testConstructor001() {
 		try {
 			//準備
-			Field playerNameField = CpuJankenPlayerImpl.class.getDeclaredField("playerName");
+			Field playerNameField = NpcJankenPlayerImpl.class.getDeclaredField("playerName");
 			playerNameField.setAccessible(true);
 			
 			//テストメソッド
-			CpuJankenPlayerImpl player = new CpuJankenPlayerImpl(this.playerName);
+			NpcJankenPlayerImpl player = new NpcJankenPlayerImpl(this.playerName);
 
 			//検証
 			String result = String.valueOf(playerNameField.get(player));
@@ -71,7 +72,7 @@ public class CpuJankenPlayerImplTest {
 
 	/**
 	 * testConstructor002 正常系
-	 * public CpuJankenPlayerImpl(String playerName)
+	 * public NpcJankenPlayerImpl(String playerName)
 	 * --確認事項--
 	 * インスタンス生成時に渡された引数がフィールドに代入されているか
 	 * --条件--
@@ -83,11 +84,11 @@ public class CpuJankenPlayerImplTest {
 	public void testConstructor002() {
 		try {
 			//準備
-			Field playerNameField = CpuJankenPlayerImpl.class.getDeclaredField("playerName");
+			Field playerNameField = NpcJankenPlayerImpl.class.getDeclaredField("playerName");
 			playerNameField.setAccessible(true);
 			
 			//テストメソッド
-			CpuJankenPlayerImpl player = new CpuJankenPlayerImpl(this.nullPlayerName);
+			NpcJankenPlayerImpl player = new NpcJankenPlayerImpl(this.nullPlayerName);
 
 			//検証
 			String result = (String) playerNameField.get(player);
@@ -113,7 +114,7 @@ public class CpuJankenPlayerImplTest {
 	public void testGetPlayerName001() {
 		try {
 			//準備
-			Field playerNameField = CpuJankenPlayerImpl.class.getDeclaredField("playerName");
+			Field playerNameField = NpcJankenPlayerImpl.class.getDeclaredField("playerName");
 			playerNameField.setAccessible(true);
 			playerNameField.set(this.player, this.playerName);
 
@@ -143,7 +144,7 @@ public class CpuJankenPlayerImplTest {
 	public void testGetPlayerName002() {
 		try {
 			//準備
-			Field playerNameField = CpuJankenPlayerImpl.class.getDeclaredField("playerName");
+			Field playerNameField = NpcJankenPlayerImpl.class.getDeclaredField("playerName");
 			playerNameField.setAccessible(true);
 			playerNameField.set(this.player, this.nullPlayerName);
 
@@ -173,7 +174,7 @@ public class CpuJankenPlayerImplTest {
 	public void testGetJankenHand001() {
 		try {
 			//準備
-			Field playerHandField = CpuJankenPlayerImpl.class.getDeclaredField("playerHand");
+			Field playerHandField = NpcJankenPlayerImpl.class.getDeclaredField("playerHand");
 			playerHandField.setAccessible(true);
 			playerHandField.set(this.player, this.playerHand);
 
@@ -231,7 +232,7 @@ public class CpuJankenPlayerImplTest {
 			)
 		){
 			//準備
-			Field playerHandField = CpuJankenPlayerImpl.class.getDeclaredField("playerHand");
+			Field playerHandField = NpcJankenPlayerImpl.class.getDeclaredField("playerHand");
 			playerHandField.setAccessible(true);
 			
 			//テストメソッド
@@ -270,7 +271,7 @@ public class CpuJankenPlayerImplTest {
 			)
 		){
 			//準備
-			Field playerHandField = CpuJankenPlayerImpl.class.getDeclaredField("playerHand");
+			Field playerHandField = NpcJankenPlayerImpl.class.getDeclaredField("playerHand");
 			playerHandField.setAccessible(true);
 			
 			//テストメソッド
@@ -309,7 +310,7 @@ public class CpuJankenPlayerImplTest {
 			)
 		){
 			//準備
-			Field playerHandField = CpuJankenPlayerImpl.class.getDeclaredField("playerHand");
+			Field playerHandField = NpcJankenPlayerImpl.class.getDeclaredField("playerHand");
 			playerHandField.setAccessible(true);
 			
 			//テストメソッド

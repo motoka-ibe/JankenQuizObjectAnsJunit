@@ -12,7 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockedStatic;
 
-import jp.co.ginga.cui.impl.janken.JankenParam;
+import jp.co.ginga.application.janken.JankenParam;
+import jp.co.ginga.application.janken.jankenplayer.HumanJankenPlayerImpl;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
 import jp.co.ginga.util.keybord.Keybord;

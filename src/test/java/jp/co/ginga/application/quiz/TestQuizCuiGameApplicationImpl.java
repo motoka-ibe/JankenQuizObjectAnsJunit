@@ -1,4 +1,4 @@
-package jp.co.ginga.application.impl.quiz;
+package jp.co.ginga.application.quiz;
 
 public class TestQuizCuiGameApplicationImpl {
 

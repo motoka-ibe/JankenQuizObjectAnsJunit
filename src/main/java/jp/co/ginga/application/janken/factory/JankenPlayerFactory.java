@@ -10,19 +10,18 @@ public class JankenPlayerFactory {
 	public final static int NPC = 2;
 
 	/**
-	 * じゃんけんプレーヤー製造クラス
-	 * @param type HUMAN or NPC
+	 * 
+	 * @param type
 	 * @param name
 	 * @return
 	 * @throws SystemException
 	 */
 	public static JankenPlayer createJankenPlayer(final int type, final String name) throws SystemException {
 
-		//nameが空の場合はSystemExceptionを発行する
-		if (name.isEmpty()) {
-			throw new SystemException("プレーヤーの名前が設定されていません。");
+		if(name.isEmpty()) {
+			throw new SystemException(null);			
 		}
-
+		
 		JankenPlayer player = null;
 		switch (type) {
 		case HUMAN:
@@ -32,7 +31,7 @@ public class JankenPlayerFactory {
 			player = new NpcJankenPlayerImpl(name);
 			break;
 		default:
-			throw new SystemException("プレーヤータイプが正しく設定されていません。");
+			throw new SystemException(null);
 		}
 		return player;
 	}

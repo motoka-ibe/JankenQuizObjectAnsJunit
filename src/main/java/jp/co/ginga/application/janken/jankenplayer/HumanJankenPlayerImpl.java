@@ -16,12 +16,12 @@ public class HumanJankenPlayerImpl implements JankenPlayer {
 	/**
 	 * 	プレーヤ―名
 	 */
-	String playerName;
+	private String playerName;
 
 	/**
 	 * プレーヤーが選択した手
 	 */
-	int playerHand;
+	private int playerHand;
 
 	/**
 	 * コンストラクタ
@@ -87,8 +87,8 @@ public class HumanJankenPlayerImpl implements JankenPlayer {
 		}
 	}
 
-	public void setPlayerHand(int playerHand) {
-		this.playerHand = playerHand;
+	public void setPlayerHand(int i) {
+		this.playerHand = i;
 	}
 
 }

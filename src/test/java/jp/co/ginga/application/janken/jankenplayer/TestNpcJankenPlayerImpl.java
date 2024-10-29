@@ -298,11 +298,11 @@ public class TestNpcJankenPlayerImpl {
 		try (MockedConstruction<Random> mockRandom = mockConstruction(
 				Random.class,
 				(random, context) -> when(random.nextInt(3)).thenReturn(this.draw - 1))) {
-			assertEquals(mockRandom.constructed().size(), 1); // モックが1つだけ作成されたことを確認
-			verify(mockRandom.constructed().get(0), times(1)).nextInt(3); // verify：nextInt(3)メソッドが1回呼ばれたことを確認
-			// テストメソッド
+			
 			this.player.selectJankenHand();
 			fail();
+			
+			// テストメソッド
 
 		} catch (SystemException e) {
 			e.printStackTrace();

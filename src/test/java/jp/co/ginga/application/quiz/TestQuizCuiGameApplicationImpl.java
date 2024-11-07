@@ -19,6 +19,11 @@ import jp.co.ginga.util.exception.SystemException;
 import jp.co.ginga.util.keybord.Keybord;
 import jp.co.ginga.util.properties.MessageProperties;
 
+/**
+ * CUIクイズ実装クラス
+ * @author Inoue / Isogai
+ *
+ */
 public class TestQuizCuiGameApplicationImpl {
 
 	private List<QuizQuestion> list;
@@ -27,68 +32,133 @@ public class TestQuizCuiGameApplicationImpl {
 
 	/**
 	 * testAction_01 正常系
-	 * public HumanJankenPlayerImpl(String playerName)
+	 * public void action() throws SystemException 
 	 * 
 	 * --確認事項--
-	 * インスタンス生成時に渡された引数がフィールドに代入されているか
+	 * QuizQuestionFactoryのcreateQuizQuestion()の戻り値のsizeが3の場合
+	 * 処理が正常終了すること
 	 * --条件--
-	 *	引数は文字列
-	 * --検証項目--
-	 * インスタンス生成時に渡した文字列とplayerNameフィールドの値が等しいこと
+	 *	QuizQuestionFactoryのcreateQuizQuestion()の戻り値のsizeが3の場合
+	* --検証項目--
+	* 1. createQuizQuestion()が返すリストのサイズが3であること
+	* 2. リストの各QuizQuestionオブジェクトのタイトル、本文、選択肢、正解が期待通りであること
+	* 3. QuizCuiGameApplicationImplのviewProblem()が3回呼び出されること
+	* 4. judge()が3回呼び出されること
+	* 5. viewResult()が1回呼び出されること
+	* 6. 例外が発生せず、正常終了すること
 	 */
-	//	@Test
+	@Test
 	public void testAction_01() {
 		try {
 			list = new ArrayList<QuizQuestion>();
 			for (int i = 0; i < 3; i++) {
 				list.add(new QuizQuestion("タイトル", "本文", "選択肢", 1));
 			}
-
 			QuizQuestionFactory mockFactory = mock(QuizQuestionFactory.class);
-			// 10を返すように設定
+		
 			when(mockFactory.createQuizQuestion()).thenReturn(list);
-
 			QuizCuiGameApplicationImpl spyApplication = spy(QuizCuiGameApplicationImpl.class);
 			doNothing().when(spyApplication).viewProblem(any());
 			doNothing().when(spyApplication).judge(any());
 			doNothing().when(spyApplication).viewResult();
+			spyApplication.factory = mockFactory;
 
-			//検証
+			//テストメソッドの実行
 			spyApplication.action();
 
+			//検証
+			assertEquals(3, spyApplication.list.size());
+			for(int i = 0 ; i < list.size() ; i++) {
+			assertEquals("タイトル", spyApplication.list.get(i).getProblemTitle());
+			assertEquals("本文", spyApplication.list.get(i).getProblemBody());
+			assertEquals(1, spyApplication.list.get(i).getCorrect());
+			}
 			verify(spyApplication, times(3)).viewProblem(any());
 			verify(spyApplication, times(3)).judge(any());
 			verify(spyApplication, times(1)).viewResult();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
 		}
 	}
 
-	//	@Test
+	/**
+	 * testAction_02 正常系
+	 * public void action() throws SystemException 
+	 * 
+	 *  --確認事項--
+	 * QuizQuestionFactoryのcreateQuizQuestion()の戻り値のsizeが0の場合
+	 * 処理が正常終了すること
+	 * --条件--
+	 *	QuizQuestionFactoryのcreateQuizQuestion()の戻り値のsizeが0の場合
+	 * --検証項目--
+	 * 1. createQuizQuestion()が返すリストのサイズが0であること
+	 * 2. QuizCuiGameApplicationImplのviewProblem()が0回呼び出されること
+	 * 3. judge()が0回呼び出されること
+	 * 4. viewResult()が1回呼び出されること
+	 * 5. 例外が発生せず、正常終了すること
+	 */
+	@Test
 	public void testAction_02() {
 		try {
 			list = new ArrayList<QuizQuestion>();
 
-			QuizQuestionFactory mockFactory = spy(QuizQuestionFactory.class);
-			// 10を返すように設定
-			//			when(mockFactory.createQuizQuestion()).thenReturn(list);
-			doReturn(list).when(mockFactory).createQuizQuestion();
-
+			QuizQuestionFactory mockFactory = mock(QuizQuestionFactory.class);
+		
+			when(mockFactory.createQuizQuestion()).thenReturn(list);
 			QuizCuiGameApplicationImpl spyApplication = spy(QuizCuiGameApplicationImpl.class);
+			doNothing().when(spyApplication).viewProblem(any());
+			doNothing().when(spyApplication).judge(any());
 			doNothing().when(spyApplication).viewResult();
+			spyApplication.factory = mockFactory;
 
 			//検証
 			spyApplication.action();
 
+			assertEquals(0, spyApplication.list.size());
 			verify(spyApplication, times(0)).viewProblem(any());
 			verify(spyApplication, times(0)).judge(any());
 			verify(spyApplication, times(1)).viewResult();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
+		}
+	}
+
+	/**
+	 * testAction_03 異常系
+	 * public void action() throws SystemException 
+	 * 
+	 * --確認事項--
+	 * QuizQuestionFactoryのcreateQuizQuestion()の戻り値がnullの場合
+	 * SystemException(実行データ不良)が発行される
+	 * --条件--
+	 *	QuizQuestionFactoryのcreateQuizQuestion()の戻り値がnullの場合
+	 * --検証項目--
+	 * 1.SystemException(実行データ不良)が発行されること
+	 * 2..SystemExceptionのメッセージ内容が正しいこと
+	 */
+	@Test
+	public void testAction_03() {
+		try {
+			list = null;
+
+			QuizQuestionFactory mockFactory = mock(QuizQuestionFactory.class);
+		
+			when(mockFactory.createQuizQuestion()).thenReturn(list);
+			QuizCuiGameApplicationImpl spyApplication = spy(QuizCuiGameApplicationImpl.class);
+			doNothing().when(spyApplication).viewProblem(any());
+			doNothing().when(spyApplication).judge(any());
+			doNothing().when(spyApplication).viewResult();
+			spyApplication.factory = mockFactory;
+
+			//検証
+			spyApplication.action();
+			fail();
+
+		} catch (SystemException e) {
+			e.printStackTrace();
+			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg()); //検証
 		}
 	}
 
@@ -120,7 +190,7 @@ public class TestQuizCuiGameApplicationImpl {
 					+ "本文" + System.lineSeparator()
 					+ "選択肢" + System.lineSeparator(),
 					out.toString());
-
+      
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
@@ -215,7 +285,7 @@ public class TestQuizCuiGameApplicationImpl {
 	 * --確認事項--
 	 * correctが正しく判断されて、加算されないこと
 	 * --条件--
-	 *	引数quizのcorrectが3、かつKeybord.getInt(1, 3)の実行結果が2の場合
+	 *	引数quizのcorrectが1、かつKeybord.getInt(1, 3)の実行結果が2の場合
 	 * --検証項目--
 	 * correctCountが0のまま、処理が正常終了すること
 	 */

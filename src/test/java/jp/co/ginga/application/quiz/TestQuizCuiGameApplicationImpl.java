@@ -182,12 +182,15 @@ public class TestQuizCuiGameApplicationImpl {
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			System.setOut(new PrintStream(out));
 
+			//テスト対象実行
 			application.viewProblem(quiz);
 
+			//検証
 			assertEquals("タイトル" + System.lineSeparator()
 					+ "本文" + System.lineSeparator()
 					+ "選択肢" + System.lineSeparator(),
 					out.toString());
+      
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
@@ -209,12 +212,14 @@ public class TestQuizCuiGameApplicationImpl {
 	public void testViewProblem_02() {
 		try {
 			application = new QuizCuiGameApplicationImpl();
+			//テスト対象実行
 			application.viewProblem(null);
 
 			fail();
 
 		} catch (SystemException e) {
 			e.printStackTrace();
+			//検証
 			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg()); //検証
 		}
 	}
@@ -234,12 +239,14 @@ public class TestQuizCuiGameApplicationImpl {
 	public void testJudge_01() {
 		try {
 			application = new QuizCuiGameApplicationImpl();
+			//テスト対象実行
 			application.judge(null);
 
 			fail();
 
 		} catch (SystemException e) {
 			e.printStackTrace();
+			//検証
 			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg()); //検証
 		}
 	}
@@ -261,7 +268,9 @@ public class TestQuizCuiGameApplicationImpl {
 			mockKeybord.when(() -> Keybord.getInt(1, 3)).thenReturn(2);
 			quiz = new QuizQuestion("タイトル", "本文", "選択肢", 2);
 			application = new QuizCuiGameApplicationImpl();
+			//テスト対象実行
 			application.judge(quiz);
+			//検証
 			assertEquals(1, application.correctConut);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -286,7 +295,9 @@ public class TestQuizCuiGameApplicationImpl {
 			mockKeybord.when(() -> Keybord.getInt(1, 3)).thenReturn(2);
 			quiz = new QuizQuestion("タイトル", "本文", "選択肢", 1);
 			application = new QuizCuiGameApplicationImpl();
+			//テスト対象実行
 			application.judge(quiz);
+			//検証
 			assertEquals(0, application.correctConut);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -316,8 +327,9 @@ public class TestQuizCuiGameApplicationImpl {
 			System.setOut(new PrintStream(out));
 
 			application = new QuizCuiGameApplicationImpl();
+			//テスト対象実行
 			application.judge(quiz);
-
+			//検証
 			assertEquals(1, application.correctConut);
 			assertEquals("選択肢から答えを入力してください\n" + System.lineSeparator()
 					+ "範囲外の数値が入力されました。"
@@ -350,14 +362,17 @@ public class TestQuizCuiGameApplicationImpl {
 			mockKeybord.when(() -> Keybord.getInt(1, 3)).thenThrow(new SystemException("システムエラーが発生しました。終了します。"));
 			quiz = new QuizQuestion("タイトル", "本文", "選択肢", 2);
 			application = new QuizCuiGameApplicationImpl();
+			//テスト対象実行
 			application.judge(quiz);
+			//検証
 			assertEquals(0, application.correctConut);
 			mockKeybord.verify(() -> Keybord.getInt(1, 3), times(1));
 			fail();
 
 		} catch (SystemException e) {
 			e.printStackTrace();
-			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg()); //検証
+			//検証
+			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg());
 		}
 	}
 
@@ -377,7 +392,9 @@ public class TestQuizCuiGameApplicationImpl {
 		try (MockedStatic<MessageProperties> mockMessageProperties = mockStatic(MessageProperties.class)) {
 			mockMessageProperties.when(() -> MessageProperties.getMessage(anyString())).thenReturn("2問正解");
 			application = new QuizCuiGameApplicationImpl();
+			//テスト対象実行
 			application.viewResult();
+			//検証
 			mockMessageProperties.verify(() -> MessageProperties.getMessage(anyString()), times(1));
 
 		} catch (SystemException e) {
@@ -387,15 +404,15 @@ public class TestQuizCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testViewResult_01 正常系
+	 * testViewResult_02 異常系
 	 * void viewResult()
 	 * 
 	 * --確認事項--
-	 * 結果表示ができるか
+	 * SystemExceptionが発行されるか
 	 * --条件--
-	 *	MessageProperties.getMessage("quiz.msg.correct" + this.correctConut)が正常に処理された場合
+	 *	MessageProperties.getMessage("quiz.msg.correct" + this.correctConut)がSystemExceptionを発行する場合
 	 * --検証項目--
-	 * 表示された内容が、想定と一致すること
+	 * SystemExceptionが発行されること
 	 */
 	@Test
 	public void testViewResult_02() {
@@ -403,12 +420,15 @@ public class TestQuizCuiGameApplicationImpl {
 			mockMessageProperties.when(() -> MessageProperties.getMessage(anyString()))
 					.thenThrow(new SystemException("システムエラーが発生しました。終了します。"));
 			application = new QuizCuiGameApplicationImpl();
+			//テスト対象実行
 			application.viewResult();
+			//検証
 			mockMessageProperties.verify(() -> MessageProperties.getMessage(anyString()), times(1));
 
 		} catch (SystemException e) {
 			e.printStackTrace();
-			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg()); //検証
+			//検証
+			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg());
 		}
 	}
 

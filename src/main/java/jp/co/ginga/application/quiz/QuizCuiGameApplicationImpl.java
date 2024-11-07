@@ -28,6 +28,11 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 	int correctConut;
 
 	/**
+	 * QuizQuestionFactoryのインスタンス生成
+	 */
+	QuizQuestionFactory factory = new QuizQuestionFactory();
+	
+	/**
 	 * クイズゲーム開始処理
 	 */
 	@Override
@@ -36,9 +41,10 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 		System.out.println(MessageProperties.getMessage("quiz.msg.start"));
 
 		// クイズリスト作成
-		QuizQuestionFactory factory = new QuizQuestionFactory();
 		list = factory.createQuizQuestion();
-
+		if (list == null) {
+			throw new SystemException(MessageProperties.getMessage("error.stop"));
+		}
 		for (QuizQuestion quiz : list) {
 
 			// クイズ情報表示
@@ -55,7 +61,6 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 		System.out.println(MessageProperties.getMessage("quiz.msg.end"));
 	}
 
-
 	/**
 	 * クイズ問題表示処理
 	 * 
@@ -70,7 +75,6 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 		System.out.println(quiz.getProblemTitle());
 		System.out.println(quiz.getProblemBody());
 		System.out.println(quiz.getProblemChoice());
-		
 
 	}
 
@@ -114,5 +118,5 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 		System.out.println(MessageProperties.getMessage("quiz.msg.correct" + this.correctConut));
 
 	}
-
+	
 }

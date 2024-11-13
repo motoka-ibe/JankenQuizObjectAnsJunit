@@ -387,7 +387,7 @@ public class TestQuizCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testViewResult_01 正常系
+	 * testViewResult_02 異常系
 	 * void viewResult()
 	 * 
 	 * --確認事項--

@@ -4,17 +4,15 @@ package jp.co.ginga.main;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedConstruction;
 import org.mockito.MockedStatic;
 
-import jp.co.ginga.cui.impl.janken.JankenCuiGameApplicationImpl;
-import jp.co.ginga.cui.impl.janken.jankenplayer.JankenPlayer;
-import jp.co.ginga.cui.impl.janken.jankenplayer.impl.HumanJankenPlayerImpl;
-import jp.co.ginga.cui.impl.quiz.QuizCuiGameApplicationImpl;
+import jp.co.ginga.application.janken.JankenCuiGameApplicationImpl;
+import jp.co.ginga.application.quiz.QuizCuiGameApplicationImpl;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
 import jp.co.ginga.util.keybord.Keybord;
@@ -24,115 +22,41 @@ import jp.co.ginga.util.keybord.Keybord;
  * @author yoshi
  *
  */
-public class CuiGameTest {
+public class TestCuiGame {
 
 	//テストデータ
-	private int quizGameNum = 1;
-	private int jankenGameNum = 2;
+	private int quizGame = 1;
+	private int jankenGame = 2;
 	private int illegalValue = -1;
-	private String errorMessage = "入力した値が不正です。再入力をお願いします。";
-
-	@Test
-	public void じゃんけん判定処理() throws SystemException {
-		//事前準備
-		List<JankenPlayer> playerList = new ArrayList<JankenPlayer>();
-		//		playerList.add(new HumanJankenPlayerImpl("プレーヤー1"));
-		//		playerList.add(new HumanJankenPlayerImpl("プレーヤー2"));
-
-		HumanJankenPlayerImpl player1 = new HumanJankenPlayerImpl("プレーヤー1");
-		player1.setPlayerHand(1);
-
-		HumanJankenPlayerImpl player2 = new HumanJankenPlayerImpl("プレーヤー2");
-		player2.setPlayerHand(1);
-
-		playerList.add(player1);
-		playerList.add(player2);
-
-		//テスト対象オブジェクトのインスタンス生成
-		JankenCuiGameApplicationImpl obj = new JankenCuiGameApplicationImpl();
-
-		//事前準備したリストを設定する
-		obj.setPlayerList(playerList);
-
-		//テスト対象のメソッドを呼び出す
-		int no = obj.judge();
-
-		if (no == 0) {
-			//OK
-			System.out.println("テスト成功");
-		} else {
-			//NG
-			System.out.println("テスト失敗");
-			fail();
-		}
-
-	}
-
-	@Test
-	public void じゃんけん判定処理2() throws SystemException {
-		//事前準備
-		List<JankenPlayer> playerList = new ArrayList<JankenPlayer>();
-		//		playerList.add(new HumanJankenPlayerImpl("プレーヤー1"));
-		//		playerList.add(new HumanJankenPlayerImpl("プレーヤー2"));
-
-		HumanJankenPlayerImpl player1 = new HumanJankenPlayerImpl("プレーヤー1");
-		player1.setPlayerHand(1);
-
-		HumanJankenPlayerImpl player2 = new HumanJankenPlayerImpl("プレーヤー2");
-		player2.setPlayerHand(2);
-
-		playerList.add(player1);
-		playerList.add(player2);
-
-		//テスト対象オブジェクトのインスタンス生成
-		JankenCuiGameApplicationImpl obj = new JankenCuiGameApplicationImpl();
-
-		//事前準備したリストを設定する
-		obj.setPlayerList(playerList);
-
-		//テスト対象のメソッドを呼び出す
-		int no = obj.judge();
-
-		if (no == 1) {
-			//OK
-			System.out.println("テスト成功");
-		} else {
-			//NG
-			System.out.println("テスト失敗");
-			fail();
-		}
-
-	}
 
 	/**
-	 * testMain001 正常系
+	 * testMain_01 正常系
 	 * public static void main(String[] args)
 	 * --確認事項--
-	 * ゲーム選択時に不正な値が入力されたらもう一度入力が求められる
-	 * クイズゲームインスタンスのactionが呼び出される
+	 * 整数の1を入力した場合
+	 * QuizCuiGameApplicationImplが実行される
 	 * --条件--
-	 * getIntでは一回目は不正な値、二回目は1を入力するmock
+	 * getIntでは整数の1を入力するmock
 	 * mock化したゲームインスタンスが生成される
 	 * --検証項目--
-	 * 1. getIntメソッドが2回呼び出されているか
+	 * 1. getIntメソッドが1回呼び出されているか
 	 * 2. actionメソッドが1回呼び出されているか
-	 * 3. 例外が発生しないこと
+	 * 3. 処理が正常に終了すること(例外が発生しないこと)
 	 */
 	@Test
-	public void testMain001() {
+	public void testMain_01() {
 		//モック化
 		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
 				MockedConstruction<QuizCuiGameApplicationImpl> mockQuizGame = mockConstruction(
 						QuizCuiGameApplicationImpl.class,
 						(quizGame, context) -> doNothing().when(quizGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(this.quizGameNum, this.jankenGameNum))
-					.thenThrow(new ApplicationException(this.errorMessage)).thenReturn(this.quizGameNum);
+			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.quizGame);
 
 			//テストメソッド
 			CuiGame.main(null);
 
 			//検証
-			mockKeybord.verify(() -> Keybord.getInt(this.quizGameNum, this.jankenGameNum), times(2));
+			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1));
 			verify(mockQuizGame.constructed().get(0), times(1)).action();
 
 		} catch (Exception e) {
@@ -142,33 +66,153 @@ public class CuiGameTest {
 	}
 
 	/**
-	 * testMain002 正常系
+	 * testMain_02 異常系
 	 * public static void main(String[] args)
 	 * --確認事項--
-	 * ゲーム選択時に不正な値が入力されたらもう一度入力が求められる
-	 * クイズゲームインスタンスのactionが呼び出される
+	 * 整数の1を入力した場合
+	 * QuizCuiGameApplicationImplが実行される
+	 * actionメソッドからSystemExceptionが発生すると処理が終了する
 	 * --条件--
-	 * getIntメソッドでは1を入力するmock
-	 * mock化したゲームインスタンスが生成される
+	 * getIntでは一回目は1を入力するmock
+	 * 生成されるゲームインスタンスはSystemExceptionが発生するmock
 	 * --検証項目--
 	 * 1. getIntメソッドが1回呼び出されているか
 	 * 2. actionメソッドが1回呼び出されているか
-	 * 3. 例外が発生しないこと
+	 * 3. エラーメッセージが出力され内容が正しいことを確認
 	 */
 	@Test
-	public void testMain002() {
+	public void testMain_02() {
 		//モック化
 		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
-				MockedConstruction<JankenCuiGameApplicationImpl> mockJankenGame = mockConstruction(
-						JankenCuiGameApplicationImpl.class,
-						(jankenGame, context) -> doNothing().when(jankenGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(this.quizGameNum, this.jankenGameNum)).thenReturn(this.jankenGameNum);
+				MockedConstruction<QuizCuiGameApplicationImpl> mockQuizGame = mockConstruction(
+						QuizCuiGameApplicationImpl.class,
+						(jankenGame, context) -> doThrow(new SystemException(null)).when(jankenGame).action())) {
+			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.quizGame);
+
+			//System.setErrメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
 
 			//テストメソッド
 			CuiGame.main(null);
 
 			//検証
-			mockKeybord.verify(() -> Keybord.getInt(this.quizGameNum, this.jankenGameNum), times(1));
+			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
+			verify(mockQuizGame.constructed().get(0), times(1)).action(); //actionメソッドが1回呼び出されているか
+
+			// 出力の確認
+			String output = out.toString();
+
+			// 出力の確認(split()メソッドで出力された文字列を行ごとに分割)
+			String[] outputLines = output.split(System.lineSeparator());
+
+			// for分で該当するメッセージを探す
+			boolean findMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("システムエラーが発生しました。終了します。")) {
+					findMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			// メッセージが見つかったことを確認
+			assertTrue(findMessage);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+
+	/**
+	 * testMain_03 異常系
+	 * public static void main(String[] args)
+	 * --確認事項--
+	 * 整数の1を入力した場合
+	 * QuizCuiGameApplicationImplが実行される
+	 * actionメソッドからSystemExceptionが発生すると処理が終了する
+	 * --条件--
+	 * getIntでは一回目は1を入力するmock
+	 * 生成されるゲームインスタンスはApplicationExceptionが発生するmock
+	 * --検証項目--
+	 * 1. getIntメソッドが1回呼び出されているか
+	 * 2. actionメソッドが1回呼び出されているか
+	 * 3. エラーメッセージが出力され内容が正しいことを確認
+	 */
+	@Test
+	public void testMain_03() {
+		//モック化
+		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+				MockedConstruction<QuizCuiGameApplicationImpl> mockQuizGame = mockConstruction(
+						QuizCuiGameApplicationImpl.class,
+						(jankenGame, context) -> doThrow(new ApplicationException(null)).when(jankenGame).action())) {
+			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.quizGame);
+
+			//System.setErrメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
+
+			//テストメソッド
+			CuiGame.main(null);
+
+			//検証
+			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
+			verify(mockQuizGame.constructed().get(0), times(1)).action(); //actionメソッドが1回呼び出されているか
+
+			// 出力の確認
+			String output = out.toString();
+
+			// 出力の確認(split()メソッドで出力された文字列を行ごとに分割)
+			String[] outputLines = output.split(System.lineSeparator());
+
+			// for分で該当するメッセージを探す
+			boolean findMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("システムエラーが発生しました。終了します。")) {
+					findMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			// メッセージが見つかったことを確認
+			assertTrue(findMessage);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+
+	/**
+	 * testMain_04 正常系
+	 * public static void main(String[] args)
+	 * --確認事項--
+	 * 整数の1を入力した場合
+	 * JankenCuiGameApplicationImplが実行される
+	 * --条件--
+	 * getIntでは整数の2を入力するmock
+	 * mock化したゲームインスタンスが生成される
+	 * --検証項目--
+	 * 1. getIntメソッドが1回呼び出されているか
+	 * 2. actionメソッドが1回呼び出されているか
+	 * 3. 処理が正常に終了すること(例外が発生しないこと)
+	 */
+	@Test
+	public void testMain_04() {
+		//モック化
+		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+				MockedConstruction<JankenCuiGameApplicationImpl> mockJankenGame = mockConstruction(
+						JankenCuiGameApplicationImpl.class,
+						(quizGame, context) -> doNothing().when(quizGame).action())) {
+			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.jankenGame);
+
+			//テストメソッド
+			CuiGame.main(null);
+
+			//検証
+			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1));
 			verify(mockJankenGame.constructed().get(0), times(1)).action();
 
 		} catch (Exception e) {
@@ -178,20 +222,199 @@ public class CuiGameTest {
 	}
 
 	/**
-	 * testMain003 異常系
+	 * testMain_05 異常系
 	 * public static void main(String[] args)
 	 * --確認事項--
-	 * ゲーム選択時に不正な値を入力しても再入力が求められずに処理が進んでしまい終了する
+	 * 整数の1を入力した場合
+	 * JankenCuiGameApplicationImplが実行される
+	 * actionメソッドからSystemExceptionが発生すると処理が終了する
 	 * --条件--
-	 * getIntでは一回目は-1を入力するmock
-	 * mock化したゲームインスタンスが生成される
+	 * getIntでは一回目は1を入力するmock
+	 * 生成されるゲームインスタンスはApplicationExceptionが発生するmock
 	 * --検証項目--
 	 * 1. getIntメソッドが1回呼び出されているか
-	 * 2. ゲームインスタンスが生成されていないか
-	 * 3. 処理が終了するか
+	 * 2. actionメソッドが1回呼び出されているか
+	 * 3. エラーメッセージが出力され内容が正しいことを確認
 	 */
 	@Test
-	public void testMain003() {
+	public void testMain_05() {
+		//モック化
+		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+				MockedConstruction<JankenCuiGameApplicationImpl> mockJankenGame = mockConstruction(
+						JankenCuiGameApplicationImpl.class,
+						(jankenGame, context) -> doThrow(new SystemException(null)).when(jankenGame).action())) {
+			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.jankenGame);
+
+			//System.setErrメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
+
+			//テストメソッド
+			CuiGame.main(null);
+
+			//検証
+			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
+			verify(mockJankenGame.constructed().get(0), times(1)).action(); //actionメソッドが1回呼び出されているか
+
+			// 出力の確認
+			String output = out.toString();
+
+			// 出力の確認(split()メソッドで出力された文字列を行ごとに分割)
+			String[] outputLines = output.split(System.lineSeparator());
+
+			// for分で該当するメッセージを探す
+			boolean findMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("システムエラーが発生しました。終了します。")) {
+					findMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			// メッセージが見つかったことを確認
+			assertTrue(findMessage);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+
+	/**
+	 * testMain_06 異常系
+	 * public static void main(String[] args)
+	 * --確認事項--
+	 * 整数の1を入力した場合
+	 * JankenCuiGameApplicationImplが実行される
+	 * actionメソッドからApplicationExceptionが発生すると処理が終了する
+	 * --条件--
+	 * getIntでは一回目は1を入力するmock
+	 * 生成されるゲームインスタンスはApplicationExceptionが発生するmock
+	 * --検証項目--
+	 * 1. getIntメソッドが1回呼び出されているか
+	 * 2. actionメソッドが1回呼び出されているか
+	 * 3. エラーメッセージが出力され内容が正しいことを確認
+	 */
+	@Test
+	public void testMain_06() {
+		//モック化
+		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+				MockedConstruction<JankenCuiGameApplicationImpl> mockJankenGame = mockConstruction(
+						JankenCuiGameApplicationImpl.class,
+						(jankenGame, context) -> doThrow(new ApplicationException(null)).when(jankenGame).action())) {
+			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.jankenGame);
+
+			//System.setErrメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
+
+			//テストメソッド
+			CuiGame.main(null);
+
+			//検証
+			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
+			verify(mockJankenGame.constructed().get(0), times(1)).action(); //actionメソッドが1回呼び出されているか
+
+			// 出力の確認
+			String output = out.toString();
+
+			// 出力の確認(split()メソッドで出力された文字列を行ごとに分割)
+			String[] outputLines = output.split(System.lineSeparator());
+
+			// for分で該当するメッセージを探す
+			boolean findMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("システムエラーが発生しました。終了します。")) {
+					findMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			// メッセージが見つかったことを確認
+			assertTrue(findMessage);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+
+	/**
+	 * testMain_07 異常系
+	 * public static void main(String[] args)
+	 * --確認事項--
+	 * 整数の1,2以外を入力した場合
+	 * 再入力を促すメッセージを出力し、処理を繰り返す。
+	 * --条件--
+	 * getIntでは整数の1,2以外を入力するので、ApplicationExceptionが発生し、2回目で1を入力するmock
+	 * --検証項目--
+	 * 1. getIntメソッドが2回呼び出されているか
+	 * 2. actionメソッドが1回呼び出されているか
+	 * 3. エラーメッセージが出力され内容が正しいことを確認
+	 */
+	@Test
+	public void testMain_07() {
+		//モック化
+		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+				MockedConstruction<QuizCuiGameApplicationImpl> mockQuizGame = mockConstruction(
+						QuizCuiGameApplicationImpl.class,
+						(quizGame, context) -> doNothing().when(quizGame).action())) {
+			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenThrow(new ApplicationException(""))
+					.thenReturn(this.quizGame);
+
+			//System.setErrメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
+
+			//テストメソッド
+			CuiGame.main(null);
+
+			//検証
+			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(2)); //getIntメソッドが1回呼び出されているか
+			verify(mockQuizGame.constructed().get(0), times(1)).action(); //actionメソッドが1回呼び出されているか
+
+			// 出力の確認
+			String output = out.toString();
+
+			// 出力の確認(split()メソッドで出力された文字列を行ごとに分割)
+			String[] outputLines = output.split(System.lineSeparator());
+
+			// for分で該当するメッセージを探す
+			boolean findMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("入力した値が不正です。再入力をお願いします。")) {
+					findMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			// メッセージが見つかったことを確認
+			assertTrue(findMessage);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+
+	/**
+	 * testMain_08 異常系
+	 * public static void main(String[] args)
+	 * --確認事項--
+	 * 整数の1,2以外を入力した場合に
+	 * 再入力を促すメッセージが出ず、整数の1,2以外の引数が入ってしまった場合
+	 * --条件--
+	 * getIntにillegalValueを入力するmock
+	 * --検証項目--
+	 * 1. getIntメソッドが1回呼び出されているか
+	 * 2. actionメソッドが1回呼び出されているか
+	 * 3. ゲームインスタンスが生成されていないことを確認
+	 */
+	@Test
+	public void testMain_08() {
 		//モック化
 		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
 				MockedConstruction<JankenCuiGameApplicationImpl> mockJankenGame = mockConstruction(
@@ -200,83 +423,36 @@ public class CuiGameTest {
 				MockedConstruction<QuizCuiGameApplicationImpl> mockQuizGame = mockConstruction(
 						QuizCuiGameApplicationImpl.class,
 						(quizGame, context) -> doNothing().when(quizGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(this.quizGameNum, this.jankenGameNum)).thenReturn(this.illegalValue);
+			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.illegalValue);
+
+			//System.setErrメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
 
 			//テストメソッド
 			CuiGame.main(null);
 
-			//検証
-			mockKeybord.verify(() -> Keybord.getInt(this.quizGameNum, this.jankenGameNum), times(1));
-			assertEquals(0, mockQuizGame.constructed().size());
-			assertEquals(0, mockJankenGame.constructed().size());
+			// 出力の確認
+			String output = out.toString();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail();
-		}
-	}
+			// 出力の確認(split()メソッドで出力された文字列を行ごとに分割)
+			String[] outputLines = output.split(System.lineSeparator());
 
-	/**
-	 * testMain004 異常系
-	 * public static void main(String[] args)
-	 * --確認事項--
-	 * actionメソッドからSystemExceptionが発生すると処理が終了する
-	 * --条件--
-	 * getIntでは一回目は1を入力するmock
-	 * 生成されるゲームインスタンスはSystemExceptionが発生するmock
-	 * --検証項目--
-	 * 1. getIntメソッドが1回呼び出されているか
-	 * 2. actionメソッドが1回呼び出されているか
-	 */
-	@Test
-	public void testMain004() {
-		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
-				MockedConstruction<JankenCuiGameApplicationImpl> mockJankenGame = mockConstruction(
-						JankenCuiGameApplicationImpl.class,
-						(jankenGame, context) -> doThrow(new SystemException(null)).when(jankenGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(this.quizGameNum, this.jankenGameNum)).thenReturn(this.jankenGameNum);
-
-			//テストメソッド
-			CuiGame.main(null);
+			// for分で該当するメッセージを探す
+			boolean findMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("キーボード接続エラーです。ゲームを終了します。")) {
+					findMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
 
 			//検証
-			mockKeybord.verify(() -> Keybord.getInt(this.quizGameNum, this.jankenGameNum), times(1));
-			verify(mockJankenGame.constructed().get(0), times(1)).action();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail();
-		}
-	}
-
-	/**
-	 * testMain005 異常系
-	 * public static void main(String[] args)
-	 * --確認事項--
-	 * actionメソッドからApplicationExcepitonが発生すると処理が終了する
-	 * --条件--
-	 * getIntでは一回目は2を入力するmock
-	 * 生成されるゲームインスタンスはApplicationExcepitonが発生するmock
-	 * --検証項目--
-	 * 1. getIntメソッドが1回呼び出されているか
-	 * 2. actionメソッドが1回呼び出されているか
-	 */
-	@Test
-	public void testMain005() {
-		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
-				MockedConstruction<JankenCuiGameApplicationImpl> mockJankenGame = mockConstruction(
-						JankenCuiGameApplicationImpl.class,
-						(jankenGame, context) -> doThrow(new ApplicationException(null)).when(jankenGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(this.quizGameNum, this.jankenGameNum)).thenReturn(this.jankenGameNum);
-
-			//テストメソッド
-			CuiGame.main(null);
-
-			//検証
-			mockKeybord.verify(() -> Keybord.getInt(this.quizGameNum, this.jankenGameNum), times(1));
-			verify(mockJankenGame.constructed().get(0), times(1)).action();
+			assertTrue(findMessage);// メッセージが見つかったことを確認
+			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
+			assertEquals(0, mockQuizGame.constructed().size()); //ゲームインスタンスが生成されていないことを確認
+			assertEquals(0, mockJankenGame.constructed().size()); //ゲームインスタンスが生成されていないことを確認
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -288,8 +464,8 @@ public class CuiGameTest {
 	 * カバレッジを100%にするためのコンストラクタテスト
 	 */
 	@Test
-	public void testConstructor001() {
-		@SuppressWarnings("unused")
+	public void testConstructor_01() {
+		@SuppressWarnings("unused") //未使用の変数やメソッドに関するコンパイラの警告を抑制するアノテーション
 		CuiGame c = new CuiGame();
 	}
 

@@ -1136,7 +1136,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * オブジェクトの数分、selectJankenHand()が行われること
 	 * --条件--
 	 * playerListがNULL以外の場合
-	 * humanObjectが2,npcObjectが2の場合
+	 * humanObjectが2,npcObjectが3の場合
 	 * --検証事項--
 	 * オブジェクトの数分、selectJankenHand()が行われること
 	 */

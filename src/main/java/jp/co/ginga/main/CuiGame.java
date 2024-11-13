@@ -14,12 +14,16 @@ import jp.co.ginga.util.properties.MessageProperties;
  *
  */
 public class CuiGame {
-	
+
+	final static int QUIZGAME = 1;
+	final static int JankenGame = 2;
+
 	/**
 	 * main処理
 	 * @param args
+	 * @throws SystemException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SystemException {
 
 		try {
 			CuiGameApplication cga = null;
@@ -27,7 +31,7 @@ public class CuiGame {
 			while (true) {
 				System.out.println(MessageProperties.getMessage("msg.start"));
 				try {
-					switch (Keybord.getInt(1, 2)) {
+					switch (Keybord.getInt(QUIZGAME, JankenGame)) {
 					case 1:
 						//クイズゲームクラスのインスタん生成
 						cga = new QuizCuiGameApplicationImpl();
@@ -42,24 +46,19 @@ public class CuiGame {
 						System.out.println(MessageProperties.getMessage("error.keybord"));
 						return;
 					}
-
 					break;
 				} catch (ApplicationException e) {
 					System.out.println(MessageProperties.getMessage("msg.retype"));
 				}
-
 			}
-
 			// 選択したゲームの開始
 			cga.action();
 
-		} catch (SystemException e) {
-			//システムメッセージの出力処理
-			System.out.println(e.getSysMsg());
-		} catch (Exception e) {
-			e.printStackTrace();
-			//ログファイル書き出す？？
-			
+		} catch (SystemException e) { //actionメソッドにてSystemExceptionが発生した場合
+			System.out.println(MessageProperties.getMessage("error.stop"));
+		} catch (Exception e) { //actionメソッドにてApplicationExceptionが発生した場合
+			System.out.println(MessageProperties.getMessage("error.stop"));
+
 		}
 	}
 }

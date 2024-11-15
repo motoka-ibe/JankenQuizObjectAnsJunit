@@ -7,7 +7,6 @@ package jp.co.ginga.application.quiz;
  */
 public class QuizQuestion {
 
-
 	/**
 	 * 問題 タイトル
 	 */

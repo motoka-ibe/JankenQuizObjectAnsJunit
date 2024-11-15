@@ -154,10 +154,8 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 
 			} catch (ApplicationException e) {
 				System.out.println(MessageProperties.getMessage("msg.retype"));
-				//			} catch (NullPointerException e) {
-				//				throw new SystemException(MessageProperties.getMessage("error.stop"));
-			}
 
+			}
 		}
 
 	}
@@ -368,7 +366,6 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 	public void setPlayerList(List<JankenPlayer> playerList) {
 		this.playerList = playerList;
 	}
-
 
 	/**
 	 * @param winHand セットする winHand

@@ -19,7 +19,7 @@ import jp.co.ginga.util.keybord.Keybord;
 
 /**
  * CUIゲーム クラス
- * @author yoshi
+ * @author isogai
  *
  */
 public class TestCuiGame {

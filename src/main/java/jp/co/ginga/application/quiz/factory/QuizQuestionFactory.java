@@ -15,7 +15,7 @@ public class QuizQuestionFactory {
 			int numberOfQuiz = Integer.parseInt(MessageProperties.getMessage("quiz.number.questions"));
 
 			for (int i = 0; i < numberOfQuiz; i++) {
-				String title = MessageProperties.getMessage("quiz.question.titile" + (i + 1));
+				String title = MessageProperties.getMessage("quiz.question.title" + (i + 1));
 				String body = MessageProperties.getMessage("quiz.question.body" + (i + 1));
 				String choice = MessageProperties.getMessage("quiz.question.choice" + (i + 1));
 				int correct = Integer.parseInt(MessageProperties.getMessage("quiz.question.correct" + (i + 1)));

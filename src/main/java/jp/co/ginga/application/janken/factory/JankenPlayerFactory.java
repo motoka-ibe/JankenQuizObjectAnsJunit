@@ -23,10 +23,10 @@ public class JankenPlayerFactory {
 	 */
 	public static JankenPlayer createJankenPlayer(final int type, final String name) throws SystemException {
 
-		if(name.isEmpty()) {
-			throw new SystemException("プレーヤーの名前が設定されていません。");			
+		if (name.isEmpty()) {
+			throw new SystemException("プレーヤーの名前が設定されていません。");
 		}
-		
+
 		JankenPlayer player = null;
 		switch (type) {
 		case HUMAN:

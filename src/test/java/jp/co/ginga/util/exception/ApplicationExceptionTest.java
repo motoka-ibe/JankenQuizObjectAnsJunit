@@ -7,10 +7,9 @@ import java.lang.reflect.Field;
 import org.junit.jupiter.api.Test;
 
 public class ApplicationExceptionTest {
-	
+
 	//テストデータ
 	private String message = "エラーが発生しました";
-
 
 	/**
 	 * testConstructor001
@@ -28,7 +27,7 @@ public class ApplicationExceptionTest {
 			//準備
 			Field sysMsgField = ApplicationException.class.getDeclaredField("sysMsg");
 			sysMsgField.setAccessible(true);
-			
+
 			//テストメソッド
 			ApplicationException e = new ApplicationException(this.message);
 
@@ -36,7 +35,7 @@ public class ApplicationExceptionTest {
 			String result = (String) sysMsgField.get(e);
 			assertEquals(this.message, result);
 
-		}catch(Exception  e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
 		}
@@ -56,10 +55,10 @@ public class ApplicationExceptionTest {
 	public void testGetSysMsg001() {
 		//準備
 		ApplicationException e = new ApplicationException(this.message);
-		
+
 		//テストメソッド
 		String result = e.getSysMsg();
-		
+
 		//検証
 		assertEquals(this.message, result);
 	}

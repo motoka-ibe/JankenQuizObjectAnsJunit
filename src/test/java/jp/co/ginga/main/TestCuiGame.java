@@ -15,11 +15,11 @@ import jp.co.ginga.application.janken.JankenCuiGameApplicationImpl;
 import jp.co.ginga.application.quiz.QuizCuiGameApplicationImpl;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
-import jp.co.ginga.util.keybord.Keybord;
+import jp.co.ginga.util.keybord.Keyboard;
 
 /**
  * CUIゲーム クラス
- * @author yoshi
+ * @author isogai
  *
  */
 public class TestCuiGame {
@@ -46,17 +46,17 @@ public class TestCuiGame {
 	@Test
 	public void testMain_01() {
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class);
 				MockedConstruction<QuizCuiGameApplicationImpl> mockQuizGame = mockConstruction(
 						QuizCuiGameApplicationImpl.class,
 						(quizGame, context) -> doNothing().when(quizGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.quizGame);
+			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(this.quizGame);
 
 			//テストメソッド
 			CuiGame.main(null);
 
 			//検証
-			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1));
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 2), times(1));
 			verify(mockQuizGame.constructed().get(0), times(1)).action();
 
 		} catch (Exception e) {
@@ -83,11 +83,11 @@ public class TestCuiGame {
 	@Test
 	public void testMain_02() {
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class);
 				MockedConstruction<QuizCuiGameApplicationImpl> mockQuizGame = mockConstruction(
 						QuizCuiGameApplicationImpl.class,
 						(jankenGame, context) -> doThrow(new SystemException(null)).when(jankenGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.quizGame);
+			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(this.quizGame);
 
 			//System.setErrメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -97,7 +97,7 @@ public class TestCuiGame {
 			CuiGame.main(null);
 
 			//検証
-			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
 			verify(mockQuizGame.constructed().get(0), times(1)).action(); //actionメソッドが1回呼び出されているか
 
 			// 出力の確認
@@ -143,11 +143,11 @@ public class TestCuiGame {
 	@Test
 	public void testMain_03() {
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class);
 				MockedConstruction<QuizCuiGameApplicationImpl> mockQuizGame = mockConstruction(
 						QuizCuiGameApplicationImpl.class,
 						(jankenGame, context) -> doThrow(new ApplicationException(null)).when(jankenGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.quizGame);
+			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(this.quizGame);
 
 			//System.setErrメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -157,7 +157,7 @@ public class TestCuiGame {
 			CuiGame.main(null);
 
 			//検証
-			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
 			verify(mockQuizGame.constructed().get(0), times(1)).action(); //actionメソッドが1回呼び出されているか
 
 			// 出力の確認
@@ -202,17 +202,17 @@ public class TestCuiGame {
 	@Test
 	public void testMain_04() {
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class);
 				MockedConstruction<JankenCuiGameApplicationImpl> mockJankenGame = mockConstruction(
 						JankenCuiGameApplicationImpl.class,
 						(quizGame, context) -> doNothing().when(quizGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.jankenGame);
+			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(this.jankenGame);
 
 			//テストメソッド
 			CuiGame.main(null);
 
 			//検証
-			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1));
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 2), times(1));
 			verify(mockJankenGame.constructed().get(0), times(1)).action();
 
 		} catch (Exception e) {
@@ -239,11 +239,11 @@ public class TestCuiGame {
 	@Test
 	public void testMain_05() {
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class);
 				MockedConstruction<JankenCuiGameApplicationImpl> mockJankenGame = mockConstruction(
 						JankenCuiGameApplicationImpl.class,
 						(jankenGame, context) -> doThrow(new SystemException(null)).when(jankenGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.jankenGame);
+			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(this.jankenGame);
 
 			//System.setErrメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -253,7 +253,7 @@ public class TestCuiGame {
 			CuiGame.main(null);
 
 			//検証
-			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
 			verify(mockJankenGame.constructed().get(0), times(1)).action(); //actionメソッドが1回呼び出されているか
 
 			// 出力の確認
@@ -299,11 +299,11 @@ public class TestCuiGame {
 	@Test
 	public void testMain_06() {
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class);
 				MockedConstruction<JankenCuiGameApplicationImpl> mockJankenGame = mockConstruction(
 						JankenCuiGameApplicationImpl.class,
 						(jankenGame, context) -> doThrow(new ApplicationException(null)).when(jankenGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.jankenGame);
+			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(this.jankenGame);
 
 			//System.setErrメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -313,7 +313,7 @@ public class TestCuiGame {
 			CuiGame.main(null);
 
 			//検証
-			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
 			verify(mockJankenGame.constructed().get(0), times(1)).action(); //actionメソッドが1回呼び出されているか
 
 			// 出力の確認
@@ -357,11 +357,11 @@ public class TestCuiGame {
 	@Test
 	public void testMain_07() {
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class);
 				MockedConstruction<QuizCuiGameApplicationImpl> mockQuizGame = mockConstruction(
 						QuizCuiGameApplicationImpl.class,
 						(quizGame, context) -> doNothing().when(quizGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenThrow(new ApplicationException(""))
+			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenThrow(new ApplicationException(""))
 					.thenReturn(this.quizGame);
 
 			//System.setErrメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
@@ -372,7 +372,7 @@ public class TestCuiGame {
 			CuiGame.main(null);
 
 			//検証
-			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(2)); //getIntメソッドが1回呼び出されているか
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 2), times(2)); //getIntメソッドが1回呼び出されているか
 			verify(mockQuizGame.constructed().get(0), times(1)).action(); //actionメソッドが1回呼び出されているか
 
 			// 出力の確認
@@ -416,14 +416,14 @@ public class TestCuiGame {
 	@Test
 	public void testMain_08() {
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class);
 				MockedConstruction<JankenCuiGameApplicationImpl> mockJankenGame = mockConstruction(
 						JankenCuiGameApplicationImpl.class,
 						(jankenGame, context) -> doThrow(new Exception()).when(jankenGame).action());
 				MockedConstruction<QuizCuiGameApplicationImpl> mockQuizGame = mockConstruction(
 						QuizCuiGameApplicationImpl.class,
 						(quizGame, context) -> doNothing().when(quizGame).action())) {
-			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(this.illegalValue);
+			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(this.illegalValue);
 
 			//System.setErrメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -450,7 +450,7 @@ public class TestCuiGame {
 
 			//検証
 			assertTrue(findMessage);// メッセージが見つかったことを確認
-			mockKeybord.verify(() -> Keybord.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 2), times(1)); //getIntメソッドが1回呼び出されているか
 			assertEquals(0, mockQuizGame.constructed().size()); //ゲームインスタンスが生成されていないことを確認
 			assertEquals(0, mockJankenGame.constructed().size()); //ゲームインスタンスが生成されていないことを確認
 

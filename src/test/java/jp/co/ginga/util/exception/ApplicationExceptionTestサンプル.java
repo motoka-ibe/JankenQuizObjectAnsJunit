@@ -46,7 +46,7 @@ public class ApplicationExceptionTestサンプル {
 		ApplicationException ae = new ApplicationException(value);
 
 		//検証
-		assertEquals(value,ae.getSysMsg());
+		assertEquals(value, ae.getSysMsg());
 
 	}
 
@@ -58,7 +58,8 @@ public class ApplicationExceptionTestサンプル {
 	 * @throws IllegalArgumentException 
 	 */
 	@Test
-	public void getSysMsgTest() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	public void getSysMsgTest()
+			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 
 		// 事前準備
 		String value = "test2";
@@ -67,12 +68,11 @@ public class ApplicationExceptionTestサンプル {
 		ApplicationException ae = new ApplicationException(value);
 		Field nameField = ae.getClass().getDeclaredField("sysMsg");
 		nameField.setAccessible(true);
-		nameField.set(ae,value);
+		nameField.set(ae, value);
 
 		//テスト
 		//検証
-		assertEquals(value,ae.getSysMsg());
-
+		assertEquals(value, ae.getSysMsg());
 
 	}
 

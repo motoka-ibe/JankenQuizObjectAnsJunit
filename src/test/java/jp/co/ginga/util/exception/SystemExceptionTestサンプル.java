@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
  * SystemExceptionクラス
  *
  */
-public class SystemExceptionTestサンプル{
+public class SystemExceptionTestサンプル {
 
 	/**
 	 * SystemExceptionTest(String sysMsg)のテスト
@@ -25,7 +25,7 @@ public class SystemExceptionTestサンプル{
 		SystemException se = new SystemException(value);
 
 		//検証
-		assertEquals(value,se.getSysMsg());
+		assertEquals(value, se.getSysMsg());
 
 	}
 
@@ -37,7 +37,8 @@ public class SystemExceptionTestサンプル{
 	 * @throws NoSuchFieldException 
 	 */
 	@Test
-	public void getSysMsgTest() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+	public void getSysMsgTest()
+			throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
 
 		// 事前準備
 		String value = "test2";
@@ -46,12 +47,11 @@ public class SystemExceptionTestサンプル{
 		SystemException se = new SystemException(value);
 		Field nameField = se.getClass().getDeclaredField("sysMsg");
 		nameField.setAccessible(true);
-		nameField.set(se,value);
+		nameField.set(se, value);
 
 		//テスト
 		//検証
-		assertEquals(value,se.getSysMsg());
-
+		assertEquals(value, se.getSysMsg());
 
 	}
 }

@@ -10,7 +10,7 @@ import jp.co.ginga.application.janken.factory.JankenPlayerFactory;
 import jp.co.ginga.application.janken.jankenplayer.JankenPlayer;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
-import jp.co.ginga.util.keybord.Keybord;
+import jp.co.ginga.util.keybord.Keyboard;
 import jp.co.ginga.util.properties.MessageProperties;
 
 /**
@@ -142,7 +142,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 			try {
 
 				System.out.println(MessageProperties.getMessage("janken.msg.create.human"));
-				int value = Keybord.getInt(0, 10);
+				int value = Keyboard.getInt(0, 10);
 
 				for (int i = 0; i < value; i++) {
 					//人間プレーヤオブジェクト生成処理
@@ -179,7 +179,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 			try {
 
 				System.out.println(MessageProperties.getMessage("janken.msg.create.npc"));
-				int value = Keybord.getInt(0, 10);
+				int value = Keyboard.getInt(0, 10);
 
 				for (int i = 0; i < value; i++) {
 					//CPUプレーヤオブジェクト生成処理
@@ -337,7 +337,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 		while (true) {
 			try {
 				System.out.println(MessageProperties.getMessage("janken.msg.game.continue"));
-				switch (Keybord.getInt(1, 2)) {
+				switch (Keyboard.getInt(1, 2)) {
 				case CONTINUE:
 					return true;
 				case STOP:

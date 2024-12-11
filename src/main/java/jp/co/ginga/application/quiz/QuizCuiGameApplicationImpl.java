@@ -6,7 +6,7 @@ import jp.co.ginga.application.CuiGameApplication;
 import jp.co.ginga.application.quiz.factory.QuizQuestionFactory;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
-import jp.co.ginga.util.keybord.Keybord;
+import jp.co.ginga.util.keybord.Keyboard;
 import jp.co.ginga.util.properties.MessageProperties;
 
 /**
@@ -25,13 +25,13 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 	/**
 	 * 正解数
 	 */
-	int correctConut;
+	int correctCount;
 
 	/**
 	 * QuizQuestionFactoryのインスタンス生成
 	 */
 	QuizQuestionFactory factory = new QuizQuestionFactory();
-	
+
 	/**
 	 * クイズゲーム開始処理
 	 */
@@ -95,8 +95,8 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 			try {
 				System.out.println(MessageProperties.getMessage("quiz.msg.input"));
 
-				if (quiz.getCorrect() == Keybord.getInt(1, 3)) {
-					this.correctConut++;
+				if (quiz.getCorrect() == Keyboard.getInt(1, 3)) {
+					this.correctCount++;
 				}
 
 				break;
@@ -115,8 +115,8 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 	 */
 	void viewResult() throws SystemException {
 
-		System.out.println(MessageProperties.getMessage("quiz.msg.correct" + this.correctConut));
+		System.out.println(MessageProperties.getMessage("quiz.msg.correct" + this.correctCount));
 
 	}
-	
+
 }

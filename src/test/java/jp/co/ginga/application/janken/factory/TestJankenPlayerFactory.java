@@ -23,7 +23,7 @@ public class TestJankenPlayerFactory {
 	private String noName = "";
 
 	JankenPlayer player; //じゃんけんプレーヤー
-	
+
 	JankenPlayerFactory jankenPlayerFactory = new JankenPlayerFactory();
 
 	/**
@@ -128,7 +128,4 @@ public class TestJankenPlayerFactory {
 		}
 	}
 
-	
-	
-	
 }

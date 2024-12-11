@@ -54,7 +54,7 @@ public class MessageProperties {
 	public static String getMessage(String resourceId, String... arguments) throws SystemException {
 
 		//パラメーターチェック resourceId,arguments
-		if (resourceId == null || resourceId.isEmpty() 
+		if (resourceId == null || resourceId.isEmpty()
 				|| arguments == null || arguments.length == 0) {
 			//rguments.length == 0の場合はこちらは呼び出されない
 
@@ -87,7 +87,7 @@ public class MessageProperties {
 			if (properties == null) {
 				properties = new Properties();
 				InputStream is = MessageProperties.class.getClassLoader().getResourceAsStream(FILE);
-				properties.load(new InputStreamReader(is,"UTF-8"));
+				properties.load(new InputStreamReader(is, "UTF-8"));
 			}
 
 		} catch (IOException e) {

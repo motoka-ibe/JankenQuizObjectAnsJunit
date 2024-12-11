@@ -6,7 +6,7 @@ import jp.co.ginga.util.exception.SystemException;
  * CUIゲームアプリケーション インターフェース
  *
  */
-public interface CuiGameApplication{
+public interface CuiGameApplication {
 
 	/**
 	 * ゲーム開始処理

@@ -75,8 +75,7 @@ public class NpcJankenPlayerImpl implements JankenPlayer {
 			throw new SystemException(MessageProperties.getMessage("error.arg"));
 		}
 	}
-	
-	
+
 	//テスト用
 	public void setPlayerHand(int playerHand) {
 		this.playerHand = playerHand;

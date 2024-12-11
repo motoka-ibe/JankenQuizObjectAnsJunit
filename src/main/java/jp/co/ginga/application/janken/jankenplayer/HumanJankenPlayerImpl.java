@@ -3,7 +3,7 @@ package jp.co.ginga.application.janken.jankenplayer;
 import jp.co.ginga.application.janken.JankenParam;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
-import jp.co.ginga.util.keybord.Keybord;
+import jp.co.ginga.util.keybord.Keyboard;
 import jp.co.ginga.util.properties.MessageProperties;
 
 /**
@@ -62,7 +62,7 @@ public class HumanJankenPlayerImpl implements JankenPlayer {
 
 				System.out.println(MessageProperties.getMessage("janken.msg.select.hand.human"));
 
-				int selectHand = Keybord.getInt(1, 3);
+				int selectHand = Keyboard.getInt(1, 3);
 
 				switch (JankenParam.getEnum(selectHand)) {
 				case ROCK:
@@ -88,8 +88,8 @@ public class HumanJankenPlayerImpl implements JankenPlayer {
 	}
 
 	//テスト用
-		public void setPlayerHand(int playerHand) {
-			this.playerHand = playerHand;
-		}
+	public void setPlayerHand(int playerHand) {
+		this.playerHand = playerHand;
+	}
 
 }

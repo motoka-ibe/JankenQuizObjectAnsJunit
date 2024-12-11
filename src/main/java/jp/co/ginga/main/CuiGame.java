@@ -5,7 +5,7 @@ import jp.co.ginga.application.janken.JankenCuiGameApplicationImpl;
 import jp.co.ginga.application.quiz.QuizCuiGameApplicationImpl;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
-import jp.co.ginga.util.keybord.Keybord;
+import jp.co.ginga.util.keybord.Keyboard;
 import jp.co.ginga.util.properties.MessageProperties;
 
 /**
@@ -31,7 +31,7 @@ public class CuiGame {
 			while (true) {
 				System.out.println(MessageProperties.getMessage("msg.start"));
 				try {
-					switch (Keybord.getInt(QUIZGAME, JankenGame)) {
+					switch (Keyboard.getInt(QUIZGAME, JankenGame)) {
 					case 1:
 						//クイズゲームクラスのインスタん生成
 						cga = new QuizCuiGameApplicationImpl();

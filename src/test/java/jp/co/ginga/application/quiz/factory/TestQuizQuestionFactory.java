@@ -33,7 +33,7 @@ public class TestQuizQuestionFactory {
 	 * listの要素にすべて値が入り、String型はnull,int型は0出ないことを確認
 	 * --条件--
 	 * MessageProperties.getMessage("quiz.number.questions")の実行結果が「3」の場合
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がnull以外の場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.body" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.choice" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.correct" + (i + 1))の実行結果が「3」の場合
@@ -54,8 +54,8 @@ public class TestQuizQuestionFactory {
 
 			for (int i = 1; i <= 3; i++) {
 				final int index = i; // ラムダ式内で使うために最終的な変数を作成
-				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.titile" + index))
-						.thenReturn("titile" + index);
+				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.title" + index))
+						.thenReturn("title" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.body" + index))
 						.thenReturn("body" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.choice" + index))
@@ -90,7 +90,7 @@ public class TestQuizQuestionFactory {
 	 * listの要素にすべて値が入り、String型はnull,int型は0であること確認
 	 * --条件--
 	 * MessageProperties.getMessage("quiz.number.questions")の実行結果が「3」の場合
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がnullの場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がnullの場合
 	 * MessageProperties.getMessage("quiz.question.body" + (i + 1))の実行結果がnullの場合
 	 * MessageProperties.getMessage("quiz.question.choice" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.correct" + (i + 1))の実行結果が「0」の場合
@@ -111,7 +111,7 @@ public class TestQuizQuestionFactory {
 
 			for (int i = 1; i <= 3; i++) {
 				final int index = i; // ラムダ式内で使うために最終的な変数を作成
-				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.titile" + index))
+				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.title" + index))
 						.thenReturn(null);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.body" + index))
 						.thenReturn(null);
@@ -148,7 +148,7 @@ public class TestQuizQuestionFactory {
 	 * listのsizeが0であること
 	 * --条件--
 	 * MessageProperties.getMessage("quiz.number.questions")の実行結果が「0」の場合
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がnull以外の場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.body" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.choice" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.correct" + (i + 1))の実行結果が「3」の場合
@@ -168,8 +168,8 @@ public class TestQuizQuestionFactory {
 
 			for (int i = 1; i <= 3; i++) {
 				final int index = i; // ラムダ式内で使うために最終的な変数を作成
-				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.titile" + index))
-						.thenReturn("titile" + index);
+				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.title" + index))
+						.thenReturn("title" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.body" + index))
 						.thenReturn("body" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.choice" + index))
@@ -199,7 +199,7 @@ public class TestQuizQuestionFactory {
 	 * SystemException(実行データ不良)が発行されること
 	 * --条件--
 	 * MessageProperties.getMessage("quiz.number.questions")の実行結果が「あいう」の場合
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がnull以外の場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.body" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.choice" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.correct" + (i + 1))の実行結果が「3」の場合
@@ -219,8 +219,8 @@ public class TestQuizQuestionFactory {
 
 			for (int i = 1; i <= 3; i++) {
 				final int index = i; // ラムダ式内で使うために最終的な変数を作成
-				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.titile" + index))
-						.thenReturn("titile" + index);
+				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.title" + index))
+						.thenReturn("title" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.body" + index))
 						.thenReturn("body" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.choice" + index))
@@ -252,7 +252,7 @@ public class TestQuizQuestionFactory {
 	 * SystemException(実行データ不良)が発行されること
 	 * --条件--
 	 * MessageProperties.getMessage("quiz.number.questions")の実行結果が「」の場合
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がnull以外の場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.body" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.choice" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.correct" + (i + 1))の実行結果が「3」の場合
@@ -272,8 +272,8 @@ public class TestQuizQuestionFactory {
 
 			for (int i = 1; i <= 3; i++) {
 				final int index = i; // ラムダ式内で使うために最終的な変数を作成
-				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.titile" + index))
-						.thenReturn("titile" + index);
+				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.title" + index))
+						.thenReturn("title" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.body" + index))
 						.thenReturn("body" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.choice" + index))
@@ -305,7 +305,7 @@ public class TestQuizQuestionFactory {
 	 * SystemException(実行データ不良)が発行されること
 	 * --条件--
 	 * MessageProperties.getMessage("quiz.number.questions")の実行結果がSystemExceptionの場合
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がnull以外の場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.body" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.choice" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.correct" + (i + 1))の実行結果が「3」の場合
@@ -326,8 +326,8 @@ public class TestQuizQuestionFactory {
 
 			for (int i = 1; i <= 3; i++) {
 				final int index = i; // ラムダ式内で使うために最終的な変数を作成
-				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.titile" + index))
-						.thenReturn("titile" + index);
+				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.title" + index))
+						.thenReturn("title" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.body" + index))
 						.thenReturn("body" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.choice" + index))
@@ -355,11 +355,11 @@ public class TestQuizQuestionFactory {
 	 * 
 	 * --確認事項-- 
 	 * mockで引数を指定してメソッドを実行
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がSystemExceptionの場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がSystemExceptionの場合
 	 * SystemException(実行データ不良)が発行されること
 	 * --条件--
 	 * MessageProperties.getMessage("quiz.number.questions")の実行結果が「3」の場合
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がSystemExceptionの場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がSystemExceptionの場合
 	 * MessageProperties.getMessage("quiz.question.body" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.choice" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.correct" + (i + 1))の実行結果が「3」の場合
@@ -379,7 +379,7 @@ public class TestQuizQuestionFactory {
 
 			for (int i = 1; i <= 3; i++) {
 				final int index = i; // ラムダ式内で使うために最終的な変数を作成
-				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.titile" + index))
+				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.title" + index))
 						.thenThrow(new SystemException(""));
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.body" + index))
 						.thenReturn("body" + index);
@@ -412,7 +412,7 @@ public class TestQuizQuestionFactory {
 	 * SystemException(実行データ不良)が発行されること
 	 * --条件--
 	 * MessageProperties.getMessage("quiz.number.questions")の実行結果が「3」の場合
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がnull以外の場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.body" + (i + 1))の実行結果がSystemExceptionの場合
 	 * MessageProperties.getMessage("quiz.question.choice" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.correct" + (i + 1))の実行結果が「3」の場合
@@ -432,8 +432,8 @@ public class TestQuizQuestionFactory {
 
 			for (int i = 1; i <= 3; i++) {
 				final int index = i; // ラムダ式内で使うために最終的な変数を作成
-				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.titile" + index))
-						.thenReturn("titile" + index);
+				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.title" + index))
+						.thenReturn("title" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.body" + index))
 						.thenThrow(new SystemException(""));
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.choice" + index))
@@ -465,7 +465,7 @@ public class TestQuizQuestionFactory {
 	 * SystemException(実行データ不良)が発行されること
 	 * --条件--
 	 * MessageProperties.getMessage("quiz.number.questions")の実行結果が「3」の場合
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がnull以外の場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.body" + (i + 1))の実行結果がSystemExceptionの場合
 	 * MessageProperties.getMessage("quiz.question.choice" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.correct" + (i + 1))の実行結果が「3」の場合
@@ -485,8 +485,8 @@ public class TestQuizQuestionFactory {
 
 			for (int i = 1; i <= 3; i++) {
 				final int index = i; // ラムダ式内で使うために最終的な変数を作成
-				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.titile" + index))
-						.thenReturn("titile" + index);
+				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.title" + index))
+						.thenReturn("title" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.body" + index))
 						.thenReturn("body" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.choice" + index))
@@ -518,7 +518,7 @@ public class TestQuizQuestionFactory {
 	 * SystemException(実行データ不良)が発行されること
 	 * --条件--
 	 * MessageProperties.getMessage("quiz.number.questions")の実行結果が「3」の場合
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がnull以外の場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.body" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.choice" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.correct" + (i + 1))の実行結果が「あいう」の場合
@@ -538,8 +538,8 @@ public class TestQuizQuestionFactory {
 
 			for (int i = 1; i <= 3; i++) {
 				final int index = i; // ラムダ式内で使うために最終的な変数を作成
-				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.titile" + index))
-						.thenReturn("titile" + index);
+				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.title" + index))
+						.thenReturn("title" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.body" + index))
 						.thenReturn("body" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.choice" + index))
@@ -571,7 +571,7 @@ public class TestQuizQuestionFactory {
 	 * SystemException(実行データ不良)が発行されること
 	 * --条件--
 	 * MessageProperties.getMessage("quiz.number.questions")の実行結果が「3」の場合
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がnull以外の場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.body" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.choice" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.correct" + (i + 1))の実行結果が「」の場合
@@ -591,8 +591,8 @@ public class TestQuizQuestionFactory {
 
 			for (int i = 1; i <= 3; i++) {
 				final int index = i; // ラムダ式内で使うために最終的な変数を作成
-				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.titile" + index))
-						.thenReturn("titile" + index);
+				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.title" + index))
+						.thenReturn("title" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.body" + index))
 						.thenReturn("body" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.choice" + index))
@@ -624,7 +624,7 @@ public class TestQuizQuestionFactory {
 	 * SystemException(実行データ不良)が発行されること
 	 * --条件--
 	 * MessageProperties.getMessage("quiz.number.questions")の実行結果が「3」の場合
-	 * MessageProperties.getMessage("quiz.question.titile" + (i + 1))の実行結果がnull以外の場合
+	 * MessageProperties.getMessage("quiz.question.title" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.body" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.choice" + (i + 1))の実行結果がnull以外の場合
 	 * MessageProperties.getMessage("quiz.question.correct" + (i + 1))の実行結果が「」の場合
@@ -644,8 +644,8 @@ public class TestQuizQuestionFactory {
 
 			for (int i = 1; i <= 3; i++) {
 				final int index = i; // ラムダ式内で使うために最終的な変数を作成
-				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.titile" + index))
-						.thenReturn("titile" + index);
+				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.title" + index))
+						.thenReturn("title" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.body" + index))
 						.thenReturn("body" + index);
 				mocMessageProperties.when(() -> MessageProperties.getMessage("quiz.question.choice" + index))

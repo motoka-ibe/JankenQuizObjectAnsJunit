@@ -16,7 +16,7 @@ import org.mockito.MockedStatic;
 import jp.co.ginga.application.quiz.factory.QuizQuestionFactory;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
-import jp.co.ginga.util.keybord.Keyboard;
+import jp.co.ginga.util.keyboard.Keyboard;
 import jp.co.ginga.util.properties.MessageProperties;
 
 /**

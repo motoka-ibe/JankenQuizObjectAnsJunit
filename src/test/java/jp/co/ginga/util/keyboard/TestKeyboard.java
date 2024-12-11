@@ -1,4 +1,4 @@
-package jp.co.ginga.util.keybord;
+package jp.co.ginga.util.keyboard;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
+import jp.co.ginga.util.keyboard.Keyboard;
 
 public class TestKeyboard {
 

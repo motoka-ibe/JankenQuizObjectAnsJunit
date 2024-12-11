@@ -1,4 +1,4 @@
-package jp.co.ginga.util.keybord;
+package jp.co.ginga.util.keyboard;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 
 import org.junit.jupiter.api.Test;
+
+import jp.co.ginga.util.keyboard.Keyboard;
 
 /**
  * キーボードクラス

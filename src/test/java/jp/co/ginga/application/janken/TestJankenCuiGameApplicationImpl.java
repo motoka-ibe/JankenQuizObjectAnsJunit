@@ -19,7 +19,7 @@ import jp.co.ginga.application.janken.jankenplayer.JankenPlayer;
 import jp.co.ginga.application.janken.jankenplayer.NpcJankenPlayerImpl;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
-import jp.co.ginga.util.keybord.Keyboard;
+import jp.co.ginga.util.keyboard.Keyboard;
 
 /**
  * CUIじゃんけん実装クラス

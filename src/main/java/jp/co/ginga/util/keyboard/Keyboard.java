@@ -1,4 +1,4 @@
-package jp.co.ginga.util.keybord;
+package jp.co.ginga.util.keyboard;
 
 import java.io.BufferedReader;
 import java.io.IOException;

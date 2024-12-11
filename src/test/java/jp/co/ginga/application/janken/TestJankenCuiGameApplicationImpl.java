@@ -19,7 +19,7 @@ import jp.co.ginga.application.janken.jankenplayer.JankenPlayer;
 import jp.co.ginga.application.janken.jankenplayer.NpcJankenPlayerImpl;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
-import jp.co.ginga.util.keybord.Keybord;
+import jp.co.ginga.util.keybord.Keyboard;
 
 /**
  * CUIじゃんけん実装クラス
@@ -177,9 +177,9 @@ public class TestJankenCuiGameApplicationImpl {
 	public void testCreateHumanOfJankenPlayer_02() {
 
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			//getInt()がApplicationExceptionを発行→そのあと0という正常値をかえす
-			mockKeybord.when(() -> Keybord.getInt(0, 10)).thenThrow(new ApplicationException("")).thenReturn(0);
+			mockKeyboard.when(() -> Keyboard.getInt(0, 10)).thenThrow(new ApplicationException("")).thenReturn(0);
 			;
 
 			//System.setOutメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
@@ -230,14 +230,14 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 整数0を入力した場合
 	 * --検証事項--
 	 * 1.playerListが0であること
-	 * 2.モックオブジェクトに対してKeybord.getInt(0, 10)が1回呼び出されていること
+	 * 2.モックオブジェクトに対してKeyboard.getInt(0, 10)が1回呼び出されていること
 	 */
 	@Test
 	public void testCreateHumanOfJankenPlayer_03() {
 		// モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			// 0を返すように設定
-			mockKeybord.when(() -> Keybord.getInt(0, 10)).thenReturn(this.zero);
+			mockKeyboard.when(() -> Keyboard.getInt(0, 10)).thenReturn(this.zero);
 
 			jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // playerListを初期化
 
@@ -247,13 +247,13 @@ public class TestJankenCuiGameApplicationImpl {
 			List<JankenPlayer> playerList = jankenCuiGameApplicationImpl.getPlayerList();
 
 			assertEquals(0, playerList.size());
-			mockKeybord.verify(() -> Keybord.getInt(0, 10), times(1));
+			mockKeyboard.verify(() -> Keyboard.getInt(0, 10), times(1));
 
 			/* 
 			 *  -----解説------
-			 * () -> Keybord.getInt(0, 10)の部分は
-			 * ラムダ式でKeybord.getInt(0, 10) の呼び出しをして
-			 * mockKeybord.verify(...)でmockKeybord というモックオブジェクトに対して
+			 * () -> Keyboard.getInt(0, 10)の部分は
+			 * ラムダ式でKeyboard.getInt(0, 10) の呼び出しをして
+			 * mockKeyboard.verify(...)でmockKeyboard というモックオブジェクトに対して
 			 * 特定のメソッドが期待通りに呼び出されたかどうかを確認している
 			 * times(1)は指定したメソッドが正確に1回呼び出されたことを確認するためのメソッド
 			 */
@@ -276,14 +276,14 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 整数5を入力した場合
 	 * --検証事項--
 	 * 1.playerListが5であること
-	 * 2.モックオブジェクトに対してKeybord.getInt(0, 10)が1回呼び出されていること
+	 * 2.モックオブジェクトに対してKeyboard.getInt(0, 10)が1回呼び出されていること
 	 */
 	@Test
 	public void testCreateHumanOfJankenPlayer_04() {
 		// モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			// 10を返すように設定
-			mockKeybord.when(() -> Keybord.getInt(0, 10)).thenReturn(this.five);
+			mockKeyboard.when(() -> Keyboard.getInt(0, 10)).thenReturn(this.five);
 
 			jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // playerListを初期化
 
@@ -292,13 +292,13 @@ public class TestJankenCuiGameApplicationImpl {
 			// 検証
 			List<JankenPlayer> playerList = jankenCuiGameApplicationImpl.getPlayerList();
 			assertEquals(5, playerList.size());
-			mockKeybord.verify(() -> Keybord.getInt(0, 10), times(1));
+			mockKeyboard.verify(() -> Keyboard.getInt(0, 10), times(1));
 
 			/* 
 			 *  -----解説------
-			 * () -> Keybord.getInt(0, 10)の部分は
-			 * ラムダ式でKeybord.getInt(0, 10) の呼び出しをして
-			 * mockKeybord.verify(...)でmockKeybord というモックオブジェクトに対して
+			 * () -> Keyboard.getInt(0, 10)の部分は
+			 * ラムダ式でKeyboard.getInt(0, 10) の呼び出しをして
+			 * mockKeyboard.verify(...)でmockKeyboard というモックオブジェクトに対して
 			 * 特定のメソッドが期待通りに呼び出されたかどうかを確認している
 			 * times(1)は指定したメソッドが正確に1回呼び出されたことを確認するためのメソッド
 			 */
@@ -321,14 +321,14 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 整数10を入力した場合
 	 * --検証事項--
 	 * 1.playerListが5であること
-	 * 2.モックオブジェクトに対してKeybord.getInt(0, 10)が1回呼び出されていること
+	 * 2.モックオブジェクトに対してKeyboard.getInt(0, 10)が1回呼び出されていること
 	 */
 	@Test
 	public void testCreateHumanOfJankenPlayer_05() {
 		// モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			// 10を返すように設定
-			mockKeybord.when(() -> Keybord.getInt(0, 10)).thenReturn(this.ten);
+			mockKeyboard.when(() -> Keyboard.getInt(0, 10)).thenReturn(this.ten);
 
 			jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // playerListを初期化
 
@@ -337,13 +337,13 @@ public class TestJankenCuiGameApplicationImpl {
 			// 検証
 			List<JankenPlayer> playerList = jankenCuiGameApplicationImpl.getPlayerList();
 			assertEquals(10, playerList.size());
-			mockKeybord.verify(() -> Keybord.getInt(0, 10), times(1));
+			mockKeyboard.verify(() -> Keyboard.getInt(0, 10), times(1));
 
 			/* 
 			 *  -----解説------
-			 * () -> Keybord.getInt(0, 10)の部分は
-			 * ラムダ式でKeybord.getInt(0, 10) の呼び出しをして
-			 * mockKeybord.verify(...)でmockKeybord というモックオブジェクトに対して
+			 * () -> Keyboard.getInt(0, 10)の部分は
+			 * ラムダ式でKeyboard.getInt(0, 10) の呼び出しをして
+			 * mockKeyboard.verify(...)でmockKeyboard というモックオブジェクトに対して
 			 * 特定のメソッドが期待通りに呼び出されたかどうかを確認している
 			 * times(1)は指定したメソッドが正確に1回呼び出されたことを確認するためのメソッド
 			 */
@@ -403,9 +403,9 @@ public class TestJankenCuiGameApplicationImpl {
 	public void testCreateNpcOfJankenPlayer_02() {
 
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			//getInt()がApplicationExceptionを発行→そのあと0という正常値をかえす
-			mockKeybord.when(() -> Keybord.getInt(0, 10)).thenThrow(new ApplicationException("")).thenReturn(0);
+			mockKeyboard.when(() -> Keyboard.getInt(0, 10)).thenThrow(new ApplicationException("")).thenReturn(0);
 
 			//System.setOutメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -456,14 +456,14 @@ public class TestJankenCuiGameApplicationImpl {
 	 *  整数0を入力した場合
 	 * --検証事項--
 	 * 1.playerListが0であること
-	 * 2.モックオブジェクトに対してKeybord.getInt(0, 10)が1回呼び出されていること
+	 * 2.モックオブジェクトに対してKeyboard.getInt(0, 10)が1回呼び出されていること
 	 */
 	@Test
 	public void testCreateNpcOfJankenPlayer_03() {
 		// モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			// 0を返すように設定
-			mockKeybord.when(() -> Keybord.getInt(0, 10)).thenReturn(this.zero);
+			mockKeyboard.when(() -> Keyboard.getInt(0, 10)).thenReturn(this.zero);
 
 			jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // playerListを初期化
 
@@ -472,13 +472,13 @@ public class TestJankenCuiGameApplicationImpl {
 			// 検証
 			List<JankenPlayer> playerList = jankenCuiGameApplicationImpl.getPlayerList();
 			assertEquals(0, playerList.size());
-			mockKeybord.verify(() -> Keybord.getInt(0, 10), times(1));
+			mockKeyboard.verify(() -> Keyboard.getInt(0, 10), times(1));
 
 			/* 
 			 *  -----解説------
-			 * () -> Keybord.getInt(0, 10)の部分は
-			 * ラムダ式でKeybord.getInt(0, 10) の呼び出しをして
-			 * mockKeybord.verify(...)でmockKeybord というモックオブジェクトに対して
+			 * () -> Keyboard.getInt(0, 10)の部分は
+			 * ラムダ式でKeyboard.getInt(0, 10) の呼び出しをして
+			 * mockKeyboard.verify(...)でmockKeyboard というモックオブジェクトに対して
 			 * 特定のメソッドが期待通りに呼び出されたかどうかを確認している
 			 * times(1)は指定したメソッドが正確に1回呼び出されたことを確認するためのメソッド
 			 */
@@ -501,14 +501,14 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 整数5を入力した場合
 	 * --検証事項--
 	 * 1.playerListが5であること
-	 * 2.モックオブジェクトに対してKeybord.getInt(0, 10)が1回呼び出されていること
+	 * 2.モックオブジェクトに対してKeyboard.getInt(0, 10)が1回呼び出されていること
 	 */
 	@Test
 	public void testCreateNpcOfJankenPlayer_04() {
 		// モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			// 10を返すように設定
-			mockKeybord.when(() -> Keybord.getInt(0, 10)).thenReturn(this.five);
+			mockKeyboard.when(() -> Keyboard.getInt(0, 10)).thenReturn(this.five);
 
 			jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // playerListを初期化
 
@@ -517,13 +517,13 @@ public class TestJankenCuiGameApplicationImpl {
 			// 検証
 			List<JankenPlayer> playerList = jankenCuiGameApplicationImpl.getPlayerList();
 			assertEquals(5, playerList.size());
-			mockKeybord.verify(() -> Keybord.getInt(0, 10), times(1));
+			mockKeyboard.verify(() -> Keyboard.getInt(0, 10), times(1));
 
 			/* 
 			 *  -----解説------
-			 * () -> Keybord.getInt(0, 10)の部分は
-			 * ラムダ式でKeybord.getInt(0, 10) の呼び出しをして
-			 * mockKeybord.verify(...)でmockKeybord というモックオブジェクトに対して
+			 * () -> Keyboard.getInt(0, 10)の部分は
+			 * ラムダ式でKeyboard.getInt(0, 10) の呼び出しをして
+			 * mockKeyboard.verify(...)でmockKeyboard というモックオブジェクトに対して
 			 * 特定のメソッドが期待通りに呼び出されたかどうかを確認している
 			 * times(1)は指定したメソッドが正確に1回呼び出されたことを確認するためのメソッド
 			 */
@@ -546,14 +546,14 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 整数10を入力した場合
 	 * --検証事項--
 	 * 1.playerListが10であること
-	 * 2.モックオブジェクトに対してKeybord.getInt(0, 10)が1回呼び出されていること
+	 * 2.モックオブジェクトに対してKeyboard.getInt(0, 10)が1回呼び出されていること
 	 */
 	@Test
 	public void testCreateNpcOfJankenPlayer_05() {
 		// モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			// 10を返すように設定
-			mockKeybord.when(() -> Keybord.getInt(0, 10)).thenReturn(this.ten);
+			mockKeyboard.when(() -> Keyboard.getInt(0, 10)).thenReturn(this.ten);
 
 			jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // playerListを初期化
 
@@ -562,13 +562,13 @@ public class TestJankenCuiGameApplicationImpl {
 			// 検証
 			List<JankenPlayer> playerList = jankenCuiGameApplicationImpl.getPlayerList();
 			assertEquals(10, playerList.size());
-			mockKeybord.verify(() -> Keybord.getInt(0, 10), times(1));
+			mockKeyboard.verify(() -> Keyboard.getInt(0, 10), times(1));
 
 			/* 
 			 *  -----解説------
-			 * () -> Keybord.getInt(0, 10)の部分は
-			 * ラムダ式でKeybord.getInt(0, 10) の呼び出しをして
-			 * mockKeybord.verify(...)でmockKeybord というモックオブジェクトに対して
+			 * () -> Keyboard.getInt(0, 10)の部分は
+			 * ラムダ式でKeyboard.getInt(0, 10) の呼び出しをして
+			 * mockKeyboard.verify(...)でmockKeyboard というモックオブジェクトに対して
 			 * 特定のメソッドが期待通りに呼び出されたかどうかを確認している
 			 * times(1)は指定したメソッドが正確に1回呼び出されたことを確認するためのメソッド
 			 */
@@ -2246,7 +2246,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 1.SystemException(実行データ不良)が発行されること
 	 * 2.メッセージ内容が正しいこと
 	 */
-	
+
 	@Test
 	public void testJudge20() {
 
@@ -7060,9 +7060,9 @@ public class TestJankenCuiGameApplicationImpl {
 	public void testHasGameContinue_01() {
 
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			// 3を返すように設定
-			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(1);
+			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(1);
 
 			boolean result = jankenCuiGameApplicationImpl.hasGameContinue();
 
@@ -7091,9 +7091,9 @@ public class TestJankenCuiGameApplicationImpl {
 	public void testHasGameContinue_02() {
 
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			// 3を返すように設定
-			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(2);
+			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(2);
 
 			boolean result = jankenCuiGameApplicationImpl.hasGameContinue();
 
@@ -7125,9 +7125,9 @@ public class TestJankenCuiGameApplicationImpl {
 	public void testHasGameContinue_03() {
 
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			// -1を返すように設定
-			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenThrow(new ApplicationException("")).thenReturn(2);
+			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenThrow(new ApplicationException("")).thenReturn(2);
 
 			// System.outのキャプチャ
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -7178,9 +7178,9 @@ public class TestJankenCuiGameApplicationImpl {
 	public void testHasGameContinue_04() {
 
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			// -1を返すように設定
-			mockKeybord.when(() -> Keybord.getInt(1, 2)).thenReturn(3);
+			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(3);
 
 			jankenCuiGameApplicationImpl.hasGameContinue();
 			fail();

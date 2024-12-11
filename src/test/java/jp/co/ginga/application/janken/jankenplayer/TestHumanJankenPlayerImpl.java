@@ -15,7 +15,7 @@ import org.mockito.MockedStatic;
 import jp.co.ginga.application.janken.JankenParam;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
-import jp.co.ginga.util.keybord.Keybord;
+import jp.co.ginga.util.keybord.Keyboard;
 
 /**
  * じゃんけんプレーヤ 人間
@@ -199,16 +199,16 @@ public class TestHumanJankenPlayerImpl {
 	 * --確認事項--
 	 * 1を入力した場合
 	 * --条件--
-	 * KeybordクラスがgetIntで1(グー)を返すmock
+	 * KeyboardクラスがgetIntで1(グー)を返すmock
 	 * --検証項目--
 	 * 1. playerHandフィールドの値はJankenParamのROCKの値であるか
-	 * 2. KeybordのgetIntは1回呼び出される
+	 * 2. KeyboardのgetIntは1回呼び出される
 	 */
 	@Test
 	public void testSelectJankenHand_01() {
 		// モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
-			mockKeybord.when(() -> Keybord.getInt(1, 3)).thenReturn(this.rock);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
+			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenReturn(this.rock);
 
 			// テストメソッド
 			this.player.selectJankenHand();
@@ -218,7 +218,7 @@ public class TestHumanJankenPlayerImpl {
 
 			// 検証
 			assertEquals(this.rock, playerHand);
-			mockKeybord.verify(() -> Keybord.getInt(1, 3), times(1));
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 3), times(1));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -233,16 +233,16 @@ public class TestHumanJankenPlayerImpl {
 	 * --確認事項--
 	 * 1を入力した場合
 	 * --条件--
-	 * KeybordクラスがgetIntで1(チョキ)を返すmock
+	 * KeyboardクラスがgetIntで1(チョキ)を返すmock
 	 * --検証項目--
 	 * 1. playerHandフィールドの値はJankenParamのSCISSORSの値であるか
-	 * 2. KeybordのgetIntは1回呼び出される
+	 * 2. KeyboardのgetIntは1回呼び出される
 	 */
 	@Test
 	public void testSelectJankenHand_02() {
 		// モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
-			mockKeybord.when(() -> Keybord.getInt(1, 3)).thenReturn(this.scissors);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
+			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenReturn(this.scissors);
 
 			// テストメソッド
 			this.player.selectJankenHand();
@@ -252,7 +252,7 @@ public class TestHumanJankenPlayerImpl {
 
 			// 検証
 			assertEquals(this.scissors, playerHand);
-			mockKeybord.verify(() -> Keybord.getInt(1, 3), times(1));
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 3), times(1));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -267,16 +267,16 @@ public class TestHumanJankenPlayerImpl {
 	 * --確認事項--
 	 * 1を入力した場合
 	 * --条件--
-	 * KeybordクラスがgetIntで1(パー)を返すmock
+	 * KeyboardクラスがgetIntで1(パー)を返すmock
 	 * --検証項目--
 	 * 1. playerHandフィールドの値はJankenParamのPAPERの値であるか
-	 * 2. KeybordのgetIntは1回呼び出される
+	 * 2. KeyboardのgetIntは1回呼び出される
 	 */
 	@Test
 	public void testSelectJankenHand_03() {
 		// モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
-			mockKeybord.when(() -> Keybord.getInt(1, 3)).thenReturn(this.paper);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
+			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenReturn(this.paper);
 
 			// テストメソッド
 			this.player.selectJankenHand();
@@ -286,7 +286,7 @@ public class TestHumanJankenPlayerImpl {
 
 			// 検証
 			assertEquals(this.paper, playerHand);
-			mockKeybord.verify(() -> Keybord.getInt(1, 3), times(1));
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 3), times(1));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -299,17 +299,17 @@ public class TestHumanJankenPlayerImpl {
 	 * public void selectJankenHand() throws SystemException
 	 * 
 	 * --確認事項--
-	 * KeybordのgetIntから範囲外の0(DRAW)がJankenParamのgetEnumに渡された場合、SystemExceptionが発生する
+	 * KeyboardのgetIntから範囲外の0(DRAW)がJankenParamのgetEnumに渡された場合、SystemExceptionが発生する
 	 * --条件--
-	 *	KeybordクラスがgetIntで0を返すmock
+	 *	KeyboardクラスがgetIntで0を返すmock
 	 * --検証項目--
 	 * コンソールに「パラメーターの値が不正です。」と出力されることを確認する
 	 */
 	@Test
 	public void testSelectJankenHand_04() {
 		//モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
-			mockKeybord.when(() -> Keybord.getInt(1, 3)).thenReturn(this.draw);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
+			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenReturn(this.draw);
 
 			// テストメソッド
 			this.player.selectJankenHand();
@@ -329,7 +329,7 @@ public class TestHumanJankenPlayerImpl {
 	 * --確認事項--
 	 * 1～3以外を入力した場合
 	 * --条件--
-	 * KeybordクラスがgetIntで1回目にApplicationExceptionが発生させて
+	 * KeyboardクラスがgetIntで1回目にApplicationExceptionが発生させて
 	 * 2回目に1(グー)を返し無限ループを抜ける
 	 * --検証項目--
 	 * コンソールに「再入力を促すメッセージを出力し、処理を繰り返す。」と出力されることを確認する
@@ -337,8 +337,8 @@ public class TestHumanJankenPlayerImpl {
 	@Test
 	public void testSelectJankenHand_05() {
 		// モック化
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
-			mockKeybord.when(() -> Keybord.getInt(1, 3)).thenThrow(new ApplicationException("")).thenReturn(this.rock);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
+			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenThrow(new ApplicationException("")).thenReturn(this.rock);
 
 			// System.outのキャプチャ
 			ByteArrayOutputStream out = new ByteArrayOutputStream();

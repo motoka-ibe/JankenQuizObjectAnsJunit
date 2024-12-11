@@ -7,11 +7,10 @@ import java.lang.reflect.Field;
 import org.junit.jupiter.api.Test;
 
 public class SystemExceptionTest {
-	
+
 	//テストデータ
 	private String message = "エラーが発生しました";
 
-	
 	/**
 	 * testConstructor001 正常系
 	 * public SystemException(String sysMsg)
@@ -28,15 +27,15 @@ public class SystemExceptionTest {
 			//準備
 			Field sysMsgField = SystemException.class.getDeclaredField("sysMsg");
 			sysMsgField.setAccessible(true);
-			
+
 			//テストメソッド
 			SystemException e = new SystemException(this.message);
 
 			//検証
 			String result = (String) sysMsgField.get(e);
 			assertEquals(this.message, result);
-			
-		}catch(Exception  e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
 		}
@@ -56,10 +55,10 @@ public class SystemExceptionTest {
 	public void testGetSysMsg001() {
 		//準備
 		SystemException e = new SystemException(this.message);
-		
+
 		//テストメソッド
 		String result = e.getSysMsg();
-		
+
 		//検証
 		assertEquals(this.message, result);
 	}

@@ -16,7 +16,7 @@ import org.mockito.MockedStatic;
 import jp.co.ginga.application.quiz.factory.QuizQuestionFactory;
 import jp.co.ginga.util.exception.ApplicationException;
 import jp.co.ginga.util.exception.SystemException;
-import jp.co.ginga.util.keybord.Keybord;
+import jp.co.ginga.util.keybord.Keyboard;
 import jp.co.ginga.util.properties.MessageProperties;
 
 /**
@@ -55,7 +55,7 @@ public class TestQuizCuiGameApplicationImpl {
 				list.add(new QuizQuestion("タイトル", "本文", "選択肢", 1));
 			}
 			QuizQuestionFactory mockFactory = mock(QuizQuestionFactory.class);
-		
+
 			when(mockFactory.createQuizQuestion()).thenReturn(list);
 			QuizCuiGameApplicationImpl spyApplication = spy(QuizCuiGameApplicationImpl.class);
 			doNothing().when(spyApplication).viewProblem(any());
@@ -68,10 +68,10 @@ public class TestQuizCuiGameApplicationImpl {
 
 			//検証
 			assertEquals(3, spyApplication.list.size());
-			for(int i = 0 ; i < list.size() ; i++) {
-			assertEquals("タイトル", spyApplication.list.get(i).getProblemTitle());
-			assertEquals("本文", spyApplication.list.get(i).getProblemBody());
-			assertEquals(1, spyApplication.list.get(i).getCorrect());
+			for (int i = 0; i < list.size(); i++) {
+				assertEquals("タイトル", spyApplication.list.get(i).getProblemTitle());
+				assertEquals("本文", spyApplication.list.get(i).getProblemBody());
+				assertEquals(1, spyApplication.list.get(i).getCorrect());
 			}
 			verify(spyApplication, times(3)).viewProblem(any());
 			verify(spyApplication, times(3)).judge(any());
@@ -104,7 +104,7 @@ public class TestQuizCuiGameApplicationImpl {
 			list = new ArrayList<QuizQuestion>();
 
 			QuizQuestionFactory mockFactory = mock(QuizQuestionFactory.class);
-		
+
 			when(mockFactory.createQuizQuestion()).thenReturn(list);
 			QuizCuiGameApplicationImpl spyApplication = spy(QuizCuiGameApplicationImpl.class);
 			doNothing().when(spyApplication).viewProblem(any());
@@ -145,7 +145,7 @@ public class TestQuizCuiGameApplicationImpl {
 			list = null;
 
 			QuizQuestionFactory mockFactory = mock(QuizQuestionFactory.class);
-		
+
 			when(mockFactory.createQuizQuestion()).thenReturn(list);
 			QuizCuiGameApplicationImpl spyApplication = spy(QuizCuiGameApplicationImpl.class);
 			doNothing().when(spyApplication).viewProblem(any());
@@ -191,7 +191,7 @@ public class TestQuizCuiGameApplicationImpl {
 					+ "本文" + System.lineSeparator()
 					+ "選択肢" + System.lineSeparator(),
 					out.toString());
-      
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
@@ -213,7 +213,7 @@ public class TestQuizCuiGameApplicationImpl {
 	public void testViewProblem_02() {
 		try {
 			application = new QuizCuiGameApplicationImpl();
-			
+
 			//テスト対象実行
 			application.viewProblem(null);
 			fail();
@@ -239,7 +239,7 @@ public class TestQuizCuiGameApplicationImpl {
 	public void testJudge_01() {
 		try {
 			application = new QuizCuiGameApplicationImpl();
-			
+
 			//テスト対象実行
 			application.judge(null);
 			fail();
@@ -257,22 +257,22 @@ public class TestQuizCuiGameApplicationImpl {
 	 * --確認事項--
 	 * correctが正しく判断されて、加算されること
 	 * --条件--
-	 *	引数quizのcorrectが2、かつKeybord.getInt(1, 3)の実行結果が2の場合
+	 *	引数quizのcorrectが2、かつKeyboard.getInt(1, 3)の実行結果が2の場合
 	 * --検証項目--
 	 * correctCountが加算され、処理が正常終了すること
 	 */
 	@Test
 	public void testJudge_02() {
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
-			mockKeybord.when(() -> Keybord.getInt(1, 3)).thenReturn(2);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
+			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenReturn(2);
 			quiz = new QuizQuestion("タイトル", "本文", "選択肢", 2);
 			application = new QuizCuiGameApplicationImpl();
-			
+
 			//テスト対象実行
 			application.judge(quiz);
-			
+
 			//検証
-			assertEquals(1, application.correctConut);
+			assertEquals(1, application.correctCount);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
@@ -286,22 +286,22 @@ public class TestQuizCuiGameApplicationImpl {
 	 * --確認事項--
 	 * correctが正しく判断されて、加算されないこと
 	 * --条件--
-	 *	引数quizのcorrectが1、かつKeybord.getInt(1, 3)の実行結果が2の場合
+	 *	引数quizのcorrectが1、かつKeyboard.getInt(1, 3)の実行結果が2の場合
 	 * --検証項目--
 	 * correctCountが0のまま、処理が正常終了すること
 	 */
 	@Test
 	public void testJudge_03() {
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
-			mockKeybord.when(() -> Keybord.getInt(1, 3)).thenReturn(2);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
+			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenReturn(2);
 			quiz = new QuizQuestion("タイトル", "本文", "選択肢", 1);
 			application = new QuizCuiGameApplicationImpl();
-			
+
 			//テスト対象実行
 			application.judge(quiz);
-			
+
 			//検証
-			assertEquals(0, application.correctConut);
+			assertEquals(0, application.correctCount);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
@@ -315,34 +315,34 @@ public class TestQuizCuiGameApplicationImpl {
 	 * --確認事項--
 	 * correctが正しく判断されて、加算されないこと
 	 * --条件--
-	 *	1回目のKeybord.getInt(1, 3)ではApplicationExceptionが発行される
-	 *　2回目のKeybord.getInt(1, 3)では2が返却される
+	 *	1回目のKeyboard.getInt(1, 3)ではApplicationExceptionが発行される
+	 *　2回目のKeyboard.getInt(1, 3)では2が返却される
 	 * --検証項目--
 	 * correctCountが加算され、処理が正常終了すること
 	 */
 	@Test
 	public void testJudge_04() {
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
-			mockKeybord.when(() -> Keybord.getInt(1, 3)).thenThrow(new ApplicationException("")).thenReturn(2);
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
+			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenThrow(new ApplicationException("")).thenReturn(2);
 			quiz = new QuizQuestion("タイトル", "本文", "選択肢", 2);
 			//System.setOutメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			System.setOut(new PrintStream(out));
 
 			application = new QuizCuiGameApplicationImpl();
-			
+
 			//テスト対象実行
 			application.judge(quiz);
-			
+
 			//検証
-			assertEquals(1, application.correctConut);
+			assertEquals(1, application.correctCount);
 			assertEquals("選択肢から答えを入力してください\n" + System.lineSeparator()
 					+ "範囲外の数値が入力されました。"
 					+ System.lineSeparator()
 					+ "選択肢から答えを入力してください\n" + System.lineSeparator(),
 					out.toString());
 
-			mockKeybord.verify(() -> Keybord.getInt(1, 3), times(2));
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 3), times(2));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -357,23 +357,23 @@ public class TestQuizCuiGameApplicationImpl {
 	 * --確認事項--
 	 * SystemExceptionが発行され、処理がループせずに終了すること
 	 * --条件--
-	 *	Keybord.getInt(1, 3)でSystemExceptionが発行される
+	 *	Keyboard.getInt(1, 3)でSystemExceptionが発行される
 	 * --検証項目--
 	 * SystemExceptionが発行され、処理がループせずに終了すること
 	 */
 	@Test
 	public void testJudge_05() {
-		try (MockedStatic<Keybord> mockKeybord = mockStatic(Keybord.class)) {
-			mockKeybord.when(() -> Keybord.getInt(1, 3)).thenThrow(new SystemException("システムエラーが発生しました。終了します。"));
+		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
+			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenThrow(new SystemException("システムエラーが発生しました。終了します。"));
 			quiz = new QuizQuestion("タイトル", "本文", "選択肢", 2);
 			application = new QuizCuiGameApplicationImpl();
-			
+
 			//テスト対象実行
 			application.judge(quiz);
-			
+
 			//検証
-			assertEquals(0, application.correctConut);
-			mockKeybord.verify(() -> Keybord.getInt(1, 3), times(1));
+			assertEquals(0, application.correctCount);
+			mockKeyboard.verify(() -> Keyboard.getInt(1, 3), times(1));
 			fail();
 
 		} catch (SystemException e) {
@@ -390,7 +390,7 @@ public class TestQuizCuiGameApplicationImpl {
 	 * --確認事項--
 	 * 結果表示ができるか
 	 * --条件--
-	 *	MessageProperties.getMessage("quiz.msg.correct" + this.correctConut)が正常に処理された場合
+	 *	MessageProperties.getMessage("quiz.msg.correct" + this.correctCount)が正常に処理された場合
 	 * --検証項目--
 	 * 表示された内容が、想定と一致すること
 	 */
@@ -399,10 +399,10 @@ public class TestQuizCuiGameApplicationImpl {
 		try (MockedStatic<MessageProperties> mockMessageProperties = mockStatic(MessageProperties.class)) {
 			mockMessageProperties.when(() -> MessageProperties.getMessage(anyString())).thenReturn("2問正解");
 			application = new QuizCuiGameApplicationImpl();
-			
+
 			//テスト対象実行
 			application.viewResult();
-			
+
 			//検証
 			mockMessageProperties.verify(() -> MessageProperties.getMessage(anyString()), times(1));
 
@@ -419,7 +419,7 @@ public class TestQuizCuiGameApplicationImpl {
 	 * --確認事項--
 	 * SystemExceptionが発行されるか
 	 * --条件--
-	 *	MessageProperties.getMessage("quiz.msg.correct" + this.correctConut)がSystemExceptionを発行する場合
+	 *	MessageProperties.getMessage("quiz.msg.correct" + this.correctCount)がSystemExceptionを発行する場合
 	 * --検証項目--
 	 * SystemExceptionが発行されること
 	 */
@@ -429,10 +429,10 @@ public class TestQuizCuiGameApplicationImpl {
 			mockMessageProperties.when(() -> MessageProperties.getMessage(anyString()))
 					.thenThrow(new SystemException("システムエラーが発生しました。終了します。"));
 			application = new QuizCuiGameApplicationImpl();
-			
+
 			//テスト対象実行
 			application.viewResult();
-			
+
 			//検証
 			mockMessageProperties.verify(() -> MessageProperties.getMessage(anyString()), times(1));
 

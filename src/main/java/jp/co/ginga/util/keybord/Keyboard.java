@@ -12,7 +12,7 @@ import jp.co.ginga.util.properties.MessageProperties;
  * キーボードクラス
  *
  */
-public class Keybord {
+public class Keyboard {
 
 	/**
 	 * BufferedReaderオブジェクト
@@ -39,11 +39,11 @@ public class Keybord {
 	 */
 	public static String getString() throws SystemException {
 		try {
-			
+
 			//標準入力処理
-			return Keybord.getBufferedReaderInstance().readLine();
+			return Keyboard.getBufferedReaderInstance().readLine();
 		} catch (IOException e) {
-			throw new SystemException(MessageProperties.getMessage("error.keybord"));
+			throw new SystemException(MessageProperties.getMessage("error.Keyboard"));
 		}
 	}
 
@@ -57,7 +57,7 @@ public class Keybord {
 		//引数チェック
 		hasCheckRangeValue(from, to);
 		//入力文字列取得処理
-		String str = Keybord.getString();
+		String str = Keyboard.getString();
 		//範囲チェック
 		isRange(str.length(), from, to);
 		return str;
@@ -72,7 +72,7 @@ public class Keybord {
 	public static int getInt() throws ApplicationException, SystemException {
 		try {
 			//入力文字列を数値型への変換処理
-			return Integer.parseInt(Keybord.getString());
+			return Integer.parseInt(Keyboard.getString());
 		} catch (NumberFormatException e) {
 			throw new ApplicationException(MessageProperties.getMessage("error.non.number"));
 		}

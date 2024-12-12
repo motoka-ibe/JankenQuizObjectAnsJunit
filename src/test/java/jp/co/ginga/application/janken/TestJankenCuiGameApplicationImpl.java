@@ -5636,7 +5636,7 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			jankenCuiGameApplicationImpl.winHand = this.paper;
+			jankenCuiGameApplicationImpl.winHand = this.scissors;
 
 			//System.setOutメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -5651,16 +5651,16 @@ public class TestJankenCuiGameApplicationImpl {
 				verify(mockNpcPlayers[i], times(1)).getJankenHand();
 			}
 
-			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
+			// scissors を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < npcObject; i++) {
-				if (mockNpcPlayers[i].getJankenHand() == this.paper) {
+				if (mockNpcPlayers[i].getJankenHand() == this.scissors) {
 					verify(mockNpcPlayers[i], times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.paper == player.getJankenHand()) {
+				if (this.scissors == player.getJankenHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -5729,7 +5729,7 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			jankenCuiGameApplicationImpl.winHand = this.rock;
+			jankenCuiGameApplicationImpl.winHand = this.paper;
 
 			//System.setOutメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -5744,9 +5744,9 @@ public class TestJankenCuiGameApplicationImpl {
 				verify(mockNpcPlayers[i], times(1)).getJankenHand();
 			}
 
-			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
+			// paper を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < npcObject; i++) {
-				if (mockNpcPlayers[i].getJankenHand() == this.rock) {
+				if (mockNpcPlayers[i].getJankenHand() == this.paper) {
 					verify(mockNpcPlayers[i], times(1)).getPlayerName();
 				}
 			}

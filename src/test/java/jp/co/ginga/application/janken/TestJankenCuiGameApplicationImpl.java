@@ -5753,7 +5753,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.rock == player.getJankenHand()) {
+				if (this.paper == player.getJankenHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}

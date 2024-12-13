@@ -192,7 +192,7 @@ public class TestNpcJankenPlayerImpl {
 	 * じゃんけんの手がグーの場合
 	 * ROCKをplayerHandに代入して返すこと
 	 * --条件--
-	 * KeybordクラスがnextIntで0を返すmock
+	 * RandomクラスがnextIntで0を返すmock
 	 * --検証項目--
 	 * ROCKをplayerHandに代入して返すこと
 	 */
@@ -224,7 +224,7 @@ public class TestNpcJankenPlayerImpl {
 	 * じゃんけんの手がチョキの場合
 	 * ROCKをplayerHandに代入して返すこと
 	 * --条件--
-	 * KeybordクラスがnextIntで1を返すmock
+	 * RandomクラスがnextIntで1を返すmock
 	 * --検証項目--
 	 * SCISSORSをplayerHandに代入して返すこと
 	 */
@@ -256,7 +256,7 @@ public class TestNpcJankenPlayerImpl {
 	 * じゃんけんの手がパーの場合
 	 * ROCKをplayerHandに代入して返すこと
 	 * --条件--
-	 * KeybordクラスがnextIntで2を返すmock
+	 * RandomクラスがnextIntで2を返すmock
 	 * --検証項目--
 	 * PAPERをplayerHandに代入して返すこと
 	 */
@@ -288,7 +288,7 @@ public class TestNpcJankenPlayerImpl {
 	 * じゃんけんの手があいこの場合
 	 * コンソールに「パラメーターの値が不正です。」と出力されることを確認する
 	 * --条件--
-	 * KeybordクラスがnextIntで-1を返すmock
+	 * RandomクラスがnextIntで-1を返すmock
 	 * --検証項目--
 	 * コンソールに「パラメーターの値が不正です。」と出力されることを確認する
 	 */

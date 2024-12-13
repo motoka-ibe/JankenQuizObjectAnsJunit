@@ -248,7 +248,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 				paperFlag = true;
 				break;
 			default:
-				throw new SystemException(MessageProperties.getMessage("error.stop"));
+				throw new SystemException(MessageProperties.getMessage("error.arg"));
 			}
 		}
 
@@ -343,7 +343,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 				case STOP:
 					return false;
 				default:
-					throw new SystemException(MessageProperties.getMessage("error.stop"));
+					throw new SystemException(MessageProperties.getMessage("error.arg"));
 				}
 
 			} catch (ApplicationException e) {

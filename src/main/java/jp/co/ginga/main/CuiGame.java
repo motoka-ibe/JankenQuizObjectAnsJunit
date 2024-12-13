@@ -43,7 +43,7 @@ public class CuiGame {
 						break;
 
 					default:
-						System.out.println(MessageProperties.getMessage("error.keybord"));
+						System.out.println(MessageProperties.getMessage("error.keyboard"));
 						return;
 					}
 					break;

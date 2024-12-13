@@ -1385,7 +1385,7 @@ public class TestJankenCuiGameApplicationImpl {
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
-			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg());
+			assertEquals("パラメーターの値が不正です。", e.getSysMsg());
 		}
 
 	}
@@ -1787,7 +1787,7 @@ public class TestJankenCuiGameApplicationImpl {
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
-			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg());
+			assertEquals("パラメーターの値が不正です。", e.getSysMsg());
 		}
 
 	}
@@ -2352,7 +2352,7 @@ public class TestJankenCuiGameApplicationImpl {
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
-			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg());
+			assertEquals("パラメーターの値が不正です。", e.getSysMsg());
 		}
 
 	}
@@ -2753,7 +2753,7 @@ public class TestJankenCuiGameApplicationImpl {
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
-			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg());
+			assertEquals("パラメーターの値が不正です。", e.getSysMsg());
 		}
 
 	}
@@ -3288,7 +3288,7 @@ public class TestJankenCuiGameApplicationImpl {
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
-			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg());
+			assertEquals("パラメーターの値が不正です。", e.getSysMsg());
 		}
 
 	}
@@ -3770,7 +3770,7 @@ public class TestJankenCuiGameApplicationImpl {
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
-			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg());
+			assertEquals("パラメーターの値が不正です。", e.getSysMsg());
 		}
 
 	}
@@ -7186,7 +7186,7 @@ public class TestJankenCuiGameApplicationImpl {
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
-			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg());
+			assertEquals("パラメーターの値が不正です。", e.getSysMsg());
 		}
 	}
 

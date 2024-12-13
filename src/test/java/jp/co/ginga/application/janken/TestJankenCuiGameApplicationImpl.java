@@ -580,7 +580,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand_01() 異常系
+	 * testSelectPlayerHand_01() 異常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項-
@@ -592,7 +592,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 2.SystemExceptionのメッセージ内容が正しいこと
 	 */
 	@Test
-	public void testselectPlayerHand_01() {
+	public void testSelectPlayerHand_01() {
 		//playerListがNULLの場合
 		jankenCuiGameApplicationImpl.setPlayerList(nullPlayerList);
 
@@ -607,7 +607,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand_02()  異常系
+	 * testSelectPlayerHand_02()  異常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -623,7 +623,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 2.SystemExceptionのメッセージ内容が正しいこと
 	 */
 	@Test
-	public void testselectPlayerHand_02() {
+	public void testSelectPlayerHand_02() {
 
 		//人間プレーヤーの数を定義
 		final int humanObject = 1;
@@ -647,7 +647,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand_03() 正常系
+	 * testSelectPlayerHand_03() 正常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -662,7 +662,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * Jankenプレーヤー数の数分、selectPlayerHand()が実行されていること
 	 */
 	@Test
-	public void testselectPlayerHand_03() {
+	public void testSelectPlayerHand_03() {
 
 		final int humanObject = 2;
 		final int npcObject = 0;
@@ -705,7 +705,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand_04() 正常系
+	 * testSelectPlayerHand_04() 正常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -720,7 +720,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * Jankenプレーヤー数の数分、selectPlayerHand()が実行されていること
 	 */
 	@Test
-	public void testselectPlayerHand_04() {
+	public void testSelectPlayerHand_04() {
 
 		final int humanObject = 5;
 		final int npcObject = 0;
@@ -756,7 +756,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand_05() 正常系
+	 * testSelectPlayerHand_05() 正常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -771,7 +771,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * Jankenプレーヤー数の数分、selectPlayerHand()が実行されていること
 	 */
 	@Test
-	public void testselectPlayerHand_05() {
+	public void testSelectPlayerHand_05() {
 
 		final int humanObject = 10;
 		final int npcObject = 0;
@@ -807,7 +807,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand_06() 異常系
+	 * testSelectPlayerHand_06() 異常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -823,7 +823,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 2.SystemExceptionのメッセージ内容が正しいこと
 	 */
 	@Test
-	public void testselectPlayerHand_06() {
+	public void testSelectPlayerHand_06() {
 
 		final int humanObject = 11;
 
@@ -845,7 +845,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand_07() 異常系
+	 * testSelectPlayerHand_07() 異常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -861,7 +861,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 2.SystemExceptionのメッセージ内容が正しいこと
 	 */
 	@Test
-	public void testselectPlayerHand_07() {
+	public void testSelectPlayerHand_07() {
 
 		final int npcObject = 1;
 
@@ -883,7 +883,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand08() 正常系
+	 * testSelectPlayerHand08() 正常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -898,7 +898,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 */
 	@Test
-	public void testselectPlayerHand_08() {
+	public void testSelectPlayerHand_08() {
 
 		jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // セッターを使う
 
@@ -933,7 +933,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand09() 正常系
+	 * testSelectPlayerHand09() 正常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -948,7 +948,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 */
 	@Test
-	public void testselectPlayerHand_09() {
+	public void testSelectPlayerHand_09() {
 
 		jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // セッターを使う
 
@@ -983,7 +983,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand10() 正常系
+	 * testSelectPlayerHand10() 正常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -998,7 +998,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 */
 	@Test
-	public void testselectPlayerHand_10() {
+	public void testSelectPlayerHand_10() {
 
 		jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // セッターを使う
 
@@ -1033,7 +1033,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand_OverObject11() 異常系
+	 * testSelectPlayerHand_OverObject11() 異常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -1049,7 +1049,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 2.SystemExceptionのメッセージ内容が正しいこと
 	 */
 	@Test
-	public void testselectPlayerHand_11() {
+	public void testSelectPlayerHand_11() {
 
 		final int npcObject = 11;
 
@@ -1071,7 +1071,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand_12() 正常系
+	 * testSelectPlayerHand_12() 正常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -1086,7 +1086,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 */
 	@Test
-	public void testselectPlayerHand_12() {
+	public void testSelectPlayerHand_12() {
 
 		jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // セッターを使う
 
@@ -1126,7 +1126,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand_13() 正常系
+	 * testSelectPlayerHand_13() 正常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -1141,7 +1141,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 */
 	@Test
-	public void testselectPlayerHand_13() {
+	public void testSelectPlayerHand_13() {
 
 		jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // セッターを使う
 
@@ -1181,7 +1181,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand_14() 正常系
+	 * testSelectPlayerHand_14() 正常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -1196,7 +1196,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 */
 	@Test
-	public void testselectPlayerHand_14() {
+	public void testSelectPlayerHand_14() {
 
 		jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // セッターを使う
 
@@ -1236,7 +1236,7 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testselectPlayerHand_15() 異常系
+	 * testSelectPlayerHand_15() 異常系
 	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
@@ -1253,7 +1253,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 2.SystemExceptionのメッセージ内容が正しいこと
 	 */
 	@Test
-	public void testselectPlayerHand_15() {
+	public void testSelectPlayerHand_15() {
 
 		final int npcPlayersCount = 5;
 		final int humanPlayersCount = 6;

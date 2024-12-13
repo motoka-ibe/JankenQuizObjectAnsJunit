@@ -48,7 +48,7 @@ public class NpcJankenPlayerImpl implements JankenPlayer {
 	 * @return
 	 */
 	@Override
-	public int getJankenHand() {
+	public int getPlayerHand() {
 		return this.playerHand;
 	}
 
@@ -58,7 +58,7 @@ public class NpcJankenPlayerImpl implements JankenPlayer {
 	 * @throws SystemException
 	 */
 	@Override
-	public void selectJankenHand() throws SystemException {
+	public void selectPlayerHand() throws SystemException {
 
 		// Random()は、nextIntのカッコ内の文字"未満"の数字をランダムに表示する
 		switch (JankenParam.getEnum(new Random().nextInt(3) + 1)) {

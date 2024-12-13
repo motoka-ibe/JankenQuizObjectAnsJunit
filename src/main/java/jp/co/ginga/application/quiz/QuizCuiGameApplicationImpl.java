@@ -72,9 +72,9 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 		if (quiz == null) {
 			throw new SystemException(MessageProperties.getMessage("error.stop"));
 		}
-		System.out.println(quiz.getProblemTitle());
-		System.out.println(quiz.getProblemBody());
-		System.out.println(quiz.getProblemChoice());
+		System.out.println(quiz.getTitle());
+		System.out.println(quiz.getBody());
+		System.out.println(quiz.getChoice());
 
 	}
 

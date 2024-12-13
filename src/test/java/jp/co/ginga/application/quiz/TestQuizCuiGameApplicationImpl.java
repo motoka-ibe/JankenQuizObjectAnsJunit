@@ -69,8 +69,8 @@ public class TestQuizCuiGameApplicationImpl {
 			//検証
 			assertEquals(3, spyApplication.list.size());
 			for (int i = 0; i < list.size(); i++) {
-				assertEquals("タイトル", spyApplication.list.get(i).getProblemTitle());
-				assertEquals("本文", spyApplication.list.get(i).getProblemBody());
+				assertEquals("タイトル", spyApplication.list.get(i).getTitle());
+				assertEquals("本文", spyApplication.list.get(i).getBody());
 				assertEquals(1, spyApplication.list.get(i).getCorrect());
 			}
 			verify(spyApplication, times(3)).viewProblem(any());

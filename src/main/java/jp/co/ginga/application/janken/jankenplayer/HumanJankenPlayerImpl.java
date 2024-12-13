@@ -47,7 +47,7 @@ public class HumanJankenPlayerImpl implements JankenPlayer {
 	 * @return
 	 */
 	@Override
-	public int getJankenHand() {
+	public int getPlayerHand() {
 		return this.playerHand;
 	}
 
@@ -55,7 +55,7 @@ public class HumanJankenPlayerImpl implements JankenPlayer {
 	 * じゃんけんの手選択処理
 	 */
 	@Override
-	public void selectJankenHand() throws SystemException {
+	public void selectPlayerHand() throws SystemException {
 
 		while (true) {
 			try {

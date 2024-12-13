@@ -19,12 +19,12 @@ public interface JankenPlayer {
 	 * じゃんけんの手情報取得
 	 * @return
 	 */
-	public int getJankenHand();
+	public int getPlayerHand();
 
 	/**
 	 * じゃんけんの手選択処理
 	 * @throws SystemException
 	 */
-	public void selectJankenHand() throws SystemException;
+	public void selectPlayerHand() throws SystemException;
 
 }

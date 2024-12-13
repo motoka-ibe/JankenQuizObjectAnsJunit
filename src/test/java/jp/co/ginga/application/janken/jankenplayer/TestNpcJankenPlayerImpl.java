@@ -138,8 +138,8 @@ public class TestNpcJankenPlayerImpl {
 	}
 
 	/**
-	 * testGetJankenHand_01 正常系
-	 * public int getJankenHand()
+	 * testgetPlayerHand_01 正常系
+	 * public int getPlayerHand()
 	 * 
 	 * --確認事項--
 	 * playerHandフィールドの値が返されるか
@@ -149,21 +149,21 @@ public class TestNpcJankenPlayerImpl {
 	 * 1. 戻り値とplayerHandフィールドの値は等しいか
 	 */
 	@Test
-	public void testGetJankenHand_01() {
+	public void testgetPlayerHand_01() {
 
 		//NpcJankenPlayerImplクラスのフィールドplayerHandにテストクラスで用意したplayerHandをセットする
 		this.player.setPlayerHand(this.playerHand);
 
 		// テストメソッド
-		int result = this.player.getJankenHand();
+		int result = this.player.getPlayerHand();
 
 		// 検証
 		assertEquals(result, this.playerHand);
 	}
 
 	/**
-	 * testGetJankenHand_02 正常系
-	 * public int getJankenHand()
+	 * testgetPlayerHand_02 正常系
+	 * public int getPlayerHand()
 	 * 
 	 * --確認事項--
 	 * playerHandフィールドの値が返されるか
@@ -173,20 +173,20 @@ public class TestNpcJankenPlayerImpl {
 	 * 1. 戻り値は0であるか
 	 */
 	@Test
-	public void testGetJankenHand_02() {
+	public void testgetPlayerHand_02() {
 
 		//playerHandフィールドの値をセットしない
 
 		//テストメソッド
-		int result = this.player.getJankenHand();
+		int result = this.player.getPlayerHand();
 
 		//検証
 		assertEquals(this.notSetting, result);
 	}
 
 	/**
-	 * testSelectJankenHand_01() 正常系
-	 * public void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_01() 正常系
+	 * public void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * じゃんけんの手がグーの場合
@@ -197,16 +197,16 @@ public class TestNpcJankenPlayerImpl {
 	 * ROCKをplayerHandに代入して返すこと
 	 */
 	@Test
-	public void testSelectJankenHand_01() {
+	public void testselectPlayerHand_01() {
 		// モック化
 		try (MockedConstruction<Random> mockRandom = mockConstruction(
 				Random.class,
 				(random, context) -> when(random.nextInt(3)).thenReturn(this.rock - 1))) {
 			// テストメソッド
-			this.player.selectJankenHand();
+			this.player.selectPlayerHand();
 
 			// 検証
-			assertEquals(this.rock, this.player.getJankenHand()); // 期待する手と実際の手が一致するか確認
+			assertEquals(this.rock, this.player.getPlayerHand()); // 期待する手と実際の手が一致するか確認
 			assertEquals(mockRandom.constructed().size(), 1); // モックが1つだけ作成されたことを確認
 			verify(mockRandom.constructed().get(0), times(1)).nextInt(3); // verify：nextInt(3)メソッドが1回呼ばれたことを確認
 
@@ -217,8 +217,8 @@ public class TestNpcJankenPlayerImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_02() 正常系
-	 * public void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_02() 正常系
+	 * public void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * じゃんけんの手がチョキの場合
@@ -229,16 +229,16 @@ public class TestNpcJankenPlayerImpl {
 	 * SCISSORSをplayerHandに代入して返すこと
 	 */
 	@Test
-	public void testSelectJankenHand_02() {
+	public void testselectPlayerHand_02() {
 		// モック化
 		try (MockedConstruction<Random> mockRandom = mockConstruction(
 				Random.class,
 				(random, context) -> when(random.nextInt(3)).thenReturn(this.scissors - 1))) {
 			// テストメソッド
-			this.player.selectJankenHand();
+			this.player.selectPlayerHand();
 
 			// 検証
-			assertEquals(this.scissors, this.player.getJankenHand()); // 期待する手と実際の手が一致するか確認
+			assertEquals(this.scissors, this.player.getPlayerHand()); // 期待する手と実際の手が一致するか確認
 			assertEquals(mockRandom.constructed().size(), 1); // モックが1つだけ作成されたことを確認
 			verify(mockRandom.constructed().get(0), times(1)).nextInt(3); // verify：nextInt(3)メソッドが1回呼ばれたことを確認
 
@@ -249,8 +249,8 @@ public class TestNpcJankenPlayerImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_03() 正常系
-	 * public void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_03() 正常系
+	 * public void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * じゃんけんの手がパーの場合
@@ -261,16 +261,16 @@ public class TestNpcJankenPlayerImpl {
 	 * PAPERをplayerHandに代入して返すこと
 	 */
 	@Test
-	public void testSelectJankenHand_03() {
+	public void testselectPlayerHand_03() {
 		// モック化
 		try (MockedConstruction<Random> mockRandom = mockConstruction(
 				Random.class,
 				(random, context) -> when(random.nextInt(3)).thenReturn(this.paper - 1))) {
 			// テストメソッド
-			this.player.selectJankenHand();
+			this.player.selectPlayerHand();
 
 			// 検証
-			assertEquals(this.paper, this.player.getJankenHand()); // 期待する手と実際の手が一致するか確認
+			assertEquals(this.paper, this.player.getPlayerHand()); // 期待する手と実際の手が一致するか確認
 			assertEquals(mockRandom.constructed().size(), 1); // モックが1つだけ作成されたことを確認
 			verify(mockRandom.constructed().get(0), times(1)).nextInt(3); // verify：nextInt(3)メソッドが1回呼ばれたことを確認
 
@@ -281,8 +281,8 @@ public class TestNpcJankenPlayerImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_04() 異常系
-	 * public void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_04() 異常系
+	 * public void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * じゃんけんの手があいこの場合
@@ -293,13 +293,13 @@ public class TestNpcJankenPlayerImpl {
 	 * コンソールに「パラメーターの値が不正です。」と出力されることを確認する
 	 */
 	@Test
-	public void testSelectJankenHand_04() {
+	public void testselectPlayerHand_04() {
 		// モック化
 		try (MockedConstruction<Random> mockRandom = mockConstruction(
 				Random.class,
 				(random, context) -> when(random.nextInt(3)).thenReturn(this.draw - 1))) {
 
-			this.player.selectJankenHand();
+			this.player.selectPlayerHand();
 			fail();
 
 			// テストメソッド

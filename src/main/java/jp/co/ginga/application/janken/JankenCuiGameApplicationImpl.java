@@ -81,7 +81,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 			while (true) {
 
 				//じゃんけんプレーヤのじゃんけんの手選択処理
-				this.selectJankenHand();
+				this.selectPlayerHand();
 
 				//判定処理
 				this.winHand = this.judge();
@@ -203,7 +203,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 	 * じゃんけんプレイヤーが2名～10名以外の場合はシステムを終了する
 	 * @throws SystemException
 	 */
-	void selectJankenHand() throws SystemException {
+	void selectPlayerHand() throws SystemException {
 
 		//playerListがNULLまたはじゃんけんプレイヤー数が異常な場合(2名～10名以外)
 		if (this.playerList == null || MAX_PLAYER < playerList.size() || playerList.size() < MIN_PLAYER) {
@@ -212,7 +212,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 
 		for (int i = 0; i < playerList.size(); i++) {
 			//じゃんけんプレーヤのじゃんけんの手を選択する処理
-			playerList.get(i).selectJankenHand();
+			playerList.get(i).selectPlayerHand();
 		}
 
 	}
@@ -237,7 +237,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 
 		//じゃんけんプレーヤーが選択した手の状況を取得する処理
 		for (JankenPlayer player : playerList) {
-			switch (JankenParam.getEnum(player.getJankenHand())) {
+			switch (JankenParam.getEnum(player.getPlayerHand())) {
 			case ROCK:
 				rockFlag = true;
 				break;
@@ -290,7 +290,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : playerList) {
 				String playerName = player.getPlayerName(); //プレーヤーの名前を取得
-				if (this.winHand == player.getJankenHand()) {
+				if (this.winHand == player.getPlayerHand()) {
 					if (StringUtils.isEmpty(playerName)) { //プレーヤーの名前をisEmpty()チェック
 						throw new SystemException(MessageProperties.getMessage("error.stop"));
 					}

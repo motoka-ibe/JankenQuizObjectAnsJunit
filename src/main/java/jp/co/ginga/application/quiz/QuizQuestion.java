@@ -10,17 +10,17 @@ public class QuizQuestion {
 	/**
 	 * 問題 タイトル
 	 */
-	private String problemTitle;
+	private String title;
 
 	/**
 	 * 問題 本文
 	 */
-	private String problemBody;
+	private String body;
 
 	/**
 	 * 問題 選択分
 	 */
-	private String problemChoice;
+	private String choice;
 
 	/**
 	 * 正解
@@ -29,58 +29,58 @@ public class QuizQuestion {
 
 	/**
 	 * コンストラクタ
-	 * @param problemTitle
-	 * @param problemBody
-	 * @param problemChoice
+	 * @param title
+	 * @param body
+	 * @param choice
 	 * @param correct
 	 */
-	public QuizQuestion(String problemTitle, String problemBody, String problemChoice, int correct) {
-		this.problemTitle = problemTitle;
-		this.problemBody = problemBody;
-		this.problemChoice = problemChoice;
+	public QuizQuestion(String title, String body, String choice, int correct) {
+		this.title = title;
+		this.body = body;
+		this.choice = choice;
 		this.correct = correct;
 	}
 
 	/**
-	 * @return problemTitle
+	 * @return title
 	 */
-	public String getProblemTitle() {
-		return problemTitle;
+	public String getTitle() {
+		return title;
 	}
 
 	/**
-	 * @param problemTitle セットする problemTitle
+	 * @param title セットする title
 	 */
-	public void setProblemTitle(String problemTitle) {
-		this.problemTitle = problemTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	/**
-	 * @return problemBody
+	 * @return body
 	 */
-	public String getProblemBody() {
-		return problemBody;
+	public String getBody() {
+		return body;
 	}
 
 	/**
-	 * @param problemBody セットする problemBody
+	 * @param body セットする body
 	 */
-	public void setProblemBody(String problemBody) {
-		this.problemBody = problemBody;
+	public void setBody(String body) {
+		this.body = body;
 	}
 
 	/**
-	 * @return problemChoice
+	 * @return choice
 	 */
-	public String getProblemChoice() {
-		return problemChoice;
+	public String getChoice() {
+		return choice;
 	}
 
 	/**
-	 * @param problemChoice セットする problemChoice
+	 * @param choice セットする choice
 	 */
-	public void setProblemChoice(String problemChoice) {
-		this.problemChoice = problemChoice;
+	public void setChoice(String choice) {
+		this.choice = choice;
 	}
 
 	/**

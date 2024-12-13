@@ -142,8 +142,8 @@ public class TestHumanJankenPlayerImpl {
 	}
 
 	/**
-	 * testGetJankenHand_01 正常系
-	 * public int getJankenHand()
+	 * testgetPlayerHand_01 正常系
+	 * public int getPlayerHand()
 	 * 
 	 * --確認事項--
 	 * playerHandフィールドの値が返されるか
@@ -153,14 +153,14 @@ public class TestHumanJankenPlayerImpl {
 	 * 戻り値とplayerHandフィールドの値は等しいこと
 	 */
 	@Test
-	public void testGetJankenHand_01() {
+	public void testgetPlayerHand_01() {
 		try {
 
 			//HumanJankenPlayerImplクラスのフィールドplayerHandにテストクラスで用意したplayerHandをセットする
 			this.player.setPlayerHand(rock);
 
 			//テストメソッド
-			int result = this.player.getJankenHand();
+			int result = this.player.getPlayerHand();
 
 			//検証
 			assertEquals(this.playerHand, result);
@@ -172,8 +172,8 @@ public class TestHumanJankenPlayerImpl {
 	}
 
 	/**
-	 * testGetJankenHand_02 正常系
-	 * public int getJankenHand()
+	 * testgetPlayerHand_02 正常系
+	 * public int getPlayerHand()
 	 * 
 	 * --確認事項--
 	 * playerHandフィールドの値が返されるか
@@ -183,18 +183,18 @@ public class TestHumanJankenPlayerImpl {
 	 * 戻り値が0であること
 	 */
 	@Test
-	public void testGetJankenHand_02() {
+	public void testgetPlayerHand_02() {
 
 		//テストメソッド
-		int result = this.player.getJankenHand();
+		int result = this.player.getPlayerHand();
 
 		//検証
 		assertEquals(this.notSetting, result);
 	}
 
 	/**
-	 * testSelectJankenHand_01 正常系
-	 * public void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_01 正常系
+	 * public void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * 1を入力した場合
@@ -205,16 +205,16 @@ public class TestHumanJankenPlayerImpl {
 	 * 2. KeyboardのgetIntは1回呼び出される
 	 */
 	@Test
-	public void testSelectJankenHand_01() {
+	public void testselectPlayerHand_01() {
 		// モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenReturn(this.rock);
 
 			// テストメソッド
-			this.player.selectJankenHand();
+			this.player.selectPlayerHand();
 
 			// playerHandの取得
-			int playerHand = this.player.getJankenHand();
+			int playerHand = this.player.getPlayerHand();
 
 			// 検証
 			assertEquals(this.rock, playerHand);
@@ -227,8 +227,8 @@ public class TestHumanJankenPlayerImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_02 正常系
-	 * public void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_02 正常系
+	 * public void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * 1を入力した場合
@@ -239,16 +239,16 @@ public class TestHumanJankenPlayerImpl {
 	 * 2. KeyboardのgetIntは1回呼び出される
 	 */
 	@Test
-	public void testSelectJankenHand_02() {
+	public void testselectPlayerHand_02() {
 		// モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenReturn(this.scissors);
 
 			// テストメソッド
-			this.player.selectJankenHand();
+			this.player.selectPlayerHand();
 
 			// playerHandの取得
-			int playerHand = this.player.getJankenHand();
+			int playerHand = this.player.getPlayerHand();
 
 			// 検証
 			assertEquals(this.scissors, playerHand);
@@ -261,8 +261,8 @@ public class TestHumanJankenPlayerImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_03 正常系
-	 * public void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_03 正常系
+	 * public void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * 1を入力した場合
@@ -273,16 +273,16 @@ public class TestHumanJankenPlayerImpl {
 	 * 2. KeyboardのgetIntは1回呼び出される
 	 */
 	@Test
-	public void testSelectJankenHand_03() {
+	public void testselectPlayerHand_03() {
 		// モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenReturn(this.paper);
 
 			// テストメソッド
-			this.player.selectJankenHand();
+			this.player.selectPlayerHand();
 
 			// playerHandの取得
-			int playerHand = this.player.getJankenHand();
+			int playerHand = this.player.getPlayerHand();
 
 			// 検証
 			assertEquals(this.paper, playerHand);
@@ -295,8 +295,8 @@ public class TestHumanJankenPlayerImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_04 正常系
-	 * public void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_04 正常系
+	 * public void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * KeyboardのgetIntから範囲外の0(DRAW)がJankenParamのgetEnumに渡された場合、SystemExceptionが発生する
@@ -306,13 +306,13 @@ public class TestHumanJankenPlayerImpl {
 	 * コンソールに「パラメーターの値が不正です。」と出力されることを確認する
 	 */
 	@Test
-	public void testSelectJankenHand_04() {
+	public void testselectPlayerHand_04() {
 		//モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenReturn(this.draw);
 
 			// テストメソッド
-			this.player.selectJankenHand();
+			this.player.selectPlayerHand();
 			fail();
 
 		} catch (SystemException e) {
@@ -323,8 +323,8 @@ public class TestHumanJankenPlayerImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_05 異常系
-	 * public void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_05 異常系
+	 * public void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * 1～3以外を入力した場合
@@ -335,7 +335,7 @@ public class TestHumanJankenPlayerImpl {
 	 * コンソールに「再入力を促すメッセージを出力し、処理を繰り返す。」と出力されることを確認する
 	 */
 	@Test
-	public void testSelectJankenHand_05() {
+	public void testselectPlayerHand_05() {
 		// モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
 			mockKeyboard.when(() -> Keyboard.getInt(1, 3)).thenThrow(new ApplicationException("")).thenReturn(this.rock);
@@ -344,7 +344,7 @@ public class TestHumanJankenPlayerImpl {
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			System.setOut(new PrintStream(out));
 			// テストメソッド
-			this.player.selectJankenHand();
+			this.player.selectPlayerHand();
 
 			// 出力の確認
 			String output = out.toString();

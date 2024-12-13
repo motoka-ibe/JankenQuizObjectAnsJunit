@@ -38,9 +38,9 @@ public class TestQuizQuestion {
 			QuizQuestion quiz = new QuizQuestion(this.title, this.body, this.choice, this.correct);
 
 			//テストメソッド実行
-			String title = quiz.getProblemTitle();
-			String body = quiz.getProblemBody();
-			String choice = quiz.getProblemChoice();
+			String title = quiz.getTitle();
+			String body = quiz.getBody();
+			String choice = quiz.getChoice();
 			int correct = quiz.getCorrect();
 
 			//検証
@@ -73,9 +73,9 @@ public class TestQuizQuestion {
 			QuizQuestion quiz = new QuizQuestion(null, null, null, 0);
 
 			//テストメソッド実行
-			String title = quiz.getProblemTitle();
-			String body = quiz.getProblemBody();
-			String choice = quiz.getProblemChoice();
+			String title = quiz.getTitle();
+			String body = quiz.getBody();
+			String choice = quiz.getChoice();
 			int correct = quiz.getCorrect();
 
 			//検証
@@ -92,8 +92,8 @@ public class TestQuizQuestion {
 	}
 
 	/**
-	 * testGetProblemTitle_01() 正常系
-	 * public String getProblemTitle()
+	 * testgetTitle_01() 正常系
+	 * public String getTitle()
 	 * 
 	 * --確認事項--
 	 * problemTitleフィールドの値が返されるか
@@ -103,13 +103,13 @@ public class TestQuizQuestion {
 	 * 1. 戻り値とproblemTitleフィールドの値が等しいこと
 	 */
 	@Test
-	public void testGetProblemTitle_01() {
+	public void testgetTitle_01() {
 		try {
 			//インスタンス生成をしてそれぞれの対応するフィールドに値を代入
 			QuizQuestion quiz = new QuizQuestion(this.title, this.body, this.choice, this.correct);
 
 			//テストメソッド
-			String result = quiz.getProblemTitle();
+			String result = quiz.getTitle();
 
 			//検証
 			assertEquals(this.title, result);
@@ -121,8 +121,8 @@ public class TestQuizQuestion {
 	}
 
 	/**
-	 * testGetProblemTitle_02 正常系
-	 * public String getProblemTitle()
+	 * testgetTitle_02 正常系
+	 * public String getTitle()
 	 * 
 	 * --確認事項--
 	 * problemTitleフィールドの値が返されるか
@@ -132,12 +132,12 @@ public class TestQuizQuestion {
 	 *1. problemTitleフィールドの値がnullであるか
 	 */
 	@Test
-	public void testGetProblemTitle_02() {
+	public void testgetTitle_02() {
 		try {
 			//インスタンス生成をしてそれぞれの対応するフィールドに値を代入
 			QuizQuestion quiz = new QuizQuestion(null, null, null, 1);
 			//テストメソッド
-			String result = quiz.getProblemTitle();
+			String result = quiz.getTitle();
 
 			//検証
 			assertNull(result);
@@ -149,8 +149,8 @@ public class TestQuizQuestion {
 	}
 
 	/**
-	 * testSetProblemTitle_01 正常系
-	 * public void setProblemTitle(String problemTitle)
+	 * testsetTitle_01 正常系
+	 * public void setTitle(String problemTitle)
 	 * 
 	 * --確認事項--
 	 * problemTitleフィールドに値がセットされるか
@@ -160,16 +160,16 @@ public class TestQuizQuestion {
 	 * 1. セットした値とproblemTitleフィールドの値が等しいか
 	 */
 	@Test
-	public void testSetProblemTitle_01() {
+	public void testsetTitle_01() {
 		try {
 			// インスタンス生成をして、それぞれの対応するフィールドに値を代入
 			QuizQuestion quiz = new QuizQuestion(this.title, this.body, this.choice, this.correct);
 
 			// テストメソッドを呼び出し
-			quiz.setProblemTitle(this.title);
+			quiz.setTitle(this.title);
 
 			// フィールドの値を取得
-			String result = quiz.getProblemTitle();
+			String result = quiz.getTitle();
 
 			// 値が等しいか確認
 			assertEquals(this.title, result);
@@ -181,8 +181,8 @@ public class TestQuizQuestion {
 	}
 
 	/**
-	 * testSetProblemTitle_02 正常系
-	 *public void setProblemTitle(String problemTitle)
+	 * testsetTitle_02 正常系
+	 *public void setTitle(String problemTitle)
 	 * 
 	 * --確認事項--
 	 * problemTitleフィールドにnullがセットされるか
@@ -192,16 +192,16 @@ public class TestQuizQuestion {
 	 * 1. problemTitleフィールドの値がnullであるか
 	 */
 	@Test
-	public void testSetProblemTitle_02() {
+	public void testsetTitle_02() {
 		try {
 			//準備
 			QuizQuestion quiz = new QuizQuestion(this.title, this.body, this.choice, this.correct);
 
 			//テストメソッド
-			quiz.setProblemTitle(null);
+			quiz.setTitle(null);
 
 			//検証
-			String result = quiz.getProblemTitle();
+			String result = quiz.getTitle();
 
 			assertNull(result);
 
@@ -212,8 +212,8 @@ public class TestQuizQuestion {
 	}
 
 	/**
-	 * testGetProblemBody_01() 正常系
-	 * public String getProblemBody()
+	 * testgetBody_01() 正常系
+	 * public String getBody()
 	 * 
 	 * --確認事項--
 	 * problemTitleフィールドの値が返されるか
@@ -229,7 +229,7 @@ public class TestQuizQuestion {
 			QuizQuestion quiz = new QuizQuestion(this.title, this.body, this.choice, this.correct);
 
 			//テストメソッド
-			String result = quiz.getProblemBody();
+			String result = quiz.getBody();
 
 			//検証
 			assertEquals(this.body, result);
@@ -241,8 +241,8 @@ public class TestQuizQuestion {
 	}
 
 	/**
-	 * testGetProblemBody_02 正常系
-	 * public String getProblemBody()
+	 * testgetBody_02 正常系
+	 * public String getBody()
 	 * 
 	 * --確認事項--
 	 * problemTitleフィールドの値が返されるか
@@ -257,7 +257,7 @@ public class TestQuizQuestion {
 			//インスタンス生成をしてそれぞれの対応するフィールドに値を代入
 			QuizQuestion quiz = new QuizQuestion(null, null, null, 1);
 			//テストメソッド
-			String result = quiz.getProblemBody();
+			String result = quiz.getBody();
 
 			//検証
 			assertNull(result);
@@ -269,8 +269,8 @@ public class TestQuizQuestion {
 	}
 
 	/**
-	 * testSetProblemBody_01 正常系
-	 * public void setProblemBody(String problemBody) 
+	 * testsetBody_01 正常系
+	 * public void setBody(String problemBody) 
 	 * 
 	 * --確認事項--
 	 * problemTitleフィールドに値がセットされるか
@@ -280,16 +280,16 @@ public class TestQuizQuestion {
 	 * 1. セットした値とproblemTitleフィールドの値が等しいか
 	 */
 	@Test
-	public void testSetProblemBody_01() {
+	public void testsetBody_01() {
 		try {
 			// インスタンス生成をして、それぞれの対応するフィールドに値を代入
 			QuizQuestion quiz = new QuizQuestion(this.title, this.body, this.choice, this.correct);
 
 			// テストメソッドを呼び出し
-			quiz.setProblemBody(this.body);
+			quiz.setBody(this.body);
 
 			// フィールドの値を取得
-			String result = quiz.getProblemBody();
+			String result = quiz.getBody();
 
 			// 値が等しいか確認
 			assertEquals(this.body, result);
@@ -301,8 +301,8 @@ public class TestQuizQuestion {
 	}
 
 	/**
-	 * testSetProblemBody_02 正常系
-	 * public void setProblemBody(String problemBody) 
+	 * testsetBody_02 正常系
+	 * public void setBody(String problemBody) 
 	 * 
 	 * --確認事項--
 	 * problemTitleフィールドにnullがセットされるか
@@ -312,16 +312,16 @@ public class TestQuizQuestion {
 	 * 1. problemTitleフィールドの値がnullであるか
 	 */
 	@Test
-	public void testSetProblemBody_02() {
+	public void testsetBody_02() {
 		try {
 			//準備
 			QuizQuestion quiz = new QuizQuestion(this.title, this.body, this.choice, this.correct);
 
 			//テストメソッド
-			quiz.setProblemBody(null);
+			quiz.setBody(null);
 
 			//検証
-			String result = quiz.getProblemBody();
+			String result = quiz.getBody();
 
 			assertNull(result);
 
@@ -332,8 +332,8 @@ public class TestQuizQuestion {
 	}
 
 	/**
-	 * testGetProblemChoice_01() 正常系
-	 * public String getProblemChoice()
+	 * testgetChoice_01() 正常系
+	 * public String getChoice()
 	 * 
 	 * --確認事項--
 	 * ProblemChoiceフィールドの値が返されるか
@@ -343,13 +343,13 @@ public class TestQuizQuestion {
 	 * 1. 戻り値とProblemChoiceフィールドの値が等しいこと
 	 */
 	@Test
-	public void testGetProblemChoice_01() {
+	public void testgetChoice_01() {
 		try {
 			//インスタンス生成をしてそれぞれの対応するフィールドに値を代入
 			QuizQuestion quiz = new QuizQuestion(this.title, this.body, this.choice, this.correct);
 
 			//テストメソッド
-			String result = quiz.getProblemChoice();
+			String result = quiz.getChoice();
 
 			//検証
 			assertEquals(this.choice, result);
@@ -361,8 +361,8 @@ public class TestQuizQuestion {
 	}
 
 	/**
-	 * testGetProblemChoice_02 正常系
-	 * public String getProblemChoice()
+	 * testgetChoice_02 正常系
+	 * public String getChoice()
 	 * 
 	 * --確認事項--
 	 * ProblemChoiceフィールドの値が返されるか
@@ -372,12 +372,12 @@ public class TestQuizQuestion {
 	 * 1. ProblemChoiceフィールドの値がnullであるか
 	 */
 	@Test
-	public void testGetProblemChoice_02() {
+	public void testgetChoice_02() {
 		try {
 			//インスタンス生成をしてそれぞれの対応するフィールドに値を代入
 			QuizQuestion quiz = new QuizQuestion(null, null, null, 1);
 			//テストメソッド
-			String result = quiz.getProblemChoice();
+			String result = quiz.getChoice();
 
 			//検証
 			assertNull(result);
@@ -389,8 +389,8 @@ public class TestQuizQuestion {
 	}
 
 	/**
-	 * testSetProblemChoice_01 正常系
-	 * public void setProblemChoice(String problemChoice)
+	 * testsetChoice_01 正常系
+	 * public void setChoice(String problemChoice)
 	 * 
 	 * --確認事項--
 	 * problemTitleフィールドに値がセットされるか
@@ -400,16 +400,16 @@ public class TestQuizQuestion {
 	 * 1. セットした値とproblemTitleフィールドの値が等しいか
 	 */
 	@Test
-	public void testSetProblemChoice_01() {
+	public void testsetChoice_01() {
 		try {
 			// インスタンス生成をして、それぞれの対応するフィールドに値を代入
 			QuizQuestion quiz = new QuizQuestion(this.title, this.body, this.choice, this.correct);
 
 			// テストメソッドを呼び出し
-			quiz.setProblemChoice(this.title);
+			quiz.setChoice(this.title);
 
 			// フィールドの値を取得
-			String result = quiz.getProblemChoice();
+			String result = quiz.getChoice();
 
 			// 値が等しいか確認
 			assertEquals(this.title, result);
@@ -421,8 +421,8 @@ public class TestQuizQuestion {
 	}
 
 	/**
-	 * testSetProblemChoice_02 正常系
-	 * public void setProblemChoice(String problemChoice)
+	 * testsetChoice_02 正常系
+	 * public void setChoice(String problemChoice)
 	 * 
 	 * --確認事項--
 	 * problemTitleフィールドにnullがセットされるか
@@ -432,16 +432,16 @@ public class TestQuizQuestion {
 	 * 1. problemTitleフィールドの値がnullであるか
 	 */
 	@Test
-	public void testSetProblemChoice_02() {
+	public void testsetChoice_02() {
 		try {
 			//準備
 			QuizQuestion quiz = new QuizQuestion(this.title, this.body, this.choice, this.correct);
 
 			//テストメソッド
-			quiz.setProblemChoice(null);
+			quiz.setChoice(null);
 
 			//検証
-			String result = quiz.getProblemChoice();
+			String result = quiz.getChoice();
 
 			assertNull(result);
 

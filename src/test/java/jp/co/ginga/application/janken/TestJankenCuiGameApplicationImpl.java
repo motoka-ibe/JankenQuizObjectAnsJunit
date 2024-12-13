@@ -580,8 +580,8 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_01() 異常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_01() 異常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項-
 	 * playerListがNULLの場合、SystemException(実行データ不良)が発行されること
@@ -592,12 +592,12 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 2.SystemExceptionのメッセージ内容が正しいこと
 	 */
 	@Test
-	public void testSelectJankenHand_01() {
+	public void testselectPlayerHand_01() {
 		//playerListがNULLの場合
 		jankenCuiGameApplicationImpl.setPlayerList(nullPlayerList);
 
 		try {
-			jankenCuiGameApplicationImpl.selectJankenHand(); //テストメソッドの実行
+			jankenCuiGameApplicationImpl.selectPlayerHand(); //テストメソッドの実行
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
@@ -607,8 +607,8 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_02()  異常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_02()  異常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
@@ -623,7 +623,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 2.SystemExceptionのメッセージ内容が正しいこと
 	 */
 	@Test
-	public void testSelectJankenHand_02() {
+	public void testselectPlayerHand_02() {
 
 		//人間プレーヤーの数を定義
 		final int humanObject = 1;
@@ -637,7 +637,7 @@ public class TestJankenCuiGameApplicationImpl {
 		}
 
 		try {
-			jankenCuiGameApplicationImpl.selectJankenHand(); //テストメソッドの実行
+			jankenCuiGameApplicationImpl.selectPlayerHand(); //テストメソッドの実行
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
@@ -647,22 +647,22 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_03() 正常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_03() 正常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
 	 * Jankenプレーヤーオブジェクトが1種類(人間プレーヤー)
 	 * Jankenプレーヤーオブジェクトが2の場合
-	 * Jankenプレーヤー数の数分、selectJankenHand()が実行されていること
+	 * Jankenプレーヤー数の数分、selectPlayerHand()が実行されていること
 	 * --条件--
 	 * playerListがNULL以外の場合
 	 * PlayerListにmockHumanPlayerを2人追加する
 	 * --検証事項--
-	 * Jankenプレーヤー数の数分、selectJankenHand()が実行されていること
+	 * Jankenプレーヤー数の数分、selectPlayerHand()が実行されていること
 	 */
 	@Test
-	public void testSelectJankenHand_03() {
+	public void testselectPlayerHand_03() {
 
 		final int humanObject = 2;
 		final int npcObject = 0;
@@ -680,7 +680,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		try {
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				doNothing().when(emptyPlayerList.get(i)).selectJankenHand();
+				doNothing().when(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 			/*
@@ -691,11 +691,11 @@ public class TestJankenCuiGameApplicationImpl {
 			 */
 
 			// テストメソッド実行
-			jankenCuiGameApplicationImpl.selectJankenHand();
+			jankenCuiGameApplicationImpl.selectPlayerHand();
 
-			// 検証(Jankenプレーヤー数の数分、selectJankenHand()が実行されていること)
+			// 検証(Jankenプレーヤー数の数分、selectPlayerHand()が実行されていること)
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				verify(emptyPlayerList.get(i)).selectJankenHand();
+				verify(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 		} catch (SystemException e) {
@@ -705,22 +705,22 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_04() 正常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_04() 正常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
 	 * Jankenプレーヤーオブジェクトが1種類(人間プレーヤー)
 	 * Jankenプレーヤーオブジェクトが5の場合
-	 * Jankenプレーヤー数の数分、selectJankenHand()が実行されていること
+	 * Jankenプレーヤー数の数分、selectPlayerHand()が実行されていること
 	 * --条件--
 	 * playerListがNULL以外の場合 
 	 * PlayerListにmockHumanPlayerを5人追加する
 	 * --検証事項--
-	 * Jankenプレーヤー数の数分、selectJankenHand()が実行されていること
+	 * Jankenプレーヤー数の数分、selectPlayerHand()が実行されていること
 	 */
 	@Test
-	public void testSelectJankenHand_04() {
+	public void testselectPlayerHand_04() {
 
 		final int humanObject = 5;
 		final int npcObject = 0;
@@ -738,15 +738,15 @@ public class TestJankenCuiGameApplicationImpl {
 
 		try {
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				doNothing().when(emptyPlayerList.get(i)).selectJankenHand();
+				doNothing().when(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 			// テストメソッド実行
-			jankenCuiGameApplicationImpl.selectJankenHand();
+			jankenCuiGameApplicationImpl.selectPlayerHand();
 
-			// 検証(Jankenプレーヤー数の数分、selectJankenHand()が実行されていること)
+			// 検証(Jankenプレーヤー数の数分、selectPlayerHand()が実行されていること)
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				verify(emptyPlayerList.get(i)).selectJankenHand();
+				verify(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 		} catch (SystemException e) {
@@ -756,22 +756,22 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_05() 正常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_05() 正常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
 	 * Jankenプレーヤーオブジェクトが1種類(人間プレーヤー)
 	 * Jankenプレーヤーオブジェクトが10の場合
-	 * Jankenプレーヤー数の数分、selectJankenHand()が実行されていること
+	 * Jankenプレーヤー数の数分、selectPlayerHand()が実行されていること
 	 * --条件--
 	 * playerListがNULL以外の場合
 	 * PlayerListにmockHumanPlayerを10人追加する
 	 * --検証事項--
-	 * Jankenプレーヤー数の数分、selectJankenHand()が実行されていること
+	 * Jankenプレーヤー数の数分、selectPlayerHand()が実行されていること
 	 */
 	@Test
-	public void testSelectJankenHand_05() {
+	public void testselectPlayerHand_05() {
 
 		final int humanObject = 10;
 		final int npcObject = 0;
@@ -789,15 +789,15 @@ public class TestJankenCuiGameApplicationImpl {
 
 		try {
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				doNothing().when(emptyPlayerList.get(i)).selectJankenHand();
+				doNothing().when(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 			// テストメソッド実行
-			jankenCuiGameApplicationImpl.selectJankenHand();
+			jankenCuiGameApplicationImpl.selectPlayerHand();
 
 			// 検証
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				verify(emptyPlayerList.get(i)).selectJankenHand();
+				verify(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 		} catch (SystemException e) {
@@ -807,8 +807,8 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_06() 異常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_06() 異常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
@@ -823,7 +823,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 2.SystemExceptionのメッセージ内容が正しいこと
 	 */
 	@Test
-	public void testSelectJankenHand_06() {
+	public void testselectPlayerHand_06() {
 
 		final int humanObject = 11;
 
@@ -835,7 +835,7 @@ public class TestJankenCuiGameApplicationImpl {
 		}
 
 		try {
-			jankenCuiGameApplicationImpl.selectJankenHand();
+			jankenCuiGameApplicationImpl.selectPlayerHand();
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
@@ -845,8 +845,8 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_07() 異常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_07() 異常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
@@ -861,7 +861,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 2.SystemExceptionのメッセージ内容が正しいこと
 	 */
 	@Test
-	public void testSelectJankenHand_07() {
+	public void testselectPlayerHand_07() {
 
 		final int npcObject = 1;
 
@@ -873,7 +873,7 @@ public class TestJankenCuiGameApplicationImpl {
 		}
 
 		try {
-			jankenCuiGameApplicationImpl.selectJankenHand(); //テストメソッドの実行
+			jankenCuiGameApplicationImpl.selectPlayerHand(); //テストメソッドの実行
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
@@ -883,22 +883,22 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand08() 正常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand08() 正常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
 	 * Jankenプレーヤーオブジェクトが1種類(Npcプレーヤー)
 	 * Jankenプレーヤーオブジェクトが2の場合
-	 * オブジェクトの数分、selectJankenHand()が行われること
+	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 * --条件--
 	 * playerListがNULL以外の場合
 	 * npcObjectが2の場合
 	 * --検証事項--
-	 * オブジェクトの数分、selectJankenHand()が行われること
+	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 */
 	@Test
-	public void testSelectJankenHand_08() {
+	public void testselectPlayerHand_08() {
 
 		jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // セッターを使う
 
@@ -915,15 +915,15 @@ public class TestJankenCuiGameApplicationImpl {
 
 		try {
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				doNothing().when(emptyPlayerList.get(i)).selectJankenHand();
+				doNothing().when(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 			// テストメソッド実行
-			jankenCuiGameApplicationImpl.selectJankenHand();
+			jankenCuiGameApplicationImpl.selectPlayerHand();
 
 			// 検証
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				verify(emptyPlayerList.get(i)).selectJankenHand();
+				verify(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 		} catch (SystemException e) {
@@ -933,22 +933,22 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand09() 正常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand09() 正常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
 	 * Jankenプレーヤーオブジェクトが1種類(Npcプレーヤー)
 	 * Jankenプレーヤーオブジェクトが5の場合
-	 * オブジェクトの数分、selectJankenHand()が行われること
+	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 * --条件--
 	 * playerListがNULL以外の場合
 	 * npcObjectが5の場合
 	 * --検証事項--
-	 * オブジェクトの数分、selectJankenHand()が行われること
+	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 */
 	@Test
-	public void testSelectJankenHand_09() {
+	public void testselectPlayerHand_09() {
 
 		jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // セッターを使う
 
@@ -965,15 +965,15 @@ public class TestJankenCuiGameApplicationImpl {
 
 		try {
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				doNothing().when(emptyPlayerList.get(i)).selectJankenHand();
+				doNothing().when(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 			// テストメソッド実行
-			jankenCuiGameApplicationImpl.selectJankenHand();
+			jankenCuiGameApplicationImpl.selectPlayerHand();
 
 			// 検証
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				verify(emptyPlayerList.get(i)).selectJankenHand();
+				verify(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 		} catch (SystemException e) {
@@ -983,22 +983,22 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand10() 正常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand10() 正常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
 	 * Jankenプレーヤーオブジェクトが1種類(Npcプレーヤー)
 	 * Jankenプレーヤーオブジェクトが10の場合
-	 * オブジェクトの数分、selectJankenHand()が行われること
+	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 * --条件--
 	 * playerListがNULL以外の場合
 	 * npcObjectが10の場合
 	 * --検証事項--
-	 * オブジェクトの数分、selectJankenHand()が行われること
+	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 */
 	@Test
-	public void testSelectJankenHand_10() {
+	public void testselectPlayerHand_10() {
 
 		jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // セッターを使う
 
@@ -1015,15 +1015,15 @@ public class TestJankenCuiGameApplicationImpl {
 
 		try {
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				doNothing().when(emptyPlayerList.get(i)).selectJankenHand();
+				doNothing().when(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 			// テストメソッド実行
-			jankenCuiGameApplicationImpl.selectJankenHand();
+			jankenCuiGameApplicationImpl.selectPlayerHand();
 
 			// 検証
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				verify(emptyPlayerList.get(i)).selectJankenHand();
+				verify(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 		} catch (SystemException e) {
@@ -1033,8 +1033,8 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_OverObject11() 異常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_OverObject11() 異常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
@@ -1049,7 +1049,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 2.SystemExceptionのメッセージ内容が正しいこと
 	 */
 	@Test
-	public void testSelectJankenHand_11() {
+	public void testselectPlayerHand_11() {
 
 		final int npcObject = 11;
 
@@ -1061,7 +1061,7 @@ public class TestJankenCuiGameApplicationImpl {
 		}
 
 		try {
-			jankenCuiGameApplicationImpl.selectJankenHand();
+			jankenCuiGameApplicationImpl.selectPlayerHand();
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
@@ -1071,22 +1071,22 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_12() 正常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_12() 正常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
 	 * Jankenプレーヤーオブジェクトが2種類(人間プレーヤー、Npcプレーヤー)
 	 * Jankenプレーヤーオブジェクトが2の場合
-	 * オブジェクトの数分、selectJankenHand()が行われること
+	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 * --条件--
 	 * playerListがNULL以外の場合
 	 * humanObjectが1,npcObjectが1の場合
 	 * --検証事項--
-	 * オブジェクトの数分、selectJankenHand()が行われること
+	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 */
 	@Test
-	public void testSelectJankenHand_12() {
+	public void testselectPlayerHand_12() {
 
 		jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // セッターを使う
 
@@ -1108,15 +1108,15 @@ public class TestJankenCuiGameApplicationImpl {
 
 		try {
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				doNothing().when(emptyPlayerList.get(i)).selectJankenHand();
+				doNothing().when(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 			// テストメソッド実行
-			jankenCuiGameApplicationImpl.selectJankenHand();
+			jankenCuiGameApplicationImpl.selectPlayerHand();
 
 			// 検証
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				verify(emptyPlayerList.get(i)).selectJankenHand();
+				verify(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 		} catch (SystemException e) {
@@ -1126,22 +1126,22 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_13() 正常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_13() 正常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
 	 * Jankenプレーヤーオブジェクトが2種類(人間プレーヤー、Npcプレーヤー)
 	 * Jankenプレーヤーオブジェクトが5の場合
-	 * オブジェクトの数分、selectJankenHand()が行われること
+	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 * --条件--
 	 * playerListがNULL以外の場合
 	 * humanObjectが2,npcObjectが3の場合
 	 * --検証事項--
-	 * オブジェクトの数分、selectJankenHand()が行われること
+	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 */
 	@Test
-	public void testSelectJankenHand_13() {
+	public void testselectPlayerHand_13() {
 
 		jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // セッターを使う
 
@@ -1163,15 +1163,15 @@ public class TestJankenCuiGameApplicationImpl {
 
 		try {
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				doNothing().when(emptyPlayerList.get(i)).selectJankenHand();
+				doNothing().when(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 			// テストメソッド実行
-			jankenCuiGameApplicationImpl.selectJankenHand();
+			jankenCuiGameApplicationImpl.selectPlayerHand();
 
 			// 検証
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				verify(emptyPlayerList.get(i)).selectJankenHand();
+				verify(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 		} catch (SystemException e) {
@@ -1181,22 +1181,22 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_14() 正常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_14() 正常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
 	 * Jankenプレーヤーオブジェクトが2種類(人間プレーヤー、Npcプレーヤー)
 	 * Jankenプレーヤーオブジェクトが10の場合
-	 * オブジェクトの数分、selectJankenHand()が行われること
+	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 * --条件--
 	 * playerListがNULL以外の場合
 	 * humanObjectが5,npcObjectが5の場合
 	 * --検証事項--
-	 * オブジェクトの数分、selectJankenHand()が行われること
+	 * オブジェクトの数分、selectPlayerHand()が行われること
 	 */
 	@Test
-	public void testSelectJankenHand_14() {
+	public void testselectPlayerHand_14() {
 
 		jankenCuiGameApplicationImpl.setPlayerList(emptyPlayerList); // セッターを使う
 
@@ -1218,15 +1218,15 @@ public class TestJankenCuiGameApplicationImpl {
 
 		try {
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				doNothing().when(emptyPlayerList.get(i)).selectJankenHand();
+				doNothing().when(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 			// テストメソッド実行
-			jankenCuiGameApplicationImpl.selectJankenHand();
+			jankenCuiGameApplicationImpl.selectPlayerHand();
 
 			// 検証
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				verify(emptyPlayerList.get(i)).selectJankenHand();
+				verify(emptyPlayerList.get(i)).selectPlayerHand();
 			}
 
 		} catch (SystemException e) {
@@ -1236,8 +1236,8 @@ public class TestJankenCuiGameApplicationImpl {
 	}
 
 	/**
-	 * testSelectJankenHand_15() 異常系
-	 * void selectJankenHand() throws SystemException
+	 * testselectPlayerHand_15() 異常系
+	 * void selectPlayerHand() throws SystemException
 	 * 
 	 * --確認事項--
 	 * playerListがNULL以外の場合で
@@ -1253,7 +1253,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 2.SystemExceptionのメッセージ内容が正しいこと
 	 */
 	@Test
-	public void testSelectJankenHand_15() {
+	public void testselectPlayerHand_15() {
 
 		final int npcPlayersCount = 5;
 		final int humanPlayersCount = 6;
@@ -1269,7 +1269,7 @@ public class TestJankenCuiGameApplicationImpl {
 		}
 
 		try {
-			jankenCuiGameApplicationImpl.selectJankenHand();
+			jankenCuiGameApplicationImpl.selectPlayerHand();
 			fail();
 		} catch (SystemException e) {
 			e.printStackTrace();
@@ -1376,8 +1376,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.draw);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.draw);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.draw);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.draw);
 
 		//テストメソッド
 		try {
@@ -1423,8 +1423,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.errorHand);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.errorHand);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.errorHand);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.errorHand);
 
 		//テストメソッド
 		try {
@@ -1453,7 +1453,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(グー)
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_05() {
@@ -1469,8 +1469,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
 
 		//テストメソッド
 		int result = 0;
@@ -1485,7 +1485,7 @@ public class TestJankenCuiGameApplicationImpl {
 		assertEquals(this.draw, result);
 
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 	}
 
@@ -1505,7 +1505,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(チョキ)
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_06() {
@@ -1521,8 +1521,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -1536,7 +1536,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.draw, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 	}
 
@@ -1556,7 +1556,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(パー)
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_07() {
@@ -1572,8 +1572,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
 
 		//テストメソッド
 		int result = 0;
@@ -1587,7 +1587,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.draw, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -1608,7 +1608,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(グーとパー)
 	 * --検証事項--
 	 * 1.paperを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_08() {
@@ -1624,8 +1624,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
 
 		//テストメソッド
 		int result = 0;
@@ -1639,7 +1639,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.paper, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 	}
 
@@ -1659,7 +1659,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(チョキとグー)
 	 * --検証事項--
 	 * 1.rockを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_09() {
@@ -1675,8 +1675,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
 
 		//テストメソッド
 		int result = 0;
@@ -1690,7 +1690,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.rock, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 	}
 
@@ -1710,7 +1710,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(パーとチョキ)
 	 * --検証事項--
 	 * 1.scissorsを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_10() {
@@ -1726,8 +1726,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -1741,7 +1741,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.scissors, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 	}
 
@@ -1778,7 +1778,7 @@ public class TestJankenCuiGameApplicationImpl {
 		}
 
 		for (int i = 0; i < humanObject; i++) {
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.draw);
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.draw);
 		}
 
 		//テストメソッド
@@ -1824,7 +1824,7 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 		for (int i = 0; i < humanObject; i++) {
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.errorHand);
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.errorHand);
 		}
 
 		//テストメソッド
@@ -1854,7 +1854,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(グー)
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge13() {
@@ -1870,7 +1870,7 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 		for (int i = 0; i < humanObject; i++) {
-			when(emptyPlayerList.get(i).getJankenHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(i).getPlayerHand()).thenReturn(this.rock);
 		}
 		//テストメソッド
 		int result = 0;
@@ -1884,7 +1884,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.draw, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -1905,7 +1905,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(チョキ)
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge14() {
@@ -1921,7 +1921,7 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 		for (int i = 0; i < humanObject; i++) {
-			when(emptyPlayerList.get(i).getJankenHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(i).getPlayerHand()).thenReturn(this.scissors);
 		}
 		//テストメソッド
 		int result = 0;
@@ -1935,7 +1935,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.draw, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -1956,7 +1956,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(パー)
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge15() {
@@ -1972,7 +1972,7 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 		for (int i = 0; i < humanObject; i++) {
-			when(emptyPlayerList.get(i).getJankenHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(i).getPlayerHand()).thenReturn(this.paper);
 		}
 		//テストメソッド
 		int result = 0;
@@ -1986,7 +1986,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.draw, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -2007,7 +2007,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(グーとパー)
 	 * --検証事項--
 	 * 1.paperを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge16() {
@@ -2023,16 +2023,16 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.paper);
 
 		//テストメソッド
 		int result = 0;
@@ -2046,7 +2046,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.paper, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -2067,7 +2067,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(チョキとグー)
 	 * --検証事項--
 	 * 1.rockを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge17() {
@@ -2083,16 +2083,16 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -2106,7 +2106,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.rock, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -2127,7 +2127,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(パーとチョキ)
 	 * --検証事項--
 	 * 1.scissorsを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge18() {
@@ -2143,16 +2143,16 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -2166,7 +2166,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.scissors, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -2187,7 +2187,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * JankenParamの値がすべて異なる場合
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge19() {
@@ -2203,16 +2203,16 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -2226,7 +2226,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.draw, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -2343,8 +2343,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.draw);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.draw);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.draw);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.draw);
 
 		//テストメソッド
 		try {
@@ -2389,8 +2389,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.errorHand);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.errorHand);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.errorHand);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.errorHand);
 
 		//テストメソッド
 		try {
@@ -2419,7 +2419,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(グー)
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_24() {
@@ -2435,8 +2435,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
 
 		//テストメソッド
 		int result = 0;
@@ -2451,7 +2451,7 @@ public class TestJankenCuiGameApplicationImpl {
 		assertEquals(this.draw, result);
 
 		for (int i = 0; i < npcObject; i++) {
-			verify(mockNpcPlayers[i], times(1)).getJankenHand();
+			verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 		}
 	}
 
@@ -2471,7 +2471,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(チョキ)
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_25() {
@@ -2487,8 +2487,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -2502,7 +2502,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.draw, result);
 		for (int i = 0; i < npcObject; i++) {
-			verify(mockNpcPlayers[i], times(1)).getJankenHand();
+			verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 		}
 	}
 
@@ -2522,7 +2522,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(パー)
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_26() {
@@ -2538,8 +2538,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
 
 		//テストメソッド
 		int result = 0;
@@ -2553,7 +2553,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.draw, result);
 		for (int i = 0; i < npcObject; i++) {
-			verify(mockNpcPlayers[i], times(1)).getJankenHand();
+			verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -2574,7 +2574,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(グーとパー)
 	 * --検証事項--
 	 * 1.paperを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_27() {
@@ -2590,8 +2590,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
 
 		//テストメソッド
 		int result = 0;
@@ -2605,7 +2605,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.paper, result);
 		for (int i = 0; i < npcObject; i++) {
-			verify(mockNpcPlayers[i], times(1)).getJankenHand();
+			verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 		}
 	}
 
@@ -2625,7 +2625,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(チョキとグー)
 	 * --検証事項--
 	 * 1.rockを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_28() {
@@ -2641,8 +2641,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
 
 		//テストメソッド
 		int result = 0;
@@ -2656,7 +2656,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.rock, result);
 		for (int i = 0; i < npcObject; i++) {
-			verify(mockNpcPlayers[i], times(1)).getJankenHand();
+			verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 		}
 	}
 
@@ -2676,7 +2676,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(パーとチョキ)
 	 * --検証事項--
 	 * 1.scissorsを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_29() {
@@ -2692,8 +2692,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -2707,7 +2707,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.scissors, result);
 		for (int i = 0; i < npcObject; i++) {
-			verify(mockNpcPlayers[i], times(1)).getJankenHand();
+			verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 		}
 	}
 
@@ -2744,7 +2744,7 @@ public class TestJankenCuiGameApplicationImpl {
 		}
 
 		for (int i = 0; i < npcObject; i++) {
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.draw);
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.draw);
 		}
 
 		//テストメソッド
@@ -2790,7 +2790,7 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 		for (int i = 0; i < npcObject; i++) {
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.errorHand);
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.errorHand);
 		}
 
 		//テストメソッド
@@ -2820,7 +2820,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(グー)
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge32() {
@@ -2836,7 +2836,7 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 		for (int i = 0; i < npcObject; i++) {
-			when(emptyPlayerList.get(i).getJankenHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(i).getPlayerHand()).thenReturn(this.rock);
 		}
 		//テストメソッド
 		int result = 0;
@@ -2850,7 +2850,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.draw, result);
 		for (int i = 0; i < npcObject; i++) {
-			verify(mockNpcPlayers[i], times(1)).getJankenHand();
+			verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -2871,7 +2871,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(チョキ)
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge33() {
@@ -2887,7 +2887,7 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 		for (int i = 0; i < npcObject; i++) {
-			when(emptyPlayerList.get(i).getJankenHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(i).getPlayerHand()).thenReturn(this.scissors);
 		}
 		//テストメソッド
 		int result = 0;
@@ -2901,7 +2901,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.draw, result);
 		for (int i = 0; i < npcObject; i++) {
-			verify(mockNpcPlayers[i], times(1)).getJankenHand();
+			verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -2922,7 +2922,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(パー)
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_34() {
@@ -2938,7 +2938,7 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 		for (int i = 0; i < npcObject; i++) {
-			when(emptyPlayerList.get(i).getJankenHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(i).getPlayerHand()).thenReturn(this.paper);
 		}
 		//テストメソッド
 		int result = 0;
@@ -2952,7 +2952,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.draw, result);
 		for (int i = 0; i < npcObject; i++) {
-			verify(mockNpcPlayers[i], times(1)).getJankenHand();
+			verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -2973,7 +2973,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(グーとパー)
 	 * --検証事項--
 	 * 1.paperを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge35() {
@@ -2989,16 +2989,16 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.paper);
 
 		//テストメソッド
 		int result = 0;
@@ -3012,7 +3012,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.paper, result);
 		for (int i = 0; i < npcObject; i++) {
-			verify(mockNpcPlayers[i], times(1)).getJankenHand();
+			verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -3033,7 +3033,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(チョキとグー)
 	 * --検証事項--
 	 * 1.rockを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge36() {
@@ -3049,16 +3049,16 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -3072,7 +3072,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.rock, result);
 		for (int i = 0; i < npcObject; i++) {
-			verify(mockNpcPlayers[i], times(1)).getJankenHand();
+			verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -3093,7 +3093,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(パーとチョキ)
 	 * --検証事項--
 	 * 1.scissorsを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge37() {
@@ -3109,16 +3109,16 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -3132,7 +3132,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.scissors, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -3153,7 +3153,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * JankenParamの値がすべて異なる場合
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge38() {
@@ -3169,16 +3169,16 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockHumanPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -3192,7 +3192,7 @@ public class TestJankenCuiGameApplicationImpl {
 		//検証
 		assertEquals(this.draw, result);
 		for (int i = 0; i < humanObject; i++) {
-			verify(mockHumanPlayers[i], times(1)).getJankenHand();
+			verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 		}
 
 	}
@@ -3213,7 +3213,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * JankenParamの値がすべて異なる場合
 	 * --検証事項--
 	 * 1.drawを返すことを確認
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge39() {
@@ -3279,8 +3279,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.draw);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.draw);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.draw);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.draw);
 
 		//テストメソッド
 		try {
@@ -3333,8 +3333,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.errorHand);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.errorHand);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.errorHand);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.errorHand);
 
 		//テストメソッド
 		try {
@@ -3364,7 +3364,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1種類の場合(グー)
 	 * --検証事項--
 	 * 1.drawを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_42() {
@@ -3387,8 +3387,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
 
 		//テストメソッド
 		int result = 0;
@@ -3404,7 +3404,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
 			JankenPlayer jankenPlayer = emptyPlayerList.get(i);
-			verify(jankenPlayer, times(1)).getJankenHand();
+			verify(jankenPlayer, times(1)).getPlayerHand();
 		}
 
 	}
@@ -3426,7 +3426,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1種類の場合(チョキ)
 	 * --検証事項--
 	 * 1.drawを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_43() {
@@ -3449,8 +3449,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -3466,7 +3466,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
 			JankenPlayer jankenPlayer = emptyPlayerList.get(i);
-			verify(jankenPlayer, times(1)).getJankenHand();
+			verify(jankenPlayer, times(1)).getPlayerHand();
 		}
 
 	}
@@ -3488,7 +3488,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1種類の場合(パー)
 	 * --検証事項--
 	 * 1.drawを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_44() {
@@ -3511,8 +3511,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
 
 		//テストメソッド
 		int result = 0;
@@ -3528,7 +3528,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
 			JankenPlayer jankenPlayer = emptyPlayerList.get(i);
-			verify(jankenPlayer, times(1)).getJankenHand();
+			verify(jankenPlayer, times(1)).getPlayerHand();
 		}
 
 	}
@@ -3550,7 +3550,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(グーとパー)
 	 * --検証事項--
 	 * 1.paperを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_45() {
@@ -3573,8 +3573,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
 
 		//テストメソッド
 		int result = 0;
@@ -3590,7 +3590,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
 			JankenPlayer jankenPlayer = emptyPlayerList.get(i);
-			verify(jankenPlayer, times(1)).getJankenHand();
+			verify(jankenPlayer, times(1)).getPlayerHand();
 		}
 
 	}
@@ -3612,7 +3612,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(チョキとグー)
 	 * --検証事項--
 	 * 1.rockを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_46() {
@@ -3635,8 +3635,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
 
 		//テストメソッド
 		int result = 0;
@@ -3652,7 +3652,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
 			JankenPlayer jankenPlayer = emptyPlayerList.get(i);
-			verify(jankenPlayer, times(1)).getJankenHand();
+			verify(jankenPlayer, times(1)).getPlayerHand();
 		}
 
 	}
@@ -3674,7 +3674,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(パーとチョキ)
 	 * --検証事項--
 	 * 1.scissorsを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_47() {
@@ -3697,8 +3697,8 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -3714,7 +3714,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
 			JankenPlayer jankenPlayer = emptyPlayerList.get(i);
-			verify(jankenPlayer, times(1)).getJankenHand();
+			verify(jankenPlayer, times(1)).getPlayerHand();
 		}
 
 	}
@@ -3761,7 +3761,7 @@ public class TestJankenCuiGameApplicationImpl {
 		}
 
 		for (int i = 0; i < jankenObject; i++) {
-			when(emptyPlayerList.get(i).getJankenHand()).thenReturn(this.draw);
+			when(emptyPlayerList.get(i).getPlayerHand()).thenReturn(this.draw);
 		}
 
 		//テストメソッド
@@ -3817,7 +3817,7 @@ public class TestJankenCuiGameApplicationImpl {
 		}
 
 		for (int i = 0; i < jankenObject; i++) {
-			when(emptyPlayerList.get(i).getJankenHand()).thenReturn(this.errorHand);
+			when(emptyPlayerList.get(i).getPlayerHand()).thenReturn(this.errorHand);
 		}
 
 		//テストメソッド
@@ -3847,7 +3847,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1～3の場合で1種類の場合(グー)
 	 * --検証事項--
 	 * 1.drawを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_50() {
@@ -3872,7 +3872,7 @@ public class TestJankenCuiGameApplicationImpl {
 		}
 
 		for (int i = 0; i < jankenObject; i++) {
-			when(emptyPlayerList.get(i).getJankenHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(i).getPlayerHand()).thenReturn(this.rock);
 		}
 		//テストメソッド
 		int result = 0;
@@ -3887,8 +3887,8 @@ public class TestJankenCuiGameApplicationImpl {
 		assertEquals(this.draw, result);
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 
 	}
@@ -3910,7 +3910,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1種類の場合(チョキ)
 	 * --検証事項--
 	 * 1.drawを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_51() {
@@ -3935,7 +3935,7 @@ public class TestJankenCuiGameApplicationImpl {
 		}
 
 		for (int i = 0; i < jankenObject; i++) {
-			when(emptyPlayerList.get(i).getJankenHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(i).getPlayerHand()).thenReturn(this.scissors);
 		}
 		//テストメソッド
 		int result = 0;
@@ -3950,8 +3950,8 @@ public class TestJankenCuiGameApplicationImpl {
 		assertEquals(this.draw, result);
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 
 	}
@@ -3973,7 +3973,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が1種類の場合(パー)
 	 * --検証事項--
 	 * 1.drawを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_52() {
@@ -3998,7 +3998,7 @@ public class TestJankenCuiGameApplicationImpl {
 		}
 
 		for (int i = 0; i < jankenObject; i++) {
-			when(emptyPlayerList.get(i).getJankenHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(i).getPlayerHand()).thenReturn(this.paper);
 		}
 		//テストメソッド
 		int result = 0;
@@ -4013,8 +4013,8 @@ public class TestJankenCuiGameApplicationImpl {
 		assertEquals(this.draw, result);
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 
 	}
@@ -4036,7 +4036,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(グーとパー)
 	 * --検証事項--
 	 * 1.paperを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_53() {
@@ -4059,16 +4059,16 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.paper);
 
 		//テストメソッド
 		int result = 0;
@@ -4083,8 +4083,8 @@ public class TestJankenCuiGameApplicationImpl {
 		assertEquals(this.paper, result);
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 
 	}
@@ -4106,7 +4106,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(チョキとグー)
 	 * --検証事項--
 	 * 1.rockを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_54() {
@@ -4129,16 +4129,16 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -4153,8 +4153,8 @@ public class TestJankenCuiGameApplicationImpl {
 		assertEquals(this.rock, result);
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 
 	}
@@ -4176,7 +4176,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * プレーヤオブジェクトが持つじゃんけんの手が2種類の場合(パーとチョキ)
 	 * --検証事項--
 	 * 1.scissorsを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_55() {
@@ -4199,16 +4199,16 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -4223,8 +4223,8 @@ public class TestJankenCuiGameApplicationImpl {
 		assertEquals(this.scissors, result);
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 	}
 
@@ -4245,7 +4245,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * JankenParamの値がすべて異なる場合
 	 * --検証事項--
 	 * 1.drawを返すこと
-	 * 2.jankenPlayerの数、getJankenHand()が呼び出されていること
+	 * 2.jankenPlayerの数、getPlayerHand()が呼び出されていること
 	 */
 	@Test
 	public void testJudge_56() {
@@ -4268,16 +4268,16 @@ public class TestJankenCuiGameApplicationImpl {
 			emptyPlayerList.add(mockNpcPlayers[i]);
 		}
 
-		when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.paper);
-		when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.rock);
-		when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);
-		when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.paper);
+		when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.rock);
+		when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);
+		when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);
 
 		//テストメソッド
 		int result = 0;
@@ -4292,8 +4292,8 @@ public class TestJankenCuiGameApplicationImpl {
 		assertEquals(this.draw, result);
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
-			verify(emptyPlayerList.get(i), times(1)).getJankenHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
+			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 
 	}
@@ -4429,7 +4429,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がグーの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -4447,8 +4447,8 @@ public class TestJankenCuiGameApplicationImpl {
 				mockHumanPlayers[i] = mock(HumanJankenPlayerImpl.class);
 			}
 
-			when(mockHumanPlayers[0].getJankenHand()).thenReturn(this.rock);
-			when(mockHumanPlayers[1].getJankenHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[0].getPlayerHand()).thenReturn(this.rock);
+			when(mockHumanPlayers[1].getPlayerHand()).thenReturn(this.scissors);
 
 			for (int i = 0; i < humanObject; i++) {
 				when(mockHumanPlayers[i].getPlayerName()).thenReturn(this.humanNames[i]);
@@ -4468,21 +4468,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner(); //コンソールにて確認??
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < humanObject; i++) {
-				verify(mockHumanPlayers[i], times(1)).getJankenHand();
+				verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 			}
 
 			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < humanObject; i++) {
-				if (mockHumanPlayers[i].getJankenHand() == this.rock) {
+				if (mockHumanPlayers[i].getPlayerHand() == this.rock) {
 					verify(mockHumanPlayers[i], times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.rock == player.getJankenHand()) {
+				if (this.rock == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -4515,7 +4515,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がチョキの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -4533,8 +4533,8 @@ public class TestJankenCuiGameApplicationImpl {
 				mockHumanPlayers[i] = mock(HumanJankenPlayerImpl.class);
 			}
 
-			when(mockHumanPlayers[0].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[1].getJankenHand()).thenReturn(this.paper);
+			when(mockHumanPlayers[0].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[1].getPlayerHand()).thenReturn(this.paper);
 
 			for (int i = 0; i < humanObject; i++) {
 				when(mockHumanPlayers[i].getPlayerName()).thenReturn(this.humanNames[i]);
@@ -4554,20 +4554,20 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner(); //コンソールにて確認?
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < humanObject; i++) {
-				verify(mockHumanPlayers[i], times(1)).getJankenHand();
+				verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 			}
 
 			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < humanObject; i++) {
-				if (mockHumanPlayers[i].getJankenHand() == this.scissors) {
+				if (mockHumanPlayers[i].getPlayerHand() == this.scissors) {
 					verify(mockHumanPlayers[i], times(1)).getPlayerName();
 				}
 			}
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.scissors == player.getJankenHand()) {
+				if (this.scissors == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -4600,7 +4600,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がパーの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -4618,8 +4618,8 @@ public class TestJankenCuiGameApplicationImpl {
 				mockHumanPlayers[i] = mock(HumanJankenPlayerImpl.class);
 			}
 
-			when(mockHumanPlayers[0].getJankenHand()).thenReturn(this.paper);
-			when(mockHumanPlayers[1].getJankenHand()).thenReturn(this.rock);
+			when(mockHumanPlayers[0].getPlayerHand()).thenReturn(this.paper);
+			when(mockHumanPlayers[1].getPlayerHand()).thenReturn(this.rock);
 
 			for (int i = 0; i < humanObject; i++) {
 				when(mockHumanPlayers[i].getPlayerName()).thenReturn(this.humanNames[i]);
@@ -4639,20 +4639,20 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner(); //コンソールにて確認??
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < humanObject; i++) {
-				verify(mockHumanPlayers[i], times(1)).getJankenHand();
+				verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 			}
 
 			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < humanObject; i++) {
-				if (mockHumanPlayers[i].getJankenHand() == this.paper) {
+				if (mockHumanPlayers[i].getPlayerHand() == this.paper) {
 					verify(mockHumanPlayers[i], times(1)).getPlayerName();
 				}
 			}
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.paper == player.getJankenHand()) {
+				if (this.paper == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -4784,7 +4784,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がグーの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -4801,16 +4801,16 @@ public class TestJankenCuiGameApplicationImpl {
 			for (int i = 0; i < humanObject; i++) {
 				mockHumanPlayers[i] = mock(HumanJankenPlayerImpl.class);
 			}
-			when(mockHumanPlayers[0].getJankenHand()).thenReturn(this.rock);
-			when(mockHumanPlayers[1].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[2].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[3].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[4].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[5].getJankenHand()).thenReturn(this.rock);
-			when(mockHumanPlayers[6].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[7].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[8].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[9].getJankenHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[0].getPlayerHand()).thenReturn(this.rock);
+			when(mockHumanPlayers[1].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[2].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[3].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[4].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[5].getPlayerHand()).thenReturn(this.rock);
+			when(mockHumanPlayers[6].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[7].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[8].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[9].getPlayerHand()).thenReturn(this.scissors);
 
 			for (int i = 0; i < humanObject; i++) {
 				when(mockHumanPlayers[i].getPlayerName()).thenReturn(this.humanNames[i]);
@@ -4830,21 +4830,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < humanObject; i++) {
-				verify(mockHumanPlayers[i], times(1)).getJankenHand();
+				verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 			}
 
 			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < humanObject; i++) {
-				if (mockHumanPlayers[i].getJankenHand() == this.rock) {
+				if (mockHumanPlayers[i].getPlayerHand() == this.rock) {
 					verify(mockHumanPlayers[i], times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.rock == player.getJankenHand()) {
+				if (this.rock == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -4877,7 +4877,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がチョキの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -4894,16 +4894,16 @@ public class TestJankenCuiGameApplicationImpl {
 			for (int i = 0; i < humanObject; i++) {
 				mockHumanPlayers[i] = mock(HumanJankenPlayerImpl.class);
 			}
-			when(mockHumanPlayers[0].getJankenHand()).thenReturn(this.paper);
-			when(mockHumanPlayers[1].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[2].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[3].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[4].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[5].getJankenHand()).thenReturn(this.paper);
-			when(mockHumanPlayers[6].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[7].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[8].getJankenHand()).thenReturn(this.scissors);
-			when(mockHumanPlayers[9].getJankenHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[0].getPlayerHand()).thenReturn(this.paper);
+			when(mockHumanPlayers[1].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[2].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[3].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[4].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[5].getPlayerHand()).thenReturn(this.paper);
+			when(mockHumanPlayers[6].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[7].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[8].getPlayerHand()).thenReturn(this.scissors);
+			when(mockHumanPlayers[9].getPlayerHand()).thenReturn(this.scissors);
 
 			for (int i = 0; i < humanObject; i++) {
 				when(mockHumanPlayers[i].getPlayerName()).thenReturn(this.humanNames[i]);
@@ -4923,21 +4923,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < humanObject; i++) {
-				verify(mockHumanPlayers[i], times(1)).getJankenHand();
+				verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 			}
 
 			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < humanObject; i++) {
-				if (mockHumanPlayers[i].getJankenHand() == this.scissors) {
+				if (mockHumanPlayers[i].getPlayerHand() == this.scissors) {
 					verify(mockHumanPlayers[i], times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.scissors == player.getJankenHand()) {
+				if (this.scissors == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -4970,7 +4970,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がパーの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -4987,16 +4987,16 @@ public class TestJankenCuiGameApplicationImpl {
 			for (int i = 0; i < humanObject; i++) {
 				mockHumanPlayers[i] = mock(HumanJankenPlayerImpl.class);
 			}
-			when(mockHumanPlayers[0].getJankenHand()).thenReturn(this.paper);
-			when(mockHumanPlayers[1].getJankenHand()).thenReturn(this.rock);
-			when(mockHumanPlayers[2].getJankenHand()).thenReturn(this.rock);
-			when(mockHumanPlayers[3].getJankenHand()).thenReturn(this.rock);
-			when(mockHumanPlayers[4].getJankenHand()).thenReturn(this.rock);
-			when(mockHumanPlayers[5].getJankenHand()).thenReturn(this.paper);
-			when(mockHumanPlayers[6].getJankenHand()).thenReturn(this.rock);
-			when(mockHumanPlayers[7].getJankenHand()).thenReturn(this.rock);
-			when(mockHumanPlayers[8].getJankenHand()).thenReturn(this.rock);
-			when(mockHumanPlayers[9].getJankenHand()).thenReturn(this.rock);
+			when(mockHumanPlayers[0].getPlayerHand()).thenReturn(this.paper);
+			when(mockHumanPlayers[1].getPlayerHand()).thenReturn(this.rock);
+			when(mockHumanPlayers[2].getPlayerHand()).thenReturn(this.rock);
+			when(mockHumanPlayers[3].getPlayerHand()).thenReturn(this.rock);
+			when(mockHumanPlayers[4].getPlayerHand()).thenReturn(this.rock);
+			when(mockHumanPlayers[5].getPlayerHand()).thenReturn(this.paper);
+			when(mockHumanPlayers[6].getPlayerHand()).thenReturn(this.rock);
+			when(mockHumanPlayers[7].getPlayerHand()).thenReturn(this.rock);
+			when(mockHumanPlayers[8].getPlayerHand()).thenReturn(this.rock);
+			when(mockHumanPlayers[9].getPlayerHand()).thenReturn(this.rock);
 
 			for (int i = 0; i < humanObject; i++) {
 				when(mockHumanPlayers[i].getPlayerName()).thenReturn(this.humanNames[i]);
@@ -5016,21 +5016,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < humanObject; i++) {
-				verify(mockHumanPlayers[i], times(1)).getJankenHand();
+				verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 			}
 
 			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < humanObject; i++) {
-				if (mockHumanPlayers[i].getJankenHand() == this.paper) {
+				if (mockHumanPlayers[i].getPlayerHand() == this.paper) {
 					verify(mockHumanPlayers[i], times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.paper == player.getJankenHand()) {
+				if (this.paper == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -5139,7 +5139,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がグーの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -5157,8 +5157,8 @@ public class TestJankenCuiGameApplicationImpl {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
 			}
 
-			when(mockNpcPlayers[0].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[1].getJankenHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[0].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[1].getPlayerHand()).thenReturn(this.scissors);
 
 			for (int i = 0; i < npcObject; i++) {
 				when(mockNpcPlayers[i].getPlayerName()).thenReturn(this.npcNames[i]);
@@ -5178,21 +5178,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < npcObject; i++) {
-				verify(mockNpcPlayers[i], times(1)).getJankenHand();
+				verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 			}
 
 			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < npcObject; i++) {
-				if (mockNpcPlayers[i].getJankenHand() == this.rock) {
+				if (mockNpcPlayers[i].getPlayerHand() == this.rock) {
 					verify(mockNpcPlayers[i], times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.rock == player.getJankenHand()) {
+				if (this.rock == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -5225,7 +5225,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がチョキの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -5243,8 +5243,8 @@ public class TestJankenCuiGameApplicationImpl {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
 			}
 
-			when(mockNpcPlayers[0].getJankenHand()).thenReturn(this.paper);
-			when(mockNpcPlayers[1].getJankenHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[0].getPlayerHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[1].getPlayerHand()).thenReturn(this.scissors);
 
 			for (int i = 0; i < npcObject; i++) {
 				when(mockNpcPlayers[i].getPlayerName()).thenReturn(this.npcNames[i]);
@@ -5264,21 +5264,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < npcObject; i++) {
-				verify(mockNpcPlayers[i], times(1)).getJankenHand();
+				verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 			}
 
 			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < npcObject; i++) {
-				if (mockNpcPlayers[i].getJankenHand() == this.scissors) {
+				if (mockNpcPlayers[i].getPlayerHand() == this.scissors) {
 					verify(mockNpcPlayers[i], times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.scissors == player.getJankenHand()) {
+				if (this.scissors == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -5311,7 +5311,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がパーの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -5329,8 +5329,8 @@ public class TestJankenCuiGameApplicationImpl {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
 			}
 
-			when(mockNpcPlayers[0].getJankenHand()).thenReturn(this.paper);
-			when(mockNpcPlayers[1].getJankenHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[0].getPlayerHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[1].getPlayerHand()).thenReturn(this.rock);
 
 			for (int i = 0; i < npcObject; i++) {
 				when(mockNpcPlayers[i].getPlayerName()).thenReturn(this.npcNames[i]);
@@ -5350,21 +5350,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < npcObject; i++) {
-				verify(mockNpcPlayers[i], times(1)).getJankenHand();
+				verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 			}
 
 			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < npcObject; i++) {
-				if (mockNpcPlayers[i].getJankenHand() == this.rock) {
+				if (mockNpcPlayers[i].getPlayerHand() == this.rock) {
 					verify(mockNpcPlayers[i], times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.rock == player.getJankenHand()) {
+				if (this.rock == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -5412,8 +5412,8 @@ public class TestJankenCuiGameApplicationImpl {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
 			}
 
-			when(mockNpcPlayers[0].getJankenHand()).thenReturn(this.paper);
-			when(mockNpcPlayers[1].getJankenHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[0].getPlayerHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[1].getPlayerHand()).thenReturn(this.rock);
 
 			for (int i = 0; i < npcObject; i++) {
 				when(mockNpcPlayers[i].getPlayerName()).thenReturn(this.npcNames[i]);
@@ -5467,8 +5467,8 @@ public class TestJankenCuiGameApplicationImpl {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
 			}
 
-			when(mockNpcPlayers[0].getJankenHand()).thenReturn(this.paper);
-			when(mockNpcPlayers[1].getJankenHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[0].getPlayerHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[1].getPlayerHand()).thenReturn(this.paper);
 
 			for (int i = 0; i < npcObject; i++) {
 				when(mockNpcPlayers[i].getPlayerName()).thenReturn(this.npcNames[i]);
@@ -5507,7 +5507,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がグーの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -5524,16 +5524,16 @@ public class TestJankenCuiGameApplicationImpl {
 			for (int i = 0; i < npcObject; i++) {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
 			}
-			when(mockNpcPlayers[0].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[1].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[2].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[3].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[4].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[5].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[6].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[7].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[8].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[9].getJankenHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[0].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[1].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[2].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[3].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[4].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[5].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[6].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[7].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[8].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[9].getPlayerHand()).thenReturn(this.scissors);
 
 			for (int i = 0; i < npcObject; i++) {
 				when(mockNpcPlayers[i].getPlayerName()).thenReturn(this.npcNames[i]);
@@ -5553,21 +5553,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < npcObject; i++) {
-				verify(mockNpcPlayers[i], times(1)).getJankenHand();
+				verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 			}
 
 			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < npcObject; i++) {
-				if (mockNpcPlayers[i].getJankenHand() == this.rock) {
+				if (mockNpcPlayers[i].getPlayerHand() == this.rock) {
 					verify(mockNpcPlayers[i], times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.rock == player.getJankenHand()) {
+				if (this.rock == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -5600,7 +5600,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がチョキの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -5617,16 +5617,16 @@ public class TestJankenCuiGameApplicationImpl {
 			for (int i = 0; i < npcObject; i++) {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
 			}
-			when(mockNpcPlayers[0].getJankenHand()).thenReturn(this.paper);
-			when(mockNpcPlayers[1].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[2].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[3].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[4].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[5].getJankenHand()).thenReturn(this.paper);
-			when(mockNpcPlayers[6].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[7].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[8].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[9].getJankenHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[0].getPlayerHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[1].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[2].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[3].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[4].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[5].getPlayerHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[6].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[7].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[8].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[9].getPlayerHand()).thenReturn(this.scissors);
 
 			for (int i = 0; i < npcObject; i++) {
 				when(mockNpcPlayers[i].getPlayerName()).thenReturn(this.npcNames[i]);
@@ -5646,21 +5646,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < npcObject; i++) {
-				verify(mockNpcPlayers[i], times(1)).getJankenHand();
+				verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 			}
 
 			// scissors を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < npcObject; i++) {
-				if (mockNpcPlayers[i].getJankenHand() == this.scissors) {
+				if (mockNpcPlayers[i].getPlayerHand() == this.scissors) {
 					verify(mockNpcPlayers[i], times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.scissors == player.getJankenHand()) {
+				if (this.scissors == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -5693,7 +5693,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がパーの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -5710,16 +5710,16 @@ public class TestJankenCuiGameApplicationImpl {
 			for (int i = 0; i < npcObject; i++) {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
 			}
-			when(mockNpcPlayers[0].getJankenHand()).thenReturn(this.paper);
-			when(mockNpcPlayers[1].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[2].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[3].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[4].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[5].getJankenHand()).thenReturn(this.paper);
-			when(mockNpcPlayers[6].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[7].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[8].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[9].getJankenHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[0].getPlayerHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[1].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[2].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[3].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[4].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[5].getPlayerHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[6].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[7].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[8].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[9].getPlayerHand()).thenReturn(this.rock);
 
 			for (int i = 0; i < npcObject; i++) {
 				when(mockNpcPlayers[i].getPlayerName()).thenReturn(this.npcNames[i]);
@@ -5739,21 +5739,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < npcObject; i++) {
-				verify(mockNpcPlayers[i], times(1)).getJankenHand();
+				verify(mockNpcPlayers[i], times(1)).getPlayerHand();
 			}
 
 			// paper を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < npcObject; i++) {
-				if (mockNpcPlayers[i].getJankenHand() == this.paper) {
+				if (mockNpcPlayers[i].getPlayerHand() == this.paper) {
 					verify(mockNpcPlayers[i], times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.paper == player.getJankenHand()) {
+				if (this.paper == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -5802,16 +5802,16 @@ public class TestJankenCuiGameApplicationImpl {
 			for (int i = 0; i < npcObject; i++) {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
 			}
-			when(mockNpcPlayers[0].getJankenHand()).thenReturn(this.paper);
-			when(mockNpcPlayers[1].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[2].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[3].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[4].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[5].getJankenHand()).thenReturn(this.paper);
-			when(mockNpcPlayers[6].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[7].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[8].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[9].getJankenHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[0].getPlayerHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[1].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[2].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[3].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[4].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[5].getPlayerHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[6].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[7].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[8].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[9].getPlayerHand()).thenReturn(this.rock);
 
 			for (int i = 0; i < npcObject; i++) {
 				when(mockNpcPlayers[i].getPlayerName()).thenReturn(this.npcNames[i]);
@@ -5868,16 +5868,16 @@ public class TestJankenCuiGameApplicationImpl {
 			for (int i = 0; i < npcObject; i++) {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
 			}
-			when(mockNpcPlayers[0].getJankenHand()).thenReturn(this.paper);
-			when(mockNpcPlayers[1].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[2].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[3].getJankenHand()).thenReturn(this.scissors);
-			when(mockNpcPlayers[4].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[5].getJankenHand()).thenReturn(this.paper);
-			when(mockNpcPlayers[6].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[7].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[8].getJankenHand()).thenReturn(this.rock);
-			when(mockNpcPlayers[9].getJankenHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[0].getPlayerHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[1].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[2].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[3].getPlayerHand()).thenReturn(this.scissors);
+			when(mockNpcPlayers[4].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[5].getPlayerHand()).thenReturn(this.paper);
+			when(mockNpcPlayers[6].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[7].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[8].getPlayerHand()).thenReturn(this.rock);
+			when(mockNpcPlayers[9].getPlayerHand()).thenReturn(this.rock);
 
 			for (int i = 0; i < npcObject; i++) {
 				when(mockNpcPlayers[i].getPlayerName()).thenReturn(this.npcNames[i]);
@@ -5956,7 +5956,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がグーの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -5971,12 +5971,12 @@ public class TestJankenCuiGameApplicationImpl {
 			JankenPlayer mockHumanPlayer = mock(HumanJankenPlayerImpl.class);
 			JankenPlayer mockNpcPlayer = mock(NpcJankenPlayerImpl.class);
 
-			when(mockHumanPlayer.getJankenHand()).thenReturn(this.rock);
+			when(mockHumanPlayer.getPlayerHand()).thenReturn(this.rock);
 			when(mockHumanPlayer.getPlayerName()).thenReturn(this.humanNames[0]);
 
 			emptyPlayerList.add(mockHumanPlayer);
 
-			when(mockNpcPlayer.getJankenHand()).thenReturn(this.scissors);
+			when(mockNpcPlayer.getPlayerHand()).thenReturn(this.scissors);
 			when(mockNpcPlayer.getPlayerName()).thenReturn(this.npcNames[0]);
 
 			emptyPlayerList.add(mockNpcPlayer);
@@ -5991,14 +5991,14 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			verify(mockHumanPlayer, times(1)).getJankenHand();
-			verify(mockNpcPlayer, times(1)).getJankenHand();
+			verify(mockHumanPlayer, times(1)).getPlayerHand();
+			verify(mockNpcPlayer, times(1)).getPlayerHand();
 			verify(mockHumanPlayer, times(1)).getPlayerName();
 			verify(mockNpcPlayer, times(1)).getPlayerName();
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.rock == player.getJankenHand()) {
+				if (this.rock == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -6031,7 +6031,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がチョキの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -6046,12 +6046,12 @@ public class TestJankenCuiGameApplicationImpl {
 			JankenPlayer mockHumanPlayer = mock(HumanJankenPlayerImpl.class);
 			JankenPlayer mockNpcPlayer = mock(NpcJankenPlayerImpl.class);
 
-			when(mockHumanPlayer.getJankenHand()).thenReturn(this.scissors);
+			when(mockHumanPlayer.getPlayerHand()).thenReturn(this.scissors);
 			when(mockHumanPlayer.getPlayerName()).thenReturn(this.humanNames[0]);
 
 			emptyPlayerList.add(mockHumanPlayer);
 
-			when(mockNpcPlayer.getJankenHand()).thenReturn(this.paper);
+			when(mockNpcPlayer.getPlayerHand()).thenReturn(this.paper);
 			when(mockNpcPlayer.getPlayerName()).thenReturn(this.npcNames[0]);
 
 			emptyPlayerList.add(mockNpcPlayer);
@@ -6066,14 +6066,14 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			verify(mockHumanPlayer, times(1)).getJankenHand();
-			verify(mockNpcPlayer, times(1)).getJankenHand();
+			verify(mockHumanPlayer, times(1)).getPlayerHand();
+			verify(mockNpcPlayer, times(1)).getPlayerHand();
 			verify(mockHumanPlayer, times(1)).getPlayerName();
 			verify(mockNpcPlayer, times(1)).getPlayerName();
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.scissors == player.getJankenHand()) {
+				if (this.scissors == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -6106,7 +6106,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がパーの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -6121,12 +6121,12 @@ public class TestJankenCuiGameApplicationImpl {
 			JankenPlayer mockHumanPlayer = mock(HumanJankenPlayerImpl.class);
 			JankenPlayer mockNpcPlayer = mock(NpcJankenPlayerImpl.class);
 
-			when(mockHumanPlayer.getJankenHand()).thenReturn(this.rock);
+			when(mockHumanPlayer.getPlayerHand()).thenReturn(this.rock);
 			when(mockHumanPlayer.getPlayerName()).thenReturn(this.humanNames[0]);
 
 			emptyPlayerList.add(mockHumanPlayer);
 
-			when(mockNpcPlayer.getJankenHand()).thenReturn(this.paper);
+			when(mockNpcPlayer.getPlayerHand()).thenReturn(this.paper);
 			when(mockNpcPlayer.getPlayerName()).thenReturn(this.npcNames[0]);
 
 			emptyPlayerList.add(mockNpcPlayer);
@@ -6141,14 +6141,14 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			verify(mockHumanPlayer, times(1)).getJankenHand();
-			verify(mockNpcPlayer, times(1)).getJankenHand();
+			verify(mockHumanPlayer, times(1)).getPlayerHand();
+			verify(mockNpcPlayer, times(1)).getPlayerHand();
 			verify(mockHumanPlayer, times(1)).getPlayerName();
 			verify(mockNpcPlayer, times(1)).getPlayerName();
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.paper == player.getJankenHand()) {
+				if (this.paper == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -6194,12 +6194,12 @@ public class TestJankenCuiGameApplicationImpl {
 			JankenPlayer mockHumanPlayer = mock(HumanJankenPlayerImpl.class);
 			JankenPlayer mockNpcPlayer = mock(NpcJankenPlayerImpl.class);
 
-			when(mockHumanPlayer.getJankenHand()).thenReturn(this.rock);
+			when(mockHumanPlayer.getPlayerHand()).thenReturn(this.rock);
 			when(mockHumanPlayer.getPlayerName()).thenReturn(this.humanNames[0]);
 
 			emptyPlayerList.add(mockHumanPlayer);
 
-			when(mockNpcPlayer.getJankenHand()).thenReturn(this.paper);
+			when(mockNpcPlayer.getPlayerHand()).thenReturn(this.paper);
 			when(mockNpcPlayer.getPlayerName()).thenReturn(this.npcNames[0]);
 
 			emptyPlayerList.add(mockNpcPlayer);
@@ -6244,12 +6244,12 @@ public class TestJankenCuiGameApplicationImpl {
 			JankenPlayer mockHumanPlayer = mock(HumanJankenPlayerImpl.class);
 			JankenPlayer mockNpcPlayer = mock(NpcJankenPlayerImpl.class);
 
-			when(mockHumanPlayer.getJankenHand()).thenReturn(this.rock);
+			when(mockHumanPlayer.getPlayerHand()).thenReturn(this.rock);
 			when(mockHumanPlayer.getPlayerName()).thenReturn(this.humanNames[0]);
 
 			emptyPlayerList.add(mockHumanPlayer);
 
-			when(mockNpcPlayer.getJankenHand()).thenReturn(this.paper);
+			when(mockNpcPlayer.getPlayerHand()).thenReturn(this.paper);
 			when(mockNpcPlayer.getPlayerName()).thenReturn(this.npcNames[0]);
 
 			emptyPlayerList.add(mockNpcPlayer);
@@ -6281,7 +6281,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がグーの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -6312,16 +6312,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.scissors);
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.scissors);
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);
 
 			jankenCuiGameApplicationImpl.winHand = this.rock;
 
@@ -6333,21 +6333,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				verify(emptyPlayerList.get(i), times(1)).getJankenHand();
+				verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 			}
 
 			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				if (emptyPlayerList.get(i).getJankenHand() == this.rock) {
+				if (emptyPlayerList.get(i).getPlayerHand() == this.rock) {
 					verify(emptyPlayerList.get(i), times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.rock == player.getJankenHand()) {
+				if (this.rock == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -6380,7 +6380,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がチョキの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -6411,16 +6411,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.paper);
 
 			jankenCuiGameApplicationImpl.winHand = this.scissors;
 
@@ -6432,21 +6432,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				verify(emptyPlayerList.get(i), times(1)).getJankenHand();
+				verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 			}
 
 			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				if (emptyPlayerList.get(i).getJankenHand() == this.scissors) {
+				if (emptyPlayerList.get(i).getPlayerHand() == this.scissors) {
 					verify(emptyPlayerList.get(i), times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.scissors == player.getJankenHand()) {
+				if (this.scissors == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -6479,7 +6479,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 勝利者の手がパーの場合
 	 * --検証事項--
 	 * 1.勝利者名が表示されていること
-	 * 2.getJankenHand()がそれぞれ一度ずつ呼び出されていること
+	 * 2.getPlayerHand()がそれぞれ一度ずつ呼び出されていること
 	 * 3.getPlayerName()が勝利者に対して一度呼び出されていること
 	 * 
 	 */
@@ -6510,16 +6510,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.paper);
 
 			jankenCuiGameApplicationImpl.winHand = this.paper;
 
@@ -6531,21 +6531,21 @@ public class TestJankenCuiGameApplicationImpl {
 			jankenCuiGameApplicationImpl.viewWinner();
 
 			//検証
-			//プレーヤー数、getJankenHand()が呼び出せれているか確認
+			//プレーヤー数、getPlayerHand()が呼び出せれているか確認
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				verify(emptyPlayerList.get(i), times(1)).getJankenHand();
+				verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 			}
 
 			// paper を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < jankenPlayerObject; i++) {
-				if (emptyPlayerList.get(i).getJankenHand() == this.paper) {
+				if (emptyPlayerList.get(i).getPlayerHand() == this.paper) {
 					verify(emptyPlayerList.get(i), times(1)).getPlayerName();
 				}
 			}
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (this.paper == player.getJankenHand()) {
+				if (this.paper == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -6607,16 +6607,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.paper);
 
 			jankenCuiGameApplicationImpl.winHand = this.errorHand;
 
@@ -6675,16 +6675,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.scissors);
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.scissors);
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.paper);
 
 			jankenCuiGameApplicationImpl.winHand = this.draw;
 
@@ -6784,16 +6784,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.paper);
 
 			jankenCuiGameApplicationImpl.setWinHand(this.paper);
 
@@ -6848,8 +6848,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
 
 			jankenCuiGameApplicationImpl.winHand = this.paper;
 
@@ -7223,7 +7223,7 @@ public class TestJankenCuiGameApplicationImpl {
 			// モック人間プレーヤーの設定
 			JankenPlayer mockPlayer1 = mock(HumanJankenPlayerImpl.class);
 			when(mockPlayer1.getPlayerName()).thenReturn(this.humanNames[0]);
-			when(mockPlayer1.getJankenHand()).thenReturn(this.rock); // 手を直接設定
+			when(mockPlayer1.getPlayerHand()).thenReturn(this.rock); // 手を直接設定
 			emptyPlayerList.add(mockPlayer1);
 
 			// プレーヤーリストを設定
@@ -7233,7 +7233,7 @@ public class TestJankenCuiGameApplicationImpl {
 			doNothing().when(spyGame).init();
 			doNothing().when(spyGame).createHumanOfJankenPlayer();
 			doNothing().when(spyGame).createNpcOfJankenPlayer();
-			doNothing().when(spyGame).selectJankenHand();
+			doNothing().when(spyGame).selectPlayerHand();
 			doNothing().when(spyGame).viewWinner();
 			doReturn(false).doReturn(true).when(spyGame).isCheckJankenPlayerCount();
 
@@ -7313,8 +7313,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockHumanPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -7343,7 +7343,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -7407,8 +7407,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockHumanPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -7437,7 +7437,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -7501,8 +7501,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockHumanPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -7531,7 +7531,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -7595,8 +7595,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockHumanPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -7680,8 +7680,8 @@ public class TestJankenCuiGameApplicationImpl {
 			}
 
 			// ここで例外をスローするように設定
-			when(emptyPlayerList.get(0).getJankenHand()).thenThrow(new ApplicationException(""));
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock); // 正常な手を設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenThrow(new ApplicationException(""));
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock); // 正常な手を設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList);
@@ -7743,16 +7743,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockHumanPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -7781,7 +7781,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -7845,16 +7845,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockHumanPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -7883,7 +7883,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -7947,16 +7947,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockHumanPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -7985,7 +7985,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -8048,16 +8048,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockHumanPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -8138,16 +8138,16 @@ public class TestJankenCuiGameApplicationImpl {
 			}
 
 			// ここで例外をスローするように設定
-			when(emptyPlayerList.get(0).getJankenHand()).thenThrow(new ApplicationException(""));
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock); // 正常な手を設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenThrow(new ApplicationException(""));
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock); // 正常な手を設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList);
@@ -8211,17 +8211,17 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockHumanPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(10).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(10).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -8231,7 +8231,7 @@ public class TestJankenCuiGameApplicationImpl {
 			doNothing().when(spyGame).createHumanOfJankenPlayer();
 			doNothing().when(spyGame).createNpcOfJankenPlayer();
 			doReturn(false).doReturn(true).when(spyGame).isCheckJankenPlayerCount();
-			doNothing().when(spyGame).selectJankenHand();
+			doNothing().when(spyGame).selectPlayerHand();
 			doReturn(winHands).when(spyGame).judge(); // 勝利者の手を設定
 			doNothing().when(spyGame).viewWinner();
 			doReturn(false).when(spyGame).hasGameContinue(); // ゲームを続けない設定
@@ -8297,7 +8297,7 @@ public class TestJankenCuiGameApplicationImpl {
 			// モックNpcプレーヤーの設定
 			JankenPlayer mockPlayer1 = mock(NpcJankenPlayerImpl.class);
 			when(mockPlayer1.getPlayerName()).thenReturn(this.npcNames[0]);
-			when(mockPlayer1.getJankenHand()).thenReturn(this.rock); // 手を直接設定
+			when(mockPlayer1.getPlayerHand()).thenReturn(this.rock); // 手を直接設定
 			emptyPlayerList.add(mockPlayer1);
 
 			// プレーヤーリストを設定
@@ -8307,7 +8307,7 @@ public class TestJankenCuiGameApplicationImpl {
 			doNothing().when(spyGame).init();
 			doNothing().when(spyGame).createHumanOfJankenPlayer();
 			doNothing().when(spyGame).createNpcOfJankenPlayer();
-			doNothing().when(spyGame).selectJankenHand();
+			doNothing().when(spyGame).selectPlayerHand();
 			doNothing().when(spyGame).viewWinner();
 			doReturn(false).doReturn(true).when(spyGame).isCheckJankenPlayerCount();
 
@@ -8387,8 +8387,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -8417,7 +8417,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -8481,8 +8481,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -8511,7 +8511,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -8575,8 +8575,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -8605,7 +8605,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -8669,8 +8669,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -8754,8 +8754,8 @@ public class TestJankenCuiGameApplicationImpl {
 			}
 
 			// ここで例外をスローするように設定
-			when(emptyPlayerList.get(0).getJankenHand()).thenThrow(new ApplicationException(""));
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock); // 正常な手を設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenThrow(new ApplicationException(""));
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock); // 正常な手を設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList);
@@ -8817,16 +8817,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -8855,7 +8855,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -8919,16 +8919,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -8957,7 +8957,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -9021,16 +9021,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -9059,7 +9059,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -9122,16 +9122,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -9212,16 +9212,16 @@ public class TestJankenCuiGameApplicationImpl {
 			}
 
 			// ここで例外をスローするように設定
-			when(emptyPlayerList.get(0).getJankenHand()).thenThrow(new ApplicationException(""));
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock); // 正常な手を設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenThrow(new ApplicationException(""));
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock); // 正常な手を設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList);
@@ -9285,17 +9285,17 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(10).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(10).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -9305,7 +9305,7 @@ public class TestJankenCuiGameApplicationImpl {
 			doNothing().when(spyGame).createHumanOfJankenPlayer();
 			doNothing().when(spyGame).createNpcOfJankenPlayer();
 			doReturn(false).doReturn(true).when(spyGame).isCheckJankenPlayerCount();
-			doNothing().when(spyGame).selectJankenHand();
+			doNothing().when(spyGame).selectPlayerHand();
 			doReturn(winHands).when(spyGame).judge(); // 勝利者の手を設定
 			doNothing().when(spyGame).viewWinner();
 			doReturn(false).when(spyGame).hasGameContinue(); // ゲームを続けない設定
@@ -9391,8 +9391,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -9421,7 +9421,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -9495,8 +9495,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -9525,7 +9525,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -9599,8 +9599,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -9629,7 +9629,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -9702,8 +9702,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -9795,8 +9795,8 @@ public class TestJankenCuiGameApplicationImpl {
 			}
 
 			// ここで例外をスローするように設定
-			when(emptyPlayerList.get(0).getJankenHand()).thenThrow(new ApplicationException(""));
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock); // 正常な手を設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenThrow(new ApplicationException(""));
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock); // 正常な手を設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList);
@@ -9868,16 +9868,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors); // 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors); // 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors); // 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.scissors); // 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors); // 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors); // 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors); // 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.scissors); // 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -9906,7 +9906,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -9980,16 +9980,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors); // 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.scissors); // 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.scissors); // 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.scissors); // 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors); // 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.scissors); // 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.scissors); // 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.scissors); // 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.scissors);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -10018,7 +10018,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -10092,16 +10092,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -10130,7 +10130,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//勝利者の名前を取得
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
-				if (winHands == player.getJankenHand()) {
+				if (winHands == player.getPlayerHand()) {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
@@ -10203,16 +10203,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.scissors); // 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.scissors); // 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -10304,16 +10304,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenThrow(new ApplicationException("")); //異常値を設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenThrow(new ApplicationException("")); //異常値を設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList);
@@ -10380,16 +10380,16 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(2).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(3).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(4).getJankenHand()).thenReturn(this.rock); // 手を直接設定
-			when(emptyPlayerList.get(5).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(6).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(7).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(8).getJankenHand()).thenReturn(this.rock);// 手を直接設定
-			when(emptyPlayerList.get(9).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(2).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(3).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(4).getPlayerHand()).thenReturn(this.rock); // 手を直接設定
+			when(emptyPlayerList.get(5).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(6).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(7).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(8).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(9).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -10399,7 +10399,7 @@ public class TestJankenCuiGameApplicationImpl {
 			doNothing().when(spyGame).createHumanOfJankenPlayer();
 			doNothing().when(spyGame).createNpcOfJankenPlayer();
 			doReturn(false).doReturn(true).when(spyGame).isCheckJankenPlayerCount();
-			doNothing().when(spyGame).selectJankenHand();
+			doNothing().when(spyGame).selectPlayerHand();
 			doReturn(winHands).when(spyGame).judge(); // 勝利者の手を設定
 			doNothing().when(spyGame).viewWinner();
 			doReturn(false).when(spyGame).hasGameContinue(); // ゲームを続けない設定
@@ -10479,8 +10479,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -10567,8 +10567,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する
@@ -10660,8 +10660,8 @@ public class TestJankenCuiGameApplicationImpl {
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
-			when(emptyPlayerList.get(0).getJankenHand()).thenReturn(this.paper); // 手を直接設定
-			when(emptyPlayerList.get(1).getJankenHand()).thenReturn(this.rock);// 手を直接設定
+			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper); // 手を直接設定
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);// 手を直接設定
 
 			// プレーヤーリストを設定
 			spyGame.setPlayerList(emptyPlayerList); //リストを設定する

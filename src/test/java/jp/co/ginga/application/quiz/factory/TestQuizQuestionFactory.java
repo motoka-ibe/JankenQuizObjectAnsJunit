@@ -73,9 +73,9 @@ public class TestQuizQuestionFactory {
 			assertEquals(3, list.size()); //istのsizeが3であることを確認
 
 			for (QuizQuestion question : list) {
-				assertNotNull(question.getProblemTitle()); //null出ないことを確認
-				assertNotNull(question.getProblemBody()); //null出ないことを確認
-				assertNotNull(question.getProblemChoice()); //null出ないことを確認
+				assertNotNull(question.getTitle()); //null出ないことを確認
+				assertNotNull(question.getBody()); //null出ないことを確認
+				assertNotNull(question.getChoice()); //null出ないことを確認
 				assertNotEquals(0, question.getCorrect()); //0でないことを確認
 			}
 		}
@@ -130,9 +130,9 @@ public class TestQuizQuestionFactory {
 			assertEquals(3, list.size()); //istのsizeが3であることを確認
 
 			for (QuizQuestion question : list) {
-				assertNull(question.getProblemTitle()); //nullであることを確認
-				assertNull(question.getProblemBody()); //nullであることを確認
-				assertNull(question.getProblemChoice()); //nullであることを確認
+				assertNull(question.getTitle()); //nullであることを確認
+				assertNull(question.getBody()); //nullであることを確認
+				assertNull(question.getChoice()); //nullであることを確認
 				assertEquals(0, question.getCorrect()); //0であることを確認
 			}
 		}

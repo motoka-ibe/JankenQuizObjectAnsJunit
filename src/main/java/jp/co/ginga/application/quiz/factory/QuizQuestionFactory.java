@@ -7,6 +7,11 @@ import jp.co.ginga.application.quiz.QuizQuestion;
 import jp.co.ginga.util.exception.SystemException;
 import jp.co.ginga.util.properties.MessageProperties;
 
+/**
+ * クイズ製造クラス
+ * @author inoue
+ *
+ */
 public class QuizQuestionFactory {
 
 	public List<QuizQuestion> createQuizQuestion() throws SystemException {

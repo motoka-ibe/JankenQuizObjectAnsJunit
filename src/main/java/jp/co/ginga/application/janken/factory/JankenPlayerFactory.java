@@ -11,6 +11,7 @@ import jp.co.ginga.util.exception.SystemException;
  *
  */
 public class JankenPlayerFactory {
+	
 	public final static int HUMAN = 1;
 	public final static int NPC = 2;
 

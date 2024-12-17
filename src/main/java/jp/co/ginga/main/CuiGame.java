@@ -33,12 +33,12 @@ public class CuiGame {
 				try {
 					switch (Keyboard.getInt(QUIZGAME, JankenGame)) {
 					case 1:
-						//クイズゲームクラスのインスタん生成
+						//クイズゲームクラスのインスタンス生成
 						cga = new QuizCuiGameApplicationImpl();
 						break;
 
 					case 2:
-						//じゃんけんゲームクラスのインスタん生成
+						//じゃんけんゲームクラスのインスタンス生成
 						cga = new JankenCuiGameApplicationImpl();
 						break;
 

@@ -286,23 +286,20 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 			throw new SystemException(MessageProperties.getMessage("error.stop"));
 		}
 
-		try {
-			StringBuilder sb = new StringBuilder();
-			for (JankenPlayer player : playerList) {
-				String playerName = player.getPlayerName(); //プレーヤーの名前を取得
-				if (this.winHand == player.getPlayerHand()) {
-					if (StringUtils.isEmpty(playerName)) { //プレーヤーの名前をisEmpty()チェック
-						throw new SystemException(MessageProperties.getMessage("error.stop"));
-					}
-					sb.append(playerName + " ");
+		StringBuilder sb = new StringBuilder();
+		for (JankenPlayer player : playerList) {
+			String playerName = player.getPlayerName(); //プレーヤーの名前を取得
+			if (this.winHand == player.getPlayerHand()) {
+				if (StringUtils.isEmpty(playerName)) { //プレーヤーの名前をisEmpty()チェック
+					throw new SystemException(MessageProperties.getMessage("error.stop"));
 				}
+				sb.append(playerName + " ");
 			}
-			String winners = sb.toString();
-
-			System.out.println(MessageProperties.getMessage("janken.msg.game.winner", winners));
-		} catch (NullPointerException e) {
-			throw new SystemException(MessageProperties.getMessage("error.stop"));
 		}
+		String winners = sb.toString();
+
+		System.out.println(MessageProperties.getMessage("janken.msg.game.winner", winners));
+
 	}
 
 	/**

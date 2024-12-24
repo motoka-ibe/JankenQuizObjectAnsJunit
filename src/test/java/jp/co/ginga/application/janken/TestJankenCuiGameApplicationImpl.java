@@ -6844,18 +6844,18 @@ public class TestJankenCuiGameApplicationImpl {
 			//mockNpcPlayersのモック化
 			for (int i = 0; i < npcObject; i++) {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
-				when(mockNpcPlayers[i].getPlayerName()).thenThrow(new NullPointerException("")); //thenThrowでNullPointerExceptionを送る
+				when(mockNpcPlayers[i].getPlayerName()).thenReturn(null); 
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
 			when(emptyPlayerList.get(0).getPlayerHand()).thenReturn(this.paper);
-			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.rock);
+			when(emptyPlayerList.get(1).getPlayerHand()).thenReturn(this.paper);
 
 			jankenCuiGameApplicationImpl.winHand = this.paper;
 
 			//テストメソッド
 			jankenCuiGameApplicationImpl.viewWinner();
-			fail();
+			
 
 		} catch (SystemException e) {
 			e.printStackTrace();

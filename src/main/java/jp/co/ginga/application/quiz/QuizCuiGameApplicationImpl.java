@@ -41,6 +41,7 @@ public class QuizCuiGameApplicationImpl implements CuiGameApplication {
 		System.out.println(MessageProperties.getMessage("quiz.msg.start"));
 
 		// クイズリスト作成
+		
 		list = factory.createQuizQuestion();
 		if (list == null) {
 			throw new SystemException(MessageProperties.getMessage("error.stop"));

@@ -16,7 +16,7 @@ import jp.co.ginga.util.properties.MessageProperties;
 public class CuiGame {
 
 	final static int QUIZGAME = 1;
-	final static int JankenGame = 2;
+	final static int JANKENGAME = 2;
 
 	/**
 	 * main処理
@@ -31,7 +31,7 @@ public class CuiGame {
 			while (true) {
 				System.out.println(MessageProperties.getMessage("msg.start"));
 				try {
-					switch (Keyboard.getInt(QUIZGAME, JankenGame)) {
+					switch (Keyboard.getInt(QUIZGAME, JANKENGAME)) {
 					case 1:
 						//クイズゲームクラスのインスタンス生成
 						cga = new QuizCuiGameApplicationImpl();

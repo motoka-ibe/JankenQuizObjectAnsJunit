@@ -4928,7 +4928,7 @@ public class TestJankenCuiGameApplicationImpl {
 				verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 			}
 
-			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
+			// scissors を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < humanObject; i++) {
 				if (mockHumanPlayers[i].getPlayerHand() == this.scissors) {
 					verify(mockHumanPlayers[i], times(1)).getPlayerName();
@@ -5993,8 +5993,9 @@ public class TestJankenCuiGameApplicationImpl {
 			//検証
 			verify(mockHumanPlayer, times(1)).getPlayerHand();
 			verify(mockNpcPlayer, times(1)).getPlayerHand();
+			//winHandがrockなので、rockを出したプレイヤーが勝者として出力される
+			// この場合、mockHumanPlayerが勝者であるため、mockNpcPlayerのgetPlayerName()は呼ばれません。
 			verify(mockHumanPlayer, times(1)).getPlayerName();
-			verify(mockNpcPlayer, times(1)).getPlayerName();
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
@@ -6002,13 +6003,16 @@ public class TestJankenCuiGameApplicationImpl {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
+
 			String winners = sb.toString();
 
 			//出力の確認(printlnの改行部分はlineSeparatorを付ける)
 			assertEquals("勝利者は、" + winners + "です。" + System.lineSeparator(),
 					out.toString());
 
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			e.printStackTrace();
 			fail();
 		}
@@ -6068,8 +6072,9 @@ public class TestJankenCuiGameApplicationImpl {
 			//検証
 			verify(mockHumanPlayer, times(1)).getPlayerHand();
 			verify(mockNpcPlayer, times(1)).getPlayerHand();
+			//winHandがscissorsなので、scissorsを出したプレイヤーが勝者として出力される
+			// この場合、mockHumanPlayerが勝者であるため、mockNpcPlayerのgetPlayerName()は呼ばれません。
 			verify(mockHumanPlayer, times(1)).getPlayerName();
-			verify(mockNpcPlayer, times(1)).getPlayerName();
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
@@ -6143,7 +6148,8 @@ public class TestJankenCuiGameApplicationImpl {
 			//検証
 			verify(mockHumanPlayer, times(1)).getPlayerHand();
 			verify(mockNpcPlayer, times(1)).getPlayerHand();
-			verify(mockHumanPlayer, times(1)).getPlayerName();
+			//winHandがpaperなので、paperを出したプレイヤーが勝者として出力される
+			// この場合、mockNpcPlayerが勝者であるため、mockHumanPlayerのgetPlayerName()は呼ばれません。
 			verify(mockNpcPlayer, times(1)).getPlayerName();
 
 			StringBuilder sb = new StringBuilder();
@@ -6844,7 +6850,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//mockNpcPlayersのモック化
 			for (int i = 0; i < npcObject; i++) {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
-				when(mockNpcPlayers[i].getPlayerName()).thenReturn(null); 
+				when(mockNpcPlayers[i].getPlayerName()).thenReturn(null);
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
@@ -6855,7 +6861,6 @@ public class TestJankenCuiGameApplicationImpl {
 
 			//テストメソッド
 			jankenCuiGameApplicationImpl.viewWinner();
-			
 
 		} catch (SystemException e) {
 			e.printStackTrace();

@@ -432,6 +432,7 @@ public class TestQuizCuiGameApplicationImpl {
 
 			//テスト対象実行
 			application.viewResult();
+			fail();
 
 			//検証
 			mockMessageProperties.verify(() -> MessageProperties.getMessage(anyString()), times(1));

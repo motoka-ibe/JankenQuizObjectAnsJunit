@@ -7066,7 +7066,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		//モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
-			// 3を返すように設定
+			// 1を返すように設定
 			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(1);
 
 			boolean result = jankenCuiGameApplicationImpl.hasGameContinue();
@@ -7097,7 +7097,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		//モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
-			// 3を返すように設定
+			// 2を返すように設定
 			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(2);
 
 			boolean result = jankenCuiGameApplicationImpl.hasGameContinue();
@@ -7131,7 +7131,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		//モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
-			// -1を返すように設定
+			// ApplicationExceptionを返すように設定→「正常値2」を引数とし処理を終わらせる
 			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenThrow(new ApplicationException("")).thenReturn(2);
 
 			// System.outのキャプチャ
@@ -7174,7 +7174,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 整数の1,2以外を入力した場合で
 	 * 再入力を促すメッセージが出ず、整数の1,2以外の引数が入ってしまった場合
 	 * --条件--
-	 *整数の1,2以外の引数が入ってしまった場合
+	 *整数の1,2以外の引数が3が入ってしまった場合
 	 * --検証項目--
 	 * 1.SystemException(実行データ不良)が発行されること
 	 * 2.メッセージ内容が正しいこと
@@ -7184,7 +7184,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		//モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
-			// -1を返すように設定
+			// 3を返すように設定
 			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(3);
 
 			jankenCuiGameApplicationImpl.hasGameContinue();
@@ -10584,7 +10584,7 @@ public class TestJankenCuiGameApplicationImpl {
 			doNothing().when(spyGame).createNpcOfJankenPlayer();
 			doReturn(true).when(spyGame).isCheckJankenPlayerCount();
 			doReturn(winHands).when(spyGame).judge(); // あいこ→勝利者の手を設定
-			doReturn(true).doReturn(false).when(spyGame).hasGameContinue(); // ゲームを続ける→続けない設定
+			doReturn(false).when(spyGame).hasGameContinue(); // 続けない設定
 
 			// System.outのキャプチャ
 			ByteArrayOutputStream out = new ByteArrayOutputStream();

@@ -288,8 +288,8 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 
 		StringBuilder sb = new StringBuilder();
 		for (JankenPlayer player : playerList) {
-			String playerName = player.getPlayerName(); //プレーヤーの名前を取得
 			if (this.winHand == player.getPlayerHand()) {
+				String playerName = player.getPlayerName(); //プレーヤーの名前を取得
 				if (StringUtils.isEmpty(playerName)) { //プレーヤーの名前をisEmpty()チェック
 					throw new SystemException(MessageProperties.getMessage("error.stop"));
 				}

@@ -4928,7 +4928,7 @@ public class TestJankenCuiGameApplicationImpl {
 				verify(mockHumanPlayers[i], times(1)).getPlayerHand();
 			}
 
-			// Rock を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
+			// scissors を持っているプレーヤー数、 getPlayerName() が呼び出されてるか確認
 			for (int i = 0; i < humanObject; i++) {
 				if (mockHumanPlayers[i].getPlayerHand() == this.scissors) {
 					verify(mockHumanPlayers[i], times(1)).getPlayerName();
@@ -5993,8 +5993,9 @@ public class TestJankenCuiGameApplicationImpl {
 			//検証
 			verify(mockHumanPlayer, times(1)).getPlayerHand();
 			verify(mockNpcPlayer, times(1)).getPlayerHand();
+			//winHandがrockなので、rockを出したプレイヤーが勝者として出力される
+			// この場合、mockHumanPlayerが勝者であるため、mockNpcPlayerのgetPlayerName()は呼ばれません。
 			verify(mockHumanPlayer, times(1)).getPlayerName();
-			verify(mockNpcPlayer, times(1)).getPlayerName();
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
@@ -6002,13 +6003,16 @@ public class TestJankenCuiGameApplicationImpl {
 					sb.append(player.getPlayerName() + " ");
 				}
 			}
+
 			String winners = sb.toString();
 
 			//出力の確認(printlnの改行部分はlineSeparatorを付ける)
 			assertEquals("勝利者は、" + winners + "です。" + System.lineSeparator(),
 					out.toString());
 
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			e.printStackTrace();
 			fail();
 		}
@@ -6068,8 +6072,9 @@ public class TestJankenCuiGameApplicationImpl {
 			//検証
 			verify(mockHumanPlayer, times(1)).getPlayerHand();
 			verify(mockNpcPlayer, times(1)).getPlayerHand();
+			//winHandがscissorsなので、scissorsを出したプレイヤーが勝者として出力される
+			// この場合、mockHumanPlayerが勝者であるため、mockNpcPlayerのgetPlayerName()は呼ばれません。
 			verify(mockHumanPlayer, times(1)).getPlayerName();
-			verify(mockNpcPlayer, times(1)).getPlayerName();
 
 			StringBuilder sb = new StringBuilder();
 			for (JankenPlayer player : emptyPlayerList) {
@@ -6143,7 +6148,8 @@ public class TestJankenCuiGameApplicationImpl {
 			//検証
 			verify(mockHumanPlayer, times(1)).getPlayerHand();
 			verify(mockNpcPlayer, times(1)).getPlayerHand();
-			verify(mockHumanPlayer, times(1)).getPlayerName();
+			//winHandがpaperなので、paperを出したプレイヤーが勝者として出力される
+			// この場合、mockNpcPlayerが勝者であるため、mockHumanPlayerのgetPlayerName()は呼ばれません。
 			verify(mockNpcPlayer, times(1)).getPlayerName();
 
 			StringBuilder sb = new StringBuilder();
@@ -6844,7 +6850,7 @@ public class TestJankenCuiGameApplicationImpl {
 			//mockNpcPlayersのモック化
 			for (int i = 0; i < npcObject; i++) {
 				mockNpcPlayers[i] = mock(NpcJankenPlayerImpl.class);
-				when(mockNpcPlayers[i].getPlayerName()).thenReturn(null); 
+				when(mockNpcPlayers[i].getPlayerName()).thenReturn(null);
 				emptyPlayerList.add(mockNpcPlayers[i]);
 			}
 
@@ -6855,7 +6861,6 @@ public class TestJankenCuiGameApplicationImpl {
 
 			//テストメソッド
 			jankenCuiGameApplicationImpl.viewWinner();
-			
 
 		} catch (SystemException e) {
 			e.printStackTrace();
@@ -7061,7 +7066,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		//モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
-			// 3を返すように設定
+			// 1を返すように設定
 			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(1);
 
 			boolean result = jankenCuiGameApplicationImpl.hasGameContinue();
@@ -7092,7 +7097,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		//モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
-			// 3を返すように設定
+			// 2を返すように設定
 			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(2);
 
 			boolean result = jankenCuiGameApplicationImpl.hasGameContinue();
@@ -7126,7 +7131,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		//モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
-			// -1を返すように設定
+			// ApplicationExceptionを返すように設定→「正常値2」を引数とし処理を終わらせる
 			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenThrow(new ApplicationException("")).thenReturn(2);
 
 			// System.outのキャプチャ
@@ -7169,7 +7174,7 @@ public class TestJankenCuiGameApplicationImpl {
 	 * 整数の1,2以外を入力した場合で
 	 * 再入力を促すメッセージが出ず、整数の1,2以外の引数が入ってしまった場合
 	 * --条件--
-	 *整数の1,2以外の引数が入ってしまった場合
+	 *整数の1,2以外の引数が3が入ってしまった場合
 	 * --検証項目--
 	 * 1.SystemException(実行データ不良)が発行されること
 	 * 2.メッセージ内容が正しいこと
@@ -7179,7 +7184,7 @@ public class TestJankenCuiGameApplicationImpl {
 
 		//モック化
 		try (MockedStatic<Keyboard> mockKeyboard = mockStatic(Keyboard.class)) {
-			// -1を返すように設定
+			// 3を返すように設定
 			mockKeyboard.when(() -> Keyboard.getInt(1, 2)).thenReturn(3);
 
 			jankenCuiGameApplicationImpl.hasGameContinue();
@@ -10579,7 +10584,7 @@ public class TestJankenCuiGameApplicationImpl {
 			doNothing().when(spyGame).createNpcOfJankenPlayer();
 			doReturn(true).when(spyGame).isCheckJankenPlayerCount();
 			doReturn(winHands).when(spyGame).judge(); // あいこ→勝利者の手を設定
-			doReturn(true).doReturn(false).when(spyGame).hasGameContinue(); // ゲームを続ける→続けない設定
+			doReturn(false).when(spyGame).hasGameContinue(); // 続けない設定
 
 			// System.outのキャプチャ
 			ByteArrayOutputStream out = new ByteArrayOutputStream();

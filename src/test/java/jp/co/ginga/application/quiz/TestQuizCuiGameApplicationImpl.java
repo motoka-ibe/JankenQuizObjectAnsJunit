@@ -132,6 +132,7 @@ public class TestQuizCuiGameApplicationImpl {
 	 * 3. judge()が0回呼び出されること
 	 * 4. viewResult()が1回呼び出されること
 	 * 5. 例外が発生せず、正常終了すること
+	 * 7.「昭和クイズゲームを開始します。」と「これで昭和クイズゲームは終了です。」が出力されていること。
 	 */
 	@Test
 	public void testAction_02() {

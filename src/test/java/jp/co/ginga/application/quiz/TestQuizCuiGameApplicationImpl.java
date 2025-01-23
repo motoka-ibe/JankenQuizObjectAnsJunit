@@ -1,6 +1,7 @@
 package jp.co.ginga.application.quiz;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
@@ -42,10 +43,11 @@ public class TestQuizCuiGameApplicationImpl {
 	* --検証項目--
 	* 1. createQuizQuestion()が返すリストのサイズが3であること
 	* 2. リストの各QuizQuestionオブジェクトのタイトル、本文、選択肢、正解が期待通りであること
-	* 3. QuizCuiGameApplicationImplのviewProblem()が3回呼び出されること
+	* 3. viewProblem()が3回呼び出されること
 	* 4. judge()が3回呼び出されること
 	* 5. viewResult()が1回呼び出されること
 	* 6. 例外が発生せず、正常終了すること
+	* 7.「昭和クイズゲームを開始します。」と「これで昭和クイズゲームは終了です。」が出力されていること。
 	 */
 	@Test
 	public void testAction_01() {
@@ -63,8 +65,40 @@ public class TestQuizCuiGameApplicationImpl {
 			doNothing().when(spyApplication).viewResult();
 			spyApplication.factory = mockFactory;
 
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
+
 			//テストメソッドの実行
 			spyApplication.action();
+
+			// 出力の確認
+			String output = out.toString();
+
+			// 出力の確認(split()メソッドで出力された文字列を行ごとに分割)
+			String[] outputLines = output.split(System.lineSeparator());
+
+			// for分で該当するメッセージを探す
+			boolean findStartMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("昭和クイズゲームを開始します。\n")) {
+					findStartMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			boolean findEndMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("これで昭和クイズゲームは終了です。\n")) {
+					findEndMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			// メッセージが見つかったことを確認
+			assertTrue(findStartMessage);
+			assertTrue(findEndMessage);
 
 			//検証
 			assertEquals(3, spyApplication.list.size());
@@ -76,6 +110,7 @@ public class TestQuizCuiGameApplicationImpl {
 			verify(spyApplication, times(3)).viewProblem(any());
 			verify(spyApplication, times(3)).judge(any());
 			verify(spyApplication, times(1)).viewResult();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
@@ -392,7 +427,8 @@ public class TestQuizCuiGameApplicationImpl {
 	 * --条件--
 	 *	MessageProperties.getMessage("quiz.msg.correct" + this.correctCount)が正常に処理された場合
 	 * --検証項目--
-	 * 表示された内容が、想定と一致すること
+	 * 処理が正常に終了すること
+	 * getMessageが一回呼び出されること
 	 */
 	@Test
 	public void testViewResult_01() {
@@ -422,6 +458,7 @@ public class TestQuizCuiGameApplicationImpl {
 	 *	MessageProperties.getMessage("quiz.msg.correct" + this.correctCount)がSystemExceptionを発行する場合
 	 * --検証項目--
 	 * SystemExceptionが発行されること
+	 * メッセージ「システムエラーが発生しました。終了します。」が出力されること。
 	 */
 	@Test
 	public void testViewResult_02() {
@@ -440,6 +477,210 @@ public class TestQuizCuiGameApplicationImpl {
 		} catch (SystemException e) {
 			e.printStackTrace();
 			assertEquals("システムエラーが発生しました。終了します。", e.getSysMsg());//検証
+		}
+	}
+
+	/**
+	 * testViewResult_03 正常系
+	 * void viewResult()
+	 * 
+	 * --確認事項--
+	 * 結果表示ができるか
+	 * --条件--
+	 *	MessageProperties.getMessage("quiz.msg.correct" + this.correctCount)が正常に処理された場合
+	 *  corectCount0の場合
+	 * --検証項目--
+	 * 表示された内容が、想定と一致すること
+	 * 「もう少し昭和に興味をもってください」が出力されること
+	 */
+	@Test
+	public void testViewResult_03() {
+		try {
+			application = new QuizCuiGameApplicationImpl();
+			application.correctCount = 0;
+
+			//System.setOutメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
+
+			//テスト対象実行
+			application.viewResult();
+
+			// 出力の確認
+			String output = out.toString();
+
+			// 出力の確認(split()メソッドで出力された文字列を行ごとに分割)
+			String[] outputLines = output.split(System.lineSeparator());
+
+			// for分で該当するメッセージを探す
+			boolean findMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("もう少し昭和に興味をもってください\n")) {
+					findMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			// メッセージが見つかったことを確認
+			assertTrue(findMessage);
+
+		} catch (SystemException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+
+	/**
+	 * testViewResult_04 正常系
+	 * void viewResult()
+	 * 
+	 * --確認事項--
+	 * 結果表示ができるか
+	 * --条件--
+	 *	MessageProperties.getMessage("quiz.msg.correct" + this.correctCount)が正常に処理された場合
+	 *  corectCount01の場合
+	 * --検証項目--
+	 * 表示された内容が、想定と一致すること
+	 * 「1問正解です。もし難しいようなら、お父さん、お母さんに聞いてみたら\n」が出力されること
+	 */
+	@Test
+	public void testViewResult_04() {
+		try {
+			application = new QuizCuiGameApplicationImpl();
+			application.correctCount = 1;
+
+			//System.setOutメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
+
+			//テスト対象実行
+			application.viewResult();
+
+			// 出力の確認
+			String output = out.toString();
+
+			// 出力の確認(split()メソッドで出力された文字列を行ごとに分割)
+			String[] outputLines = output.split(System.lineSeparator());
+
+			// for分で該当するメッセージを探す
+			boolean findMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("1問正解です。もし難しいようなら、お父さん、お母さんに聞いてみたら\n")) {
+					findMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			// メッセージが見つかったことを確認
+			assertTrue(findMessage);
+
+		} catch (SystemException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+
+	/**
+	 * testViewResult_05 正常系
+	 * void viewResult()
+	 * 
+	 * --確認事項--
+	 * 結果表示ができるか
+	 * --条件--
+	 *	MessageProperties.getMessage("quiz.msg.correct" + this.correctCount)が正常に処理された場合
+	 *  corectCount01の場合
+	 * --検証項目--
+	 * 表示された内容が、想定と一致すること
+	 * 「2問正解です。あと少しでエキスパートです。頑張ってください\n」が出力されること
+	 */
+	@Test
+	public void testViewResult_05() {
+		try {
+			application = new QuizCuiGameApplicationImpl();
+			application.correctCount = 2;
+
+			//System.setOutメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
+
+			//テスト対象実行
+			application.viewResult();
+
+			// 出力の確認
+			String output = out.toString();
+
+			// 出力の確認(split()メソッドで出力された文字列を行ごとに分割)
+			String[] outputLines = output.split(System.lineSeparator());
+
+			// for分で該当するメッセージを探す
+			boolean findMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("2問正解です。あと少しでエキスパートです。頑張ってください\n")) {
+					findMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			// メッセージが見つかったことを確認
+			assertTrue(findMessage);
+
+		} catch (SystemException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+
+	/**
+	 * testViewResult_06 正常系
+	 * void viewResult()
+	 * 
+	 * --確認事項--
+	 * 結果表示ができるか
+	 * --条件--
+	 *	MessageProperties.getMessage("quiz.msg.correct" + this.correctCount)が正常に処理された場合
+	 *  corectCount01の場合
+	 * --検証項目--
+	 * 表示された内容が、想定と一致すること
+	 * 「全問正解です。昭和のエキスパートですね\n」が出力されること
+	 */
+	@Test
+	public void testViewResult_06() {
+		try {
+			application = new QuizCuiGameApplicationImpl();
+			application.correctCount = 3;
+
+			//System.setOutメソッドでByteArrayOutputStreamへリダイレクトさせ、その内容を比較
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
+
+			//テスト対象実行
+			application.viewResult();
+
+			// 出力の確認
+			String output = out.toString();
+
+			// 出力の確認(split()メソッドで出力された文字列を行ごとに分割)
+			String[] outputLines = output.split(System.lineSeparator());
+
+			// for分で該当するメッセージを探す
+			boolean findMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("全問正解です。昭和のエキスパートですね\n")) {
+					findMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			// メッセージが見つかったことを確認
+			assertTrue(findMessage);
+
+		} catch (SystemException e) {
+			e.printStackTrace();
+			fail();
 		}
 	}
 

@@ -271,7 +271,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 	 * じゃんけんプレイヤーは2名～10名以外の場合はシステムを終了する
 	 * winHandがROCK、SCISSORS、PAPER以外の場合はシステムを終了する
 	 * 勝利者の名前はスペースで区切らるように表示する
-	 * 勝利者がいない場合はシステムを終了する
+	 * 勝利者が名前がNullまたは空の場合、システムを終了する
 	 * @throws SystemException
 	 */
 	void viewWinner() throws SystemException {
@@ -287,9 +287,10 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 		}
 
 		StringBuilder sb = new StringBuilder();
+		String playerName ;
 		for (JankenPlayer player : playerList) {
 			if (this.winHand == player.getPlayerHand()) {
-				String playerName = player.getPlayerName(); //プレーヤーの名前を取得
+				playerName = player.getPlayerName(); //プレーヤーの名前を取得
 				if (StringUtils.isEmpty(playerName)) { //プレーヤーの名前をisEmpty()チェック
 					throw new SystemException(MessageProperties.getMessage("error.stop"));
 				}

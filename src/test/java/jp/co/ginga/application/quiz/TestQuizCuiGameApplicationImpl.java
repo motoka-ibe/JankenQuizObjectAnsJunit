@@ -132,6 +132,7 @@ public class TestQuizCuiGameApplicationImpl {
 	 * 3. judge()が0回呼び出されること
 	 * 4. viewResult()が1回呼び出されること
 	 * 5. 例外が発生せず、正常終了すること
+	 * 7.「昭和クイズゲームを開始します。」と「これで昭和クイズゲームは終了です。」が出力されていること。
 	 */
 	@Test
 	public void testAction_02() {
@@ -147,8 +148,40 @@ public class TestQuizCuiGameApplicationImpl {
 			doNothing().when(spyApplication).viewResult();
 			spyApplication.factory = mockFactory;
 
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(out));
+
 			//テストメソッドの実行
 			spyApplication.action();
+
+			// 出力の確認
+			String output = out.toString();
+
+			// 出力の確認(split()メソッドで出力された文字列を行ごとに分割)
+			String[] outputLines = output.split(System.lineSeparator());
+
+			// for分で該当するメッセージを探す
+			boolean findStartMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("昭和クイズゲームを開始します。\n")) {
+					findStartMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			boolean findEndMessage = false;
+			for (String line : outputLines) {
+				System.out.println(line); //デバック用
+				if (line.equals("これで昭和クイズゲームは終了です。\n")) {
+					findEndMessage = true;
+					break; // メッセージが見つかったらループを抜ける
+				}
+			}
+
+			// メッセージが見つかったことを確認
+			assertTrue(findStartMessage);
+			assertTrue(findEndMessage);
 
 			//検証
 			assertEquals(0, spyApplication.list.size());

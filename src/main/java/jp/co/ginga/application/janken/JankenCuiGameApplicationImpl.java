@@ -68,7 +68,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 				//人間プレーヤーオブジェクト生成処理
 				this.createHumanOfJankenPlayer();
 
-				//CPUプレーヤーオブジェクト生成処理
+				//NPCプレーヤーオブジェクト生成処理
 				this.createNpcOfJankenPlayer();
 
 				//じゃんけんプレーヤー数チェック処理
@@ -287,7 +287,7 @@ public class JankenCuiGameApplicationImpl implements CuiGameApplication {
 		}
 
 		StringBuilder sb = new StringBuilder();
-		String playerName ;
+		String playerName;
 		for (JankenPlayer player : playerList) {
 			if (this.winHand == player.getPlayerHand()) {
 				playerName = player.getPlayerName(); //プレーヤーの名前を取得

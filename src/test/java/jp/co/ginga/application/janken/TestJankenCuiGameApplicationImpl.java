@@ -3888,7 +3888,6 @@ public class TestJankenCuiGameApplicationImpl {
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
 			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
-			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 
 	}
@@ -3951,7 +3950,6 @@ public class TestJankenCuiGameApplicationImpl {
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
 			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
-			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 
 	}
@@ -4013,7 +4011,6 @@ public class TestJankenCuiGameApplicationImpl {
 		assertEquals(this.draw, result);
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
-			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 
@@ -4084,7 +4081,6 @@ public class TestJankenCuiGameApplicationImpl {
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
 			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
-			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 
 	}
@@ -4153,7 +4149,6 @@ public class TestJankenCuiGameApplicationImpl {
 		assertEquals(this.rock, result);
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
-			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 
@@ -4224,7 +4219,6 @@ public class TestJankenCuiGameApplicationImpl {
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
 			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
-			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 	}
 
@@ -4292,7 +4286,6 @@ public class TestJankenCuiGameApplicationImpl {
 		assertEquals(this.draw, result);
 
 		for (int i = 0; i < emptyPlayerList.size(); i++) {
-			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 			verify(emptyPlayerList.get(i), times(1)).getPlayerHand();
 		}
 
